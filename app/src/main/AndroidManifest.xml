@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WimuuvApplication">
         <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
             android:name=".Feed"
             android:exported="false" />
         <activity
