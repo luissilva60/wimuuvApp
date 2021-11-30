@@ -1,6 +1,9 @@
 package com.example.wimuuvapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,6 +25,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+
 public class MainActivity extends AppCompatActivity {
    private Button loginButton;
     private Button fgtpwButton;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loginButton = findViewById(R.id.loginBTN);
+        fgtpwButton = findViewById(R.id.forgotpwbutton);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClickLogin(View v) {
