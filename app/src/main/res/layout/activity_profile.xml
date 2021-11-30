@@ -8,12 +8,44 @@
     tools:context=".ProfileActivity">
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="412dp"
-        android:layout_height="96dp"
+        android:layout_width="415dp"
+        android:layout_height="113dp"
         app:columnCount="3"
+        app:layout_column="0"
+        app:layout_row="0"
         app:rowCount="1"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="634dp">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="595dp">
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="96dp"
+            android:layout_height="103dp"
+            app:layout_column="4"
+            app:layout_row="0"
+            app:srcCompat="@drawable/mapButton" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="119dp"
+            android:layout_height="match_parent"
+            app:layout_column="0"
+            app:layout_row="0"
+            app:srcCompat="@drawable/ProfileButton"
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="595dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="148dp"
+            android:layout_height="109dp"
+            app:layout_column="2"
+            app:layout_row="0"
+            app:srcCompat="@drawable/feedButton"
+            tools:layout_editor_absoluteX="267dp"
+            tools:layout_editor_absoluteY="595dp" />
 
     </androidx.gridlayout.widget.GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
