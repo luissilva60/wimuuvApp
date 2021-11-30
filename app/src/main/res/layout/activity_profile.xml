@@ -12,9 +12,9 @@
         layout="@layout/toolbar" />
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="413dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="579dp"
+        android:layout_width="411dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="603dp"
         app:columnCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="143dp"
+            android:layout_width="126dp"
             android:layout_height="match_parent"
             app:layout_column="0"
             app:layout_row="0"
@@ -33,8 +33,8 @@
 
         <ImageButton
             android:id="@+id/imageButton4"
-            android:layout_width="124dp"
-            android:layout_height="match_parent"
+            android:layout_width="116dp"
+            android:layout_height="80dp"
             app:layout_column="2"
             app:layout_row="0"
             app:srcCompat="@drawable/ProfileButton"
@@ -42,8 +42,8 @@
 
         <ImageButton
             android:id="@+id/imageButton6"
-            android:layout_width="145dp"
-            android:layout_height="102dp"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
             app:layout_column="1"
             app:layout_row="0"
             app:srcCompat="@drawable/feedButton"

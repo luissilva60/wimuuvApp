@@ -70,7 +70,7 @@
         app:rippleColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/forgotpwbutton"
         android:layout_width="178dp"
         android:layout_height="48dp"
         android:layout_marginStart="46dp"
@@ -96,7 +96,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/forgotpwbutton"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
