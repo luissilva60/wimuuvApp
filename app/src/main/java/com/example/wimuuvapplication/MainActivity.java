@@ -1,29 +1,16 @@
 package com.example.wimuuvapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
+
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,24 +22,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loginButton = findViewById(R.id.loginBTN);
         fgtpwButton = findViewById(R.id.forgotpwbutton);
-        loginButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClickLogin(View v) {
-                Intent intent = new Intent(getApplicationContext(), Feed.class);
+
+    }
+    public void onClickLogin(View v) {
+        Intent intent = new Intent(getApplicationContext(), Feed.class);
 
 
-                startActivity(intent);
-            }
-        });
+        startActivity(intent);
+    }
 
-        fgtpwButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClickfgtpw(View v) {
-                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+    public void onClickfgtpw(View v) {
+        Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
 
 
-                startActivity(intent);
-            }
-        });
+        startActivity(intent);
+    }
+    public void onClickSignup(View v) {
+        Intent intent = new Intent(getApplicationContext(), Feed.class);
+
+
+        startActivity(intent);
     }
 }
