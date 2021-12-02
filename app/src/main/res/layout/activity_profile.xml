@@ -7,9 +7,7 @@
     android:background="@drawable/profilebackground"
     tools:context=".ProfileActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar" />
+    -
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="411dp"
@@ -18,19 +16,11 @@
         app:columnCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="1.0"
         app:rowCount="1">
-
-        <ImageButton
-            android:id="@+id/mapButton"
-            android:layout_width="138dp"
-            android:layout_height="match_parent"
-            android:onClick="onClickMap"
-            app:layout_column="0"
-            app:layout_row="0"
-            app:srcCompat="@drawable/mapButton"
-            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/profileButton"
@@ -39,7 +29,7 @@
             android:onClick="onClickProfile"
             app:layout_column="2"
             app:layout_row="0"
-            app:srcCompat="@drawable/ProfileButton"
+            app:srcCompat="@drawable/profilebutton"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -49,8 +39,16 @@
             android:onClick="onClickFeed"
             app:layout_column="1"
             app:layout_row="0"
-            app:srcCompat="@drawable/feedButton"
+            app:srcCompat="@drawable/feedbutton1"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_column="0"
+            app:layout_row="0"
+            app:srcCompat="@drawable/mapbutton" />
 
     </androidx.gridlayout.widget.GridLayout>
 

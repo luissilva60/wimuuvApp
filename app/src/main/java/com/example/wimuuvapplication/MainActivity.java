@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loginButton = findViewById(R.id.loginBTN);
-        fgtpwButton = findViewById(R.id.forgotpwbutton);
+        fgtpwButton = findViewById(R.id.forgotpw);
 
     }
     public void onClickLogin(View v) {
