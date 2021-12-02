@@ -2,6 +2,7 @@ package com.example.wimuuvapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,5 +34,24 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         title.setText("Profile");
+    }
+
+    public void onClickMap(View v) {
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+
+
+        startActivity(intent);
+    }
+    public void onClickFeed(View v) {
+        Intent intent = new Intent(getApplicationContext(), Feed.class);
+
+
+        startActivity(intent);
+    }
+    public void onClickProfile(View v) {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+
+
+        startActivity(intent);
     }
 }
