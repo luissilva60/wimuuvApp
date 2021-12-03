@@ -1,4 +1,4 @@
-package com.example.wimuuvapplication;
+package com.example.wimuuvapplication.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.wimuuvapplication.R;
 
 public class ProfileActivity extends AppCompatActivity {
 

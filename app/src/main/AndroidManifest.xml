@@ -10,25 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WimuuvApplication">
         <activity
-            android:name=".MapActivity"
+            android:name=".UI.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".UI.Settings"
             android:exported="true" />
         <activity
-            android:name=".Feed"
+            android:name=".UI.Feed"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".UI.Register"
             android:exported="false" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".UI.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".UI.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
