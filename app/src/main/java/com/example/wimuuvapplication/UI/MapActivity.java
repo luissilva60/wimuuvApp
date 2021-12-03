@@ -2,6 +2,7 @@ package com.example.wimuuvapplication.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-    @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this activity
@@ -39,9 +40,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return mView;
     }
 
-    @Override
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        onViewCreated(view, savedInstanceState);
         mMapView = (MapView) mView.findViewById(R.id.map);
         if (mMapView != null) {
             mMapView.onCreate(null);
@@ -56,4 +57,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGoogleMap = googleMap;
         googleMap. setMapType (GoogleMap. MAP_TYPE_NORMAL);
     }
+
+
 }
