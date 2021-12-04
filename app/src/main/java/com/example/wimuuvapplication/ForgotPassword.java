@@ -17,16 +17,16 @@ public class ForgotPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-        TextView title = findViewById(R.id.toolbar_title);
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar2.setTitle("Forgot Password");
         setSupportActionBar(toolbar2);
-        toolbar2.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-        toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed(); // Implemented by activity
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
     tools:context=".Register">
+    <include
+        layout="@layout/toolbar2"/>
 
     <CheckBox
         android:id="@+id/checkBox2"
