@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,13 +25,6 @@ public class ProfileActivity extends AppCompatActivity {
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
 
-        ImageView rightIcon = findViewById(R.id.right_icon);
-
-    }
-    public void onClickSettings(View v) {
-        Intent intent = new Intent(getApplicationContext(),Settings.class);
-
-        startActivity(intent);
     }
 
     public void onClickMap(View v) {
