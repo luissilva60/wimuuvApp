@@ -14,9 +14,6 @@
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:exported="true" />
-        <activity
-            android:name=".Settings"
             android:exported="false" />
         <activity
             android:name=".Feed"
