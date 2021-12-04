@@ -7,51 +7,12 @@
     android:background="@drawable/profilebackground"
     tools:context=".ProfileActivity">
 
-    -
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/mapbutton"
-        android:layout_width="411dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="603dp"
-        app:columnCount="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="1.0"
-        app:rowCount="1">
-
-        <ImageButton
-            android:id="@+id/profileButton"
-            android:layout_width="137dp"
-            android:layout_height="match_parent"
-            android:onClick="onClickProfile"
-            app:layout_column="2"
-            app:layout_row="0"
-            app:srcCompat="@drawable/profilebutton"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/feedButton"
-            android:layout_width="137dp"
-            android:layout_height="match_parent"
-            android:onClick="onClickFeed"
-            app:layout_column="1"
-            app:layout_row="0"
-            app:srcCompat="@drawable/feedbutton1"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_column="0"
-            app:layout_row="0"
-            app:srcCompat="@drawable/mapbutton"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </androidx.gridlayout.widget.GridLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EB1C24"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:menu="@menu/bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>
