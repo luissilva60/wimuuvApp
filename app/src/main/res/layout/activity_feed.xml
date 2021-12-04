@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profilebackground" >
+    android:background="@drawable/profilebackground"
+    tools:context=".Feed">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="415dp"
-        android:layout_height="136dp"
-        tools:layout_editor_absoluteX="-5dp"
-        tools:layout_editor_absoluteY="594dp">
-
-    </androidx.gridlayout.widget.GridLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EB1C24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
