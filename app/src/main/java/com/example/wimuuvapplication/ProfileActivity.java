@@ -2,7 +2,12 @@ package com.example.wimuuvapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -10,5 +15,25 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+    }
+
+    public void onClickMap(View v) {
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+
+
+        startActivity(intent);
+    }
+    public void onClickFeed(View v) {
+        Intent intent = new Intent(getApplicationContext(), Feed.class);
+
+
+        startActivity(intent);
+    }
+    public void onClickProfile(View v) {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+
+
+        startActivity(intent);
     }
 }
