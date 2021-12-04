@@ -2,7 +2,7 @@ package com.example.wimuuvapplication.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,10 +53,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(getApplicationContext());
         mGoogleMap = googleMap;
         googleMap. setMapType (GoogleMap. MAP_TYPE_NORMAL);
     }
-
-
 }
