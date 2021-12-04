@@ -1,32 +1,17 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.wimuuvapplication.R;
-
-public class ProfileActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Profile");
-        setSupportActionBar(toolbar);
-
+        setContentView(R.layout.activity_map);
     }
 
     public void onClickMap(View v) {
@@ -50,4 +35,10 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickSettings(View v) {
+        Intent intent = new Intent(getApplicationContext(), Settings.class);
+
+
+        startActivity(intent);
+    }
 }
