@@ -37,10 +37,4 @@ public class Feed extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickSettings(View v) {
-        Intent intent = new Intent(getApplicationContext(), Settings.class);
-
-
-        startActivity(intent);
-    }
 }

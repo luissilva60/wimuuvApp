@@ -81,10 +81,4 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         startActivity(intent);
     }
 
-    public void onClickSettings(View v) {
-        Intent intent = new Intent(getApplicationContext(), Settings.class);
-
-
-        startActivity(intent);
-    }
 }
