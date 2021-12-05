@@ -50,32 +50,10 @@
         app:layout_constraintTop_toBottomOf="@+id/EmaileditText" />
 
     <Button
-        android:id="@+id/loginBTN"
-        android:layout_width="145dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="183dp"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="onClickLogin"
-        android:text="Login"
-        android:textColor="#FF0000"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup"
-        app:rippleColor="#FFFFFF" />
-
-    <Button
         android:id="@+id/forgotpw"
         android:layout_width="178dp"
         android:layout_height="48dp"
         android:layout_marginStart="46dp"
-        android:layout_marginBottom="23dp"
         android:backgroundTint="#EB1C24"
         android:onClick="onClickfgtpw"
         android:text="Forgot password?"
@@ -84,7 +62,6 @@
         android:textColorHint="#EB1C24"
         android:textColorLink="#EB1C24"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/loginBTN"
         app:layout_constraintEnd_toStartOf="@+id/signup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
@@ -108,5 +85,26 @@
         app:layout_constraintStart_toEndOf="@+id/forgotpw"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         app:rippleColor="#EB1C24" />
+
+    <Button
+        android:id="@+id/loginBTN"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="183dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="onClickLogin"
+        android:text="Login"
+        android:textColor="#FF0000"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:rippleColor="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

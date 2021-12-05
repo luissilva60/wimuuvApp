@@ -2,6 +2,7 @@ package com.example.wimuuvapplication.UI;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
 
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.wimuuvapplication.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginButton = findViewById(R.id.loginBTN);
         fgtpwButton = findViewById(R.id.forgotpw);
+        loginButton = findViewById(R.id.loginBTN);
 
     }
     public void onClickLogin(View v) {
-        Intent intent = new Intent(getApplicationContext(), Feed.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
 
 
         startActivity(intent);
