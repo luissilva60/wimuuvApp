@@ -3,6 +3,7 @@ package com.example.wimuuvapplication.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -56,5 +58,33 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         MapsInitializer.initialize(getApplicationContext());
         mGoogleMap = googleMap;
         googleMap. setMapType (GoogleMap. MAP_TYPE_NORMAL);
+    }
+
+    public void onClickMap(View v) {
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+
+
+        startActivity(intent);
+    }
+
+    public void onClickFeed(View v) {
+        Intent intent = new Intent(getApplicationContext(), Feed.class);
+
+
+        startActivity(intent);
+    }
+
+    public void onClickProfile(View v) {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+
+
+        startActivity(intent);
+    }
+
+    public void onClickSettings(View v) {
+        Intent intent = new Intent(getApplicationContext(), Settings.class);
+
+
+        startActivity(intent);
     }
 }
