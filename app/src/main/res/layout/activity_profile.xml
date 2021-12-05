@@ -5,16 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/profilebackground"
-    tools:context=".ProfileActivity">
+    tools:context=".UI.ProfileActivity">
+
     <include
-        layout="@layout/toolbar"/>
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_marginBottom="619dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#EB1C24"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:menu="@menu/bottom_nav" />
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="619dp"
+        android:background="#EB1C24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:menu="@menu/bottom_nav" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="203dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="167dp"
+        android:layout_marginBottom="477dp"
+        android:text="Profile"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 </androidx.constraintlayout.widget.ConstraintLayout>
