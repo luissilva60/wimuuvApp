@@ -34,14 +34,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this activity
         mView = inflater.inflate(R.layout.activity_map, container, false);
         return mView;
     }
-
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         onViewCreated(view, savedInstanceState);

@@ -4,16 +4,16 @@
     <item
         android:id="@+id/mapActivity"
         android:icon="@drawable/ic_baseline_map_24"
-        android:title="Map" />
+        android:title="@string/map" />
 
     <item
         android:id="@+id/feedActivity"
         android:icon="@drawable/ic_baseline_list_24"
-        android:title="Feed" />
+        android:title="@string/feed" />
 
     <item
         android:id="@+id/profileActivity"
         android:icon="@drawable/ic_baseline_perm_identity_24"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 </menu>
