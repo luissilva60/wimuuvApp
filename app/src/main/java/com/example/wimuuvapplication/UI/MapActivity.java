@@ -43,7 +43,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         onViewCreated(view, savedInstanceState);
-        mMapView = (MapView) mView.findViewById(R.id.map);
+        mMapView = (MapView) mView.findViewById(R.id.mapnav);
         if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();

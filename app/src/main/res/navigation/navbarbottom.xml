@@ -7,17 +7,17 @@
 
     <activity
         android:id="@+id/mapActivity"
-        android:name="com.example.wimuuvapplication.UI.MapActivity"
+        android:name="com.example.wimuuvapplication.MapActivity"
         android:label="activity_map"
         tools:layout="@layout/activity_map" />
     <activity
         android:id="@+id/profileActivity"
-        android:name="com.example.wimuuvapplication.UI.ProfileActivity"
+        android:name="com.example.wimuuvapplication.ProfileActivity"
         android:label="activity_profile"
         tools:layout="@layout/activity_profile" />
     <activity
         android:id="@+id/feedActivity"
-        android:name="com.example.wimuuvapplication.UI.Feed"
+        android:name="com.example.wimuuvapplication.UI.FeedFragment"
         android:label="activity_feed"
         tools:layout="@layout/activity_feed" />
 </navigation>
