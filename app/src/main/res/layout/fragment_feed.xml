@@ -5,6 +5,6 @@
     android:id="@+id/feednav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Feed">
+    tools:context=".UI.FeedFragment">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

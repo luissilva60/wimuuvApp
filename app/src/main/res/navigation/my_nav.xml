@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/feed"
-        android:name="com.example.wimuuvapplication.FeedFragment"
+        android:name="com.example.wimuuvapplication.UI.FeedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.wimuuvapplication.ProfileFragment"
+        android:name="com.example.wimuuvapplication.UI.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment

@@ -3,16 +3,10 @@ package com.example.wimuuvapplication.UI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.wimuuvapplication.FeedFragment;
-import com.example.wimuuvapplication.ProfileFragment;
 import com.example.wimuuvapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,10 +17,10 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        BottomNavigationView navView = findViewById(R.id.my_nav);
+        BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
         navView.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new MapsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new MapsFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -47,9 +41,15 @@ public class MainActivity2 extends AppCompatActivity {
                             break;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag,selectedFragment).commit();
+                    getSupportFragmentManager()
+
+                            .beginTransaction()
+
+                            .replace(R.id.fragment_layout, selectedFragment)
+
+                            .commit();
 
                     return true;
-        }
+                }
     };
 }
