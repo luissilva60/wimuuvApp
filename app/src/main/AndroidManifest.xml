@@ -61,7 +61,7 @@
         </activity> <!-- Maps Android Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTVNUcvBRdSfyLh9yohsHG4zb957qytsk" />
+            android:value="AIzaSyB860oiyT4nOgjcWZ3FcvH7_1Yt-L-RhjE" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
