@@ -39,22 +39,13 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".UI.MapActivity"
-            android:exported="false" />
-        <activity
             android:name=".UI.Settings"
             android:exported="true" />
-        <activity
-            android:name=".UI.Feed"
-            android:exported="false" />
         <activity
             android:name=".UI.Register"
             android:exported="false" />
         <activity
             android:name=".UI.ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".UI.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".UI.MainActivity"
