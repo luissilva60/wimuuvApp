@@ -25,12 +25,14 @@ import java.util.concurrent.ExecutionException;
 
 
 public class FindEventsFragment extends Fragment {
-
+/*
     public ArrayList<String> events;
     public ArrayList<String> eventsId;
     public ArrayList<String> eventsName;
     public ArrayAdapter<String> adapterEvents;
     JSONArray objevents;
+
+    private ListView listViewEvents;
 
 
     
@@ -83,5 +85,6 @@ public class FindEventsFragment extends Fragment {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
     }
+    */
 
 }
