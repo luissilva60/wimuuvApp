@@ -10,22 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
-//import com.example.wimuuvapplication.databinding.FindEventsBinding;
+import com.example.wimuuvapplication.databinding.FragmentFindEventsBinding;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.concurrent.ExecutionException;
 
 
 
 public class FindEventsFragment extends Fragment {
-/*
+
     public ArrayList<String> events;
     public ArrayList<String> eventsId;
     public ArrayList<String> eventsName;
@@ -33,17 +35,15 @@ public class FindEventsFragment extends Fragment {
     JSONArray objevents;
 
     private ListView listViewEvents;
+    private FragmentFindEventsBinding binding;
 
 
-    
-
-   
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FindEventsFragment.inflate(inflater, container, false);
+        binding = FragmentFindEventsBinding.inflate(inflater, container, false);
         JSONArrayDownloader task = new JSONArrayDownloader();
         View root = binding.getRoot();
 
@@ -85,6 +85,6 @@ public class FindEventsFragment extends Fragment {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
     }
-    */
+
 
 }
