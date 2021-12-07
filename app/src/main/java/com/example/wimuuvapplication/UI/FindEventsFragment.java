@@ -22,11 +22,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FindEventsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FindEventsFragment extends Fragment {
 
     public ArrayList<String> events;
@@ -39,7 +35,7 @@ public class FindEventsFragment extends Fragment {
     
 
    
-
+    /*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,11 +76,11 @@ public class FindEventsFragment extends Fragment {
 
     }
 
-    
+
 
     public void InitalizeAdapter() {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
     }
-    
+    */
 }
