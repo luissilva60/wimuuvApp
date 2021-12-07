@@ -4,17 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
-//import com.example.wimuuvapplication.databinding.FindEventsBinding;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,18 +21,18 @@ import java.util.concurrent.ExecutionException;
 
 
 
-public class FindEventsFragment extends Fragment {
+public class FindSpotsFragment extends Fragment {
 
-    public ArrayList<String> events;
-    public ArrayList<String> eventsId;
-    public ArrayList<String> eventsName;
-    public ArrayAdapter<String> adapterEvents;
-    JSONArray objevents;
+    public ArrayList<String> spots;
+    public ArrayList<String> spotsId;
+    public ArrayList<String> spotsName;
+    public ArrayAdapter<String> adapterSpots;
+    JSONArray objspots;
 
 
-    
 
-   
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,30 +43,30 @@ public class FindEventsFragment extends Fragment {
         View root = binding.getRoot();
 
         try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
+            objspots = task.execute("https://wimuuv.herokuapp.com/api/events").get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-            objevents = null;
+            objspots = null;
         }
 
         JSONObject obj;
-        events = new ArrayList<>();
-        eventsId = new ArrayList<>();
-        eventsName = new ArrayList<>();
-        if(objevents != null) {
-            for(int i = 0; i < objevents.length(); i++) {
+        spots = new ArrayList<>();
+        spotsId = new ArrayList<>();
+        spotsName = new ArrayList<>();
+        if(objspots != null) {
+            for(int i = 0; i < objspots.length(); i++) {
                 try {
-                    obj = objevents.getJSONObject(i);
+                    obj = objspots.getJSONObject(i);
                     double routesAvg = obj.getDouble("rtAvg");
                     String routeName = obj.getString("rtName");
-                    events.add(String.format("%s - Rate: %.2f", routeName, routesAvg));
-                    eventsId.add(obj.getString("id"));
-                    eventsName.add(obj.getString("rtName"));
+                    spots.add(String.format("%s - Rate: %.2f", routeName, routesAvg));
+                    spotsId.add(obj.getString("id"));
+                    spotsName.add(obj.getString("rtName"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            Log.e("Array List", events.toString());
+            Log.e("Array List", spots.toString());
             InitalizeAdapter();
         }
 
@@ -80,8 +77,8 @@ public class FindEventsFragment extends Fragment {
 
 
     public void InitalizeAdapter() {
-        adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
-        listViewEvents.setAdapter(adapterEvents);
+        adapterSpots = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, spots);
+        listViewEvents.setAdapter(adapterSpots);
     }
 
 }

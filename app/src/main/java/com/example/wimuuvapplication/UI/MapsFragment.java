@@ -69,7 +69,11 @@ public class MapsFragment extends Fragment {
             }
         });
         return view;
-    }*/
+    }
+
+    */
+
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_maps, null);
 
