@@ -21,30 +21,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MapsFragment extends Fragment {
-    
-    private final OnMapReadyCallback callback = new OnMapReadyCallback() {
-        private GoogleMap mMap;
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
-            mMap = googleMap;
-
-            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-            // Add a marker in Sydney and move the camera
-            LatLng lisbon = new LatLng(38.736946, -9.142685);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lisbon, 13));
-
-        }
-    };
 
 
     @Nullable
@@ -52,19 +28,41 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
+        // Initialize view
+        View view = inflater.inflate(R.layout.fragment_maps,container,false);
+
+        // Initialize map fragment
+        SupportMapFragment supportMapFragment = (SupportMapFragment)
+                getChildFragmentManager().findFragmentById(R.id.mapsFragment);
+
+        // Async map
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                //When map is loaded
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(@NonNull LatLng latLng) {
+                        // When clicked on map
+                        // Initialize marker options
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        // Set position of marker
+                        markerOptions.position(latLng);
+                        // Set title of marker
+                        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                        // Add a marker
+                        LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
+                        //Remove all marker
+                        googleMap.clear();
+                        // Animating to zoom the marker
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                        //Add marker on map
+                        googleMap.addMarker(markerOptions);
+                    }
+                });
+            }
+        });
+        return view;
     }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapnav);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
-        }
-    }
-
-
 
 }
