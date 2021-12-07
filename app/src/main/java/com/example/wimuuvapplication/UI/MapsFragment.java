@@ -27,7 +27,7 @@ public class MapsFragment extends Fragment {
     private GPSTracker gpsTracker;
     private View rootView;
 
-    /*
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -72,8 +72,8 @@ public class MapsFragment extends Fragment {
     }
 
 
-    */
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+    /*public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_maps, null);
 
         //call this method to check gps enable or not
@@ -136,7 +136,7 @@ public class MapsFragment extends Fragment {
             // Ask user to enable GPS/network in settings
             gpsTracker.showSettingsAlert();
         }
-    }
+    }*/
 
 
 
