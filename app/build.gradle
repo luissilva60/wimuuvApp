@@ -5,6 +5,9 @@ plugins {
 android {
     compileSdk 31
 
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.example.wimuuvapplication"
         minSdk 22
@@ -24,9 +27,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    dataBinding {
-        enabled true
     }
 
 }

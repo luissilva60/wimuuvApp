@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.wimuuvapplication.databinding.FragmentFindEventsBinding;
+import com.example.wimuuvapplication.databinding.FragmentFindSpotsBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
 import org.json.JSONArray;
@@ -29,21 +31,20 @@ public class FindSpotsFragment extends Fragment {
     public ArrayList<String> spotsName;
     public ArrayAdapter<String> adapterSpots;
     JSONArray objspots;
-
+    private FragmentFindSpotsBinding binding;
     private ListView listViewSpots;
-    //private FragmentFindEventsBinding binding;
 
 
 
 
-    /*
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FindEventsFragment.inflate(inflater, container, false);
+        binding = FragmentFindSpotsBinding.inflate(inflater, container, false);
         JSONArrayDownloader task = new JSONArrayDownloader();
-        View root = binding.getroot();
+        View root = binding.getRoot();
 
         try {
             objspots = task.execute("https://wimuuv.herokuapp.com/api/spots").get();
@@ -83,7 +84,7 @@ public class FindSpotsFragment extends Fragment {
         adapterSpots = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, spots);
         listViewSpots.setAdapter(adapterSpots);
     }
-    */
+
 
 
 }
