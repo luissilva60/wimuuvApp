@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
+//import com.example.wimuuvapplication.databinding.FindEventsBinding;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

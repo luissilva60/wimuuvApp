@@ -2,8 +2,11 @@ package com.example.wimuuvapplication.UI;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +24,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MapsFragment extends Fragment {
+    private GPSTracker gpsTracker;
+    private View rootView;
 
-
+    /*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,6 +39,7 @@ public class MapsFragment extends Fragment {
         // Initialize map fragment
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.mapsFragment);
+
 
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -63,6 +69,62 @@ public class MapsFragment extends Fragment {
             }
         });
         return view;
+    }*/
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_maps, null);
+
+        //call this method to check gps enable or not
+        setLocation();
+
+        return rootView;
     }
+
+    public void setMap(final double latitude, final double longitude) {
+        MapView mapView = (MapView) rootView.findViewById(R.id.mapsFragment);
+        mapView.onCreate(null);
+        mapView.onResume();
+        mapView.getMapAsync(
+                new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googlemap) {
+                        final GoogleMap map = googlemap;
+
+                        MapsInitializer.initialize(getContext());
+                        //change map type as your requirements
+                        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        //user will see a blue dot in the map at his location
+
+                        
+                        LatLng marker =new LatLng(latitude, longitude);
+
+                        //move the camera default animation
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 8));
+
+                        //add a default marker in the position
+                        map.addMarker(new MarkerOptions()
+                                .position(marker));
+
+                    }
+                }
+        );
+    }
+
+    public void setLocation(){
+        gpsTracker = new GPSTracker(getContext());
+
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            //position found, show in map
+            setMap(latitude,longitude);
+        }else{
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gpsTracker.showSettingsAlert();
+        }
+    }
+
+
 
 }
