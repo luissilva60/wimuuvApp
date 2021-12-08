@@ -26,16 +26,16 @@ import java.util.concurrent.ExecutionException;
 public class FindSpotsFragment extends Fragment {
 
     public ArrayList<String> spots;
-    public ArrayList<String> spotsId;
+    public ArrayList<Integer> spotsId;
     public ArrayList<String> spotsName;
     public ArrayAdapter<String> adapterSpots;
     JSONArray objspots;
     private FragmentFindSpotsBinding binding;
     private ListView listViewSpots;
-    public ArrayList<String> spotsLong;
-    public ArrayList<String> spotsLat;
+    public ArrayList<Double> spotsLong;
+    public ArrayList<Double> spotsLat;
     public ArrayList<String> spotsDescription;
-    public ArrayList<String> spotsPhotoId;
+    public ArrayList<Integer> spotsPhotoId;
 
 
     @Override
@@ -65,14 +65,21 @@ public class FindSpotsFragment extends Fragment {
             for(int i = 0; i < objspots.length(); i++) {
                 try {
                     obj = objspots.getJSONObject(i);
-                    double spotId1 = obj.getDouble("id");
-                    String spot_name1 = obj.getString("name");
-                    String spot_long = obj.getString("long");
-                    String spot_lat = obj.getString("spot_lat");
-                    String spot_photo = obj.getString("spot_photo");
-                    spots.add(String.format("%s - Rate: %.2f", spotId1, spot_name1));
-                    spotsId.add(obj.getString("id"));
-                    spotsName.add(obj.getString("spot_name"));
+                    Integer spotId1 = obj.getInt("id");
+                    String spotname1 = obj.getString("name");
+                    Double spotlong1 = obj.getDouble("longi");
+                    Double spotlat1 = obj.getDouble("lat");
+                    Integer spotphoto1 = obj.getInt("photo");
+                    String spotdescription1 = obj.getString("description");
+                    spots.add(String.format("%s - Rate: %.2f", spotId1, spotname1, spotlong1, spotlat1, spotphoto1, spotdescription1));
+                    spotsId.add(obj.getInt("id"));
+                    spotsName.add(obj.getString("name"));
+                    spotsLat.add(obj.getDouble("lat"));
+                    spotsLong.add(obj.getDouble("longi"));
+                    spotsDescription.add(obj.getString("description"));
+                    spotsName.add(obj.getString("description"));
+                    spotsPhotoId.add(obj.getInt("photo"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
