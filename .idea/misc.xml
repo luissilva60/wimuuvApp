@@ -58,6 +58,9 @@
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_maps.xml" value="0.14537037037037037" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_profile.xml" value="0.75" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/toolbar.xml" value="0.14537037037037037" />
       </map>
     </option>
   </component>

@@ -52,6 +52,11 @@ public class MapsFragment extends Fragment {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 //When map is loaded
+                LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
+                Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
+                        .title("UE - IADE")
+                        .snippet("Universidade"));
+                String firstid = markerOne.getId();
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
