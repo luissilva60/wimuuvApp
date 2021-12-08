@@ -32,9 +32,10 @@ public class FindSpotsFragment extends Fragment {
     JSONArray objspots;
     private FragmentFindSpotsBinding binding;
     private ListView listViewSpots;
-
-
-
+    public ArrayList<String> spotsLong;
+    public ArrayList<String> spotsLat;
+    public ArrayList<String> spotsDescription;
+    public ArrayList<String> spotsPhotoId;
 
 
     @Override
@@ -56,15 +57,22 @@ public class FindSpotsFragment extends Fragment {
         spots = new ArrayList<>();
         spotsId = new ArrayList<>();
         spotsName = new ArrayList<>();
+        spotsLong = new ArrayList<>();
+        spotsLat = new ArrayList<>();
+        spotsDescription = new ArrayList<>();
+        spotsPhotoId = new ArrayList<>();
         if(objspots != null) {
             for(int i = 0; i < objspots.length(); i++) {
                 try {
                     obj = objspots.getJSONObject(i);
-                    double routesAvg = obj.getDouble("rtAvg");
-                    String routeName = obj.getString("rtName");
-                    spots.add(String.format("%s - Rate: %.2f", routeName, routesAvg));
+                    double spotId1 = obj.getDouble("id");
+                    String spot_name1 = obj.getString("name");
+                    String spot_long = obj.getString("long");
+                    String spot_lat = obj.getString("spot_lat");
+                    String spot_photo = obj.getString("spot_photo");
+                    spots.add(String.format("%s - Rate: %.2f", spotId1, spot_name1));
                     spotsId.add(obj.getString("id"));
-                    spotsName.add(obj.getString("rtName"));
+                    spotsName.add(obj.getString("spot_name"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
