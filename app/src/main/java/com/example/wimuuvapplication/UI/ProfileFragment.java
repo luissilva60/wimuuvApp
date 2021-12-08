@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 
 
@@ -29,7 +30,8 @@ public class ProfileFragment extends Fragment {
     JSONObject student ;
     String stuName;
     String stuEmail;
-    String stuBdate;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate stuBdate;// = LocalDate.parse("",formatter);
     char stuGender;
     int stuCourseId;
     int stuPhotoId;
@@ -48,9 +50,7 @@ public class ProfileFragment extends Fragment {
             student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
             stuName = student.getString("name");
             stuEmail = student.getString("email");
-            stuBdate = student.getString("bdate");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
-
+            stuBdate = (LocalDate) student.get("bdate");
             stuGender = (char) student.get("gender");
             stuCourseId = student.getInt("crseId");
             stuPhotoId = student.getInt("photoId");
@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Name = (TextView) getView().findViewById(R.id.Name);
+        Name = (TextView) getView().findViewById(R.id.name);
         Name.setText(stuName);
 
     }
