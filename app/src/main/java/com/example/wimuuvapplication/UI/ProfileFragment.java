@@ -14,13 +14,11 @@ import android.widget.TextView;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 
 
@@ -28,11 +26,10 @@ public class ProfileFragment extends Fragment {
 
     TextView Name;
 
-    JSONObject student;
+    JSONObject student ;
     String stuName;
     String stuEmail;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate stuBdate;// = LocalDate.parse("",formatter);
+    String stuBdate;
     char stuGender;
     int stuCourseId;
     int stuPhotoId;
@@ -46,13 +43,14 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         JSONObjDownloader task = new JSONObjDownloader();
         try {
-            student = task.execute("https://wimuuv.herokuapp.com/api/student/2").get();
+            student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
             stuName = student.getString("name");
             stuEmail = student.getString("email");
-            stuBdate = (LocalDate) student.get("bdate");
+            stuBdate = student.getString("bdate");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+
             stuGender = (char) student.get("gender");
             stuCourseId = student.getInt("crseId");
             stuPhotoId = student.getInt("photoId");
@@ -64,7 +62,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Name = (TextView) getView().findViewById(R.id.name);
+        Name = (TextView) getView().findViewById(R.id.Name);
         Name.setText(stuName);
 
     }
@@ -72,9 +70,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View RootView = inflater.inflate(R.layout.fragment_profile,container,false);
-
-        return RootView;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }
