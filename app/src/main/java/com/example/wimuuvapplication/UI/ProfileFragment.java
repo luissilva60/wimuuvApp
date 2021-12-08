@@ -17,6 +17,7 @@ import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 
@@ -28,7 +29,7 @@ public class ProfileFragment extends Fragment {
     JSONObject student = null;
     String stuName;
     String stuEmail;
-    LocalDate stuBdate;
+    String stuBdate;
     char stuGender;
     int stuCourseId;
     int stuPhotoId;
@@ -47,7 +48,9 @@ public class ProfileFragment extends Fragment {
             student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
             stuName = student.getString("name");
             stuEmail = student.getString("email");
-            stuBdate = (LocalDate) student.get("bdate");
+            stuBdate = student.getString("bdate");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+
             stuGender = (char) student.get("gender");
             stuCourseId = student.getInt("crseId");
             stuPhotoId = student.getInt("photoId");
