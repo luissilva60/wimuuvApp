@@ -1,6 +1,6 @@
 package com.example.wimuuvapplication.LoginDetails;
 
-public class Result {
+public class Result<T> {
     // hide the private constructor to limit subclass types (Success, Error)
     private Result() {
     }

@@ -41,7 +41,7 @@ public class LoginDataSource {
 
     public void getJson(String username, String password){
         JSONObjDownloader task = new JSONObjDownloader();
-        String url = "https://ulide.herokuapp.com/api/users/login/"+username+"/"+password;
+        String url = "https://wimuuv.herokuapp.com/api/student/login/"+username+"/"+password;
         try {
             objLogin = task.execute(url).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -56,7 +56,6 @@ public class LoginDataSource {
             Log.e("id", id);
 
             ID = Integer.parseInt(id);
-            Log.e("testeeeeeeeeeeeeeeeeeeeeee", ""+ID);
 
         } catch (JSONException e) {
             e.printStackTrace();

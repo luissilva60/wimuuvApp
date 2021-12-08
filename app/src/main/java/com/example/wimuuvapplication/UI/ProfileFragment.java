@@ -26,7 +26,7 @@ public class ProfileFragment extends Fragment {
 
     TextView Name;
 
-    JSONObject student = null;
+    JSONObject student ;
     String stuName;
     String stuEmail;
     String stuBdate;
