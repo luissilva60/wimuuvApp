@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException;
 public class ProfileFragment extends Fragment {
 
     TextView name,email,bdate,course,currentAge,gender;
-    JSONObject student ;
+    JSONObject student;
     JSONObject courseString;
     String stuName;
     String stuEmail;
