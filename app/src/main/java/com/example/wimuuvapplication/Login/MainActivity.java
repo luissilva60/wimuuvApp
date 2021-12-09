@@ -35,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
     private Button fgtpwButton;
     private LoginViewModel loginViewMod;
     //private ActivityLoginBinding binding;
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -128,15 +129,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
 
 
 
