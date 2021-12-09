@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".UI.MapsFragment"
     android:orientation="vertical">
+
     <fragment
         android:id="@+id/mapsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="655dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        tools:ignore="SpeakableTextPresentCheck"
-        mapsFragment:uiZoomControls="true"
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        mapsFragment:cameraTilt="30"
         mapsFragment:uiRotateGestures="true"
-        mapsFragment:cameraTilt="30"/>
+        mapsFragment:uiZoomControls="true"
+        tools:ignore="SpeakableTextPresentCheck" />
 </RelativeLayout>
