@@ -42,12 +42,11 @@ public class MapsFragment extends Fragment {
         // Initialize view
         View view = inflater.inflate(R.layout.fragment_maps,container,false);
 
-        setLocation();
 
         // Initialize map fragment
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.mapsFragment);
-        /*
+
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -85,14 +84,13 @@ public class MapsFragment extends Fragment {
             }
         });
         
-         */
+
         return view;
 
     }
 
 
-
-
+/*
     public void setMap(final double latitude, final double longitude) {
         MapView mapView = (MapView) rootView.findViewById(R.id.mapsFragment);
         mapView.onCreate(null);
@@ -148,7 +146,7 @@ public class MapsFragment extends Fragment {
             // Ask user to enable GPS/network in settings
             gpsTracker.showSettingsAlert();
         }
-    }
+    }*/
 
 
 
