@@ -31,8 +31,8 @@ public class ProfileFragment extends Fragment {
     String stuName;
     String stuEmail;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate stuBdate;// = LocalDate.parse("",formatter);
-    char stuGender;
+    String stuBdate;// = LocalDate.parse("",formatter);
+    String stuGender;
     int stuCourseId;
     int stuPhotoId;
 
@@ -47,11 +47,11 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         JSONObjDownloader task = new JSONObjDownloader();
         try {
-            student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
+            student = task.execute("https://wimuuv.herokuapp.com/api/student/2").get();
             stuName = student.getString("name");
             stuEmail = student.getString("email");
-            stuBdate = (LocalDate) student.get("bdate");
-            stuGender = (char) student.get("gender");
+            stuBdate = student.getString("bdate");
+            stuGender = student.getString("gender");
             stuCourseId = student.getInt("crseId");
             stuPhotoId = student.getInt("photoId");
         } catch (ExecutionException e) {
@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Name = (TextView) getView().findViewById(R.id.name);
+        Name.findViewById(R.id.name);
         Name.setText(stuName);
 
     }

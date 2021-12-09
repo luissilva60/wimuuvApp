@@ -51,11 +51,14 @@ public class MapsFragment extends Fragment {
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
+                LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(17), CameraUpdateFactory.newLatLng(santos));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
                         .title("UE - IADE")
                         .snippet("Universidade"));
+
                 String firstid = markerOne.getId();
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
@@ -67,14 +70,8 @@ public class MapsFragment extends Fragment {
                         markerOptions.position(latLng);
                         // Set title of marker
                         markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-                        // Add a marker
-                        LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
-                        Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
-                                .title("UE - IADE")
-                                .snippet("Universidade"));
                         String firstid = markerOne.getId();
                         markerMap.put(firstid,"action_first");
-                        mMap.moveCamera((CameraUpdateFactory.newLatLng(iade)));
                         //Remove all marker
                         googleMap.clear();
                         // Animating to zoom the marker

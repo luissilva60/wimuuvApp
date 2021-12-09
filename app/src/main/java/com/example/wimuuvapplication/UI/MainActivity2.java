@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.FeedFragment;
+import com.example.wimuuvapplication.UI.MapsFragment;
+import com.example.wimuuvapplication.UI.ProfileFragment;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
