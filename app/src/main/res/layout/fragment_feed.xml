@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.FeedFragment">
-    <data>
-
-        <variable
-            name="Events"
-            type="com.example.wimuuvapplication.databinding.FragmentFeedBindingImpl" />
-    </data>
 
     <ListView
         android:id="@+id/listEvents"
@@ -17,5 +11,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+    </ListView>
 </layout>
