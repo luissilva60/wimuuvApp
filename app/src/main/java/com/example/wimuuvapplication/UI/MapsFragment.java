@@ -40,19 +40,20 @@ public class MapsFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Initialize view
-        View view = inflater.inflate(R.layout.fragment_maps, container, false);
+        View view = inflater.inflate(R.layout.fragment_maps,container,false);
+
+        setLocation();
 
         // Initialize map fragment
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.mapsFragment);
-
-
+        /*
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santos, 16));
+                googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(santos, 16));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
@@ -83,19 +84,14 @@ public class MapsFragment extends Fragment {
                 });
             }
         });
+        
+         */
         return view;
+
     }
 
 
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_maps, null);
-
-        //call this method to check gps enable or not
-        setLocation();
-
-        return rootView;
-    }
 
     public void setMap(final double latitude, final double longitude) {
         MapView mapView = (MapView) rootView.findViewById(R.id.mapsFragment);
@@ -136,6 +132,7 @@ public class MapsFragment extends Fragment {
                 }
         );
     }
+
 
     public void setLocation(){
         gpsTracker = new GPSTracker(getContext());
