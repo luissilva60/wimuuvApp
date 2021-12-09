@@ -1,5 +1,6 @@
 package com.example.wimuuvapplication.UI;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -27,9 +28,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ProfileFragment extends Fragment {
 
-    TextView Name,email,bdate,course,gender;
-    TextView nameD,emailD,bdateD,courseD,genderD;
-    Button editperfil;
+    TextView name,email,bdate,course,currentAge,gender;
     JSONObject student ;
     JSONObject courseString;
     String stuName;
@@ -40,13 +39,14 @@ public class ProfileFragment extends Fragment {
     String stuGender;
     int stuCourseId;
     int stuPhotoId;
+    Button editperfil;
 
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
         try {
-            courseString = task2.execute("https://wimuuv.herokuapp.com/api/student_course/1").get();
+            courseString = task2.execute("https://wimuuv.herokuapp.com/api/student_course/"+ stuCourseId).get();
             courseName = courseString.getString("name");
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -82,28 +82,36 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View RootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        TextView Name = (TextView)RootView.findViewById(R.id.nome);
+        TextView name = (TextView)RootView.findViewById(R.id.name);
         TextView email = (TextView)RootView.findViewById(R.id.email);
-        TextView bdate = (TextView)RootView.findViewById(R.id.Birthdate);
-        TextView course = (TextView)RootView.findViewById(R.id.Curso);
-        TextView gender = (TextView)RootView.findViewById(R.id.Género);
-        TextView nameD = (TextView)RootView.findViewById(R.id.textView4);
-        TextView emailD = (TextView)RootView.findViewById(R.id.textView5);
-        TextView bdateD = (TextView)RootView.findViewById(R.id.textView6);
-        TextView courseD = (TextView)RootView.findViewById(R.id.textView8);
-        TextView genderD = (TextView)RootView.findViewById(R.id.textView7);
-        Button editperfil = (Button)RootView.findViewById(R.id.EditarPerfilbtn);
-        Name.setText(stuName);
-        email.setText(stuEmail);
-        bdate.setText(stuBdate);
-        course.setText(courseName);
-        gender.setText(stuGender);
+        TextView bdate = (TextView)RootView.findViewById(R.id.bdate);
+        TextView course = (TextView)RootView.findViewById(R.id.course);
+        TextView currentAge = (TextView)RootView.findViewById(R.id.currentAge);
+        TextView gender = (TextView)RootView.findViewById(R.id.gender);
+        Button editperfil = (Button)RootView.findViewById(R.id.editperfil);
+        editperfil.setOnClickListener(this::editOnClick);
+        name.setText("Name: " + stuName);
+        email.setText("Email: " + stuEmail);
+        bdate.setText("Data Nascimento: " + stuBdate);
+        course.setText("Curso: " + courseName);
+        currentAge.setText("Idade: " + stuCurrentAge);
+        gender.setText("Género: " + stuGender);
 
         return RootView;
+
     }
+
+    public void editOnClick(View view) {
+        Intent intent = new Intent(getContext(),EditPerfil.class);
+
+        startActivity(intent);
+    }
+
+
 }
