@@ -10,11 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.wimuuvapplication.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FeedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FeedFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
