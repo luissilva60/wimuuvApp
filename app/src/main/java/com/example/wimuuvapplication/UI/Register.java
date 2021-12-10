@@ -3,8 +3,11 @@ package com.example.wimuuvapplication.UI;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 
 public class Register extends AppCompatActivity {
@@ -15,8 +18,9 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         toolbar2.setTitle("Sign Up");
-        setSupportActionBar(toolbar2);;
+        setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -24,4 +28,5 @@ public class Register extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
 }

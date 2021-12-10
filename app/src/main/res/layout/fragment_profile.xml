@@ -9,7 +9,6 @@
     android:visibility="visible"
     tools:context=".UI.ProfileFragment">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="338dp"
@@ -88,6 +87,23 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="347dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="146dp"
+        android:background="#BC0B0B"
+        android:onClick="settingsOnClick"
+        android:src="@drawable/ic_baseline_settings_24"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
