@@ -12,9 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +51,6 @@ public class MapsFragment extends Fragment {
     HashMap<String, String> markerMap = new HashMap<String, String>();
     private GoogleMap mMap;
     double tvLatitude, tvLongitude;
-
     FusedLocationProviderClient client;
 
 
@@ -72,10 +73,22 @@ public class MapsFragment extends Fragment {
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
                 LatLng userLocation = new LatLng(tvLatitude, tvLongitude);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santos, 16));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
                 LatLng userLive = new LatLng(tvLatitude, tvLongitude);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                //mMap.setMyLocationEnabled(true);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 Marker markeruser = googleMap.addMarker(new MarkerOptions().position(userLive)
-                        .title("Está aqui"));
+                        .title("Está aqui").snippet("You are here"));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
@@ -163,8 +176,10 @@ public class MapsFragment extends Fragment {
                         //When Location result is not null
                         //Set latitude
                         tvLatitude = location.getLatitude();
+                        Log.e("INFOOO", ""+location.getLatitude());
                         //Set longitude
                         tvLongitude = location.getLongitude();
+                        Log.e("INFOO", ""+location.getLongitude());
                     }else{
                         //When location result is null
                         //Initialize location request
@@ -190,6 +205,7 @@ public class MapsFragment extends Fragment {
 
                     }
                 }
+
             });
         }else{
             //When location service is not enabled

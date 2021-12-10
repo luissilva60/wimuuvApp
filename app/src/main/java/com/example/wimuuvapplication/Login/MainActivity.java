@@ -28,13 +28,14 @@ import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.ForgotPassword;
 import com.example.wimuuvapplication.UI.MainActivity2;
 import com.example.wimuuvapplication.UI.Register;
+//import com.example.wimuuvapplication.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
    private Button loginButton;
     private Button fgtpwButton;
     private LoginViewModel loginViewMod;
-    //private ActivityLoginBinding binding;
+    //private ActivityMainBinding binding;
     private LoginViewModel loginViewModel;
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -44,16 +45,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
+        /*binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        /*loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText emailEditText = binding.email;
-        final EditText passwordEditText = binding.password;
-        final Button loginButton = binding.login;
-        final ProgressBar loadingProgressBar = binding.loading;
+        final EditText emailEditText = binding.EmaileditText;
+        final EditText passwordEditText = binding.editTextTextPassword;
+        final Button loginButton = binding.loginBTN;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -129,15 +129,15 @@ public class MainActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
 
             }
-        });*/
+        });
 
 
-
+*/
 
 
     }
-
-    /*private void updateUiWithUser(LoggedInUserView model) {
+/*
+    private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
@@ -148,7 +148,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }*/
+    }
+
+ */
 
 
 
