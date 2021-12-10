@@ -24,6 +24,8 @@ import android.widget.Toast;
 import android.provider.Settings;
 
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
+import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,7 +44,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 
 public class MapsFragment extends Fragment {
@@ -52,6 +60,14 @@ public class MapsFragment extends Fragment {
     private GoogleMap mMap;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
+    public ArrayList<String> spots;
+    public ArrayList<Integer> spotId;
+    public ArrayList<String> spotName;
+    public ArrayList<Double> spotLongitude;
+    public ArrayList<Double> spotLatitude;
+    public ArrayList<String> spotDescription;
+
+    JSONArray objspots;
 
 
     @Nullable
@@ -59,6 +75,48 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        JSONArrayDownloader task = new JSONArrayDownloader();
+
+        //download spots
+        try {
+            objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        JSONObject obj;
+        spots = new ArrayList<>();
+        spotId = new ArrayList<>();
+        spotName = new ArrayList<>();
+        spotLatitude = new ArrayList<>();
+        spotLongitude = new ArrayList<>();
+        spotDescription = new ArrayList<>();
+        if(objspots != null) {
+            for(int i = 0; i < objspots.length(); i++) {
+                try {
+                    obj = objspots.getJSONObject(i);
+                    String spotname1 = obj.getString("name");
+                    String spotdescription = obj.getString("description");
+                    spotId.add(obj.getInt("id"));
+                    spotName.add(obj.getString("name"));
+                    spotLatitude.add(obj.getDouble("latitude"));
+                    spotLongitude.add(obj.getDouble("longitude"));
+                    spotDescription.add(obj.getString("description"));
+                    LatLng Spots = new LatLng(spotLatitude.get(0), spotLongitude.get(0));
+
+                    //Marcadores dos spots
+                    mMap.addMarker(new MarkerOptions().position(Spots).title(spotname1).snippet(spotdescription))
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        Log.e("Array List", spots.toString());
+
         // Initialize view
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
 
