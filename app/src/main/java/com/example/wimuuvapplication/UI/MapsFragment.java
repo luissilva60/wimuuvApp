@@ -73,6 +73,9 @@ public class MapsFragment extends Fragment {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
                 LatLng userLocation = new LatLng(tvLatitude, tvLongitude);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santos, 16));
+                LatLng userLive = new LatLng(tvLatitude, tvLongitude);
+                Marker markeruser = googleMap.addMarker(new MarkerOptions().position(userLive)
+                        .title("Está aqui"));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)

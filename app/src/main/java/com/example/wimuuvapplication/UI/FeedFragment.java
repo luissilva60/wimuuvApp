@@ -1,5 +1,6 @@
 package com.example.wimuuvapplication.UI;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class FeedFragment extends Fragment {
     public ArrayList<String> eventName;
     public ArrayList<String> eventDescription;
     public ArrayList<Integer> eventTypeId;
-    public ArrayList<LocalDate> eventDate;
+    public ArrayList<String> eventDate;
     public ArrayList<Time> eventStartTime;
     public ArrayList<Time> eventEndTime;
     public ArrayList<Time> eventDuration;
@@ -45,7 +46,7 @@ public class FeedFragment extends Fragment {
     public ArrayList<Integer> eventStateId;
     public ArrayList<Integer> eventRateId;
     public ArrayAdapter<String> adapterEvents;
-    public JSONArray objevents;
+    JSONArray objevents;
     private ListView listViewEvents;
     private FragmentFeedBinding binding;
 
@@ -60,6 +61,7 @@ public class FeedFragment extends Fragment {
 
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,9 +77,10 @@ public class FeedFragment extends Fragment {
 
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
-        } catch (ExecutionException | InterruptedException e) {
+        } catch (ExecutionException e) {
             e.printStackTrace();
-            objevents = null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         JSONObject obj;
@@ -100,6 +103,7 @@ public class FeedFragment extends Fragment {
             for(int i = 0; i < objevents.length(); i++) {
                 try {
                     obj = objevents.getJSONObject(i);
+                    String eventname1 = obj.getString("event_name");
                     String eventdescription1 = obj.getString("description");
                     Integer eventtypeId1 = obj.getInt("typeId");
                     String eventdate1 = obj.getString("date");
@@ -109,17 +113,18 @@ public class FeedFragment extends Fragment {
                     Integer eventorgId1 = obj.getInt("orgId");
                     Integer eventspotId1 = obj.getInt("spotId");
                     Integer eventcapacity1 = obj.getInt("capacity");
-                    Integer eventphotosId1 = obj.getInt("photosId");
                     Integer eventstateId1 = obj.getInt("stateId");
                     Integer eventrateId1 = obj.getInt("rateId");
-                    events.add(String.format("%s - Rate: %.2f",eventdescription1, eventtypeId1,eventdate1,
+                    events.add(String.format("%s - %s - %d - %s - %s - %s - " +
+                                    "%s - %s - %s - %s- %s- %s- " +
+                                    "%s- ",eventname1, eventdescription1, eventtypeId1,eventdate1,
                             eventdate1 , eventstarttime1 ,eventendtime1, eventduration1, eventorgId1,
-                            eventspotId1, eventcapacity1, eventphotosId1,eventstateId1 , eventrateId1 ));
+                            eventspotId1, eventcapacity1,eventstateId1 , eventrateId1 ));
                     eventId.add(obj.getString("id"));
-                    eventName.add(obj.getString("name"));
+                    eventName.add(obj.getString("event_name"));
                     eventDescription.add(obj.getString("description"));
                     eventTypeId.add(obj.getInt("typeId"));
-                    eventDate.add((LocalDate) obj.get("date"));
+                    eventDate.add(obj.getString("date"));
                     eventStartTime.add((Time) obj.get("starttime"));
                     eventEndTime.add((Time) obj.get("endtime"));
                     eventDuration.add((Time) obj.get("duration"));
@@ -135,9 +140,9 @@ public class FeedFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-            Log.e("Array List", events.toString());
             InitializeAdapter();
         }
+        Log.e("Array List", events.toString());
 
         return root;
     }
@@ -147,7 +152,8 @@ public class FeedFragment extends Fragment {
         createListViewClickItemEvent(listViewEvents,events,eventId,eventName,eventDescription,eventTypeId,eventDate,eventStartTime,eventEndTime,eventDuration,eventsOrgId,eventSpotId,eventCapacity,eventPhotosId,eventStateId,eventRateId);
     }
 
-    private void createListViewClickItemEvent(ListView listViewEvents, final ArrayList<String> item, final ArrayList<String> eventId, final ArrayList<String> eventName, final ArrayList<String> eventDescription, final ArrayList<Integer> eventTypeId, final ArrayList<LocalDate> eventDate, final ArrayList<Time> eventStartTime, final ArrayList<Time> eventEndTime, final ArrayList<Time> eventDuration, final ArrayList<Integer> eventsOrgId, final ArrayList<Integer> eventSpotId, final ArrayList<Integer> eventCapacity, final ArrayList<Integer> eventPhotosId, final ArrayList<Integer> eventStateId,final ArrayList<Integer> eventRateId) {
+    private void createListViewClickItemEvent(ListView listViewEvents, final ArrayList<String> item, final ArrayList<String> eventId, final ArrayList<String> eventName, final ArrayList<String> eventDescription, final ArrayList<Integer> eventTypeId, final ArrayList<String> eventDate, final ArrayList<Time> eventStartTime, final ArrayList<Time> eventEndTime, final ArrayList<Time> eventDuration, final ArrayList<Integer> eventsOrgId, final ArrayList<Integer> eventSpotId, final ArrayList<Integer> eventCapacity, final ArrayList<Integer> eventPhotosId, final ArrayList<Integer> eventStateId, final ArrayList<Integer> eventRateId) {
+        /*
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
@@ -156,13 +162,26 @@ public class FeedFragment extends Fragment {
                 Bundle result = new Bundle();
                 result.putString("eventId",eventId.get(i));
                 result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+                result.putString("eventName",eventName.get(i));
+
                 getParentFragmentManager().setFragmentResult("event", result);
 
                 Navigation.findNavController(view)
                         .navigate(R.id.listEvents);
 
             }
-        });
+        });*/
     }
 
 }
