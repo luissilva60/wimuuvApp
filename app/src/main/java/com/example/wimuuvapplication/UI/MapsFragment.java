@@ -11,6 +11,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -26,6 +29,7 @@ import android.provider.Settings;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -38,6 +42,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -70,13 +75,18 @@ public class MapsFragment extends Fragment {
 
     JSONArray objspots;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MapsInitializer.initialize(getContext());
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        JSONArrayDownloader task = new JSONArrayDownloader();
+        /*JSONArrayDownloader task = new JSONArrayDownloader();
 
         //download spots
         try {
@@ -106,17 +116,21 @@ public class MapsFragment extends Fragment {
                     spotLatitude.add(obj.getDouble("latitude"));
                     spotLongitude.add(obj.getDouble("longitude"));
                     spotDescription.add(obj.getString("description"));
-                    LatLng Spots = new LatLng(spotLatitude.get(0), spotLongitude.get(0));
+                    LatLng Spots = new LatLng(spotLatitude.get(i), spotLongitude.get(i));
 
                     //Marcadores dos spots
-                    mMap.addMarker(new MarkerOptions().position(Spots).title(spotname1).snippet(spotdescription).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_place_24)));
+                    mMap.addMarker(new MarkerOptions()
+                            .position(Spots)
+                            .title(spotname1)
+                            .snippet(spotdescription)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }
-        Log.e("Array List", spots.toString());
+        }*/
+        //Log.e("Array List", spots.toString());
 
         // Initialize view
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
@@ -126,6 +140,7 @@ public class MapsFragment extends Fragment {
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.mapsFragment);
 
+
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -134,6 +149,50 @@ public class MapsFragment extends Fragment {
                 LatLng userLocation = new LatLng(tvLatitude, tvLongitude);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
                 LatLng userLive = new LatLng(tvLatitude, tvLongitude);
+                JSONArrayDownloader task = new JSONArrayDownloader();
+
+                //download spots
+                try {
+                    objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+                JSONObject obj;
+                spots = new ArrayList<>();
+                spotId = new ArrayList<>();
+                spotName = new ArrayList<>();
+                spotLatitude = new ArrayList<>();
+                spotLongitude = new ArrayList<>();
+                spotDescription = new ArrayList<>();
+                if(objspots != null) {
+                    for(int i = 0; i < objspots.length(); i++) {
+                        try {
+                            obj = objspots.getJSONObject(i);
+                            String spotname1 = obj.getString("name");
+                            String spotdescription = obj.getString("description");
+                            spotId.add(obj.getInt("id"));
+                            spotName.add(obj.getString("name"));
+                            spotLatitude.add(obj.getDouble("latitude"));
+                            spotLongitude.add(obj.getDouble("longitude"));
+                            spotDescription.add(obj.getString("description"));
+                            LatLng Spots = new LatLng(spotLatitude.get(i), spotLongitude.get(i));
+
+                            //Marcadores dos spots
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(Spots)
+                                    .title(spotname1)
+                                    .snippet(spotdescription)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -144,10 +203,14 @@ public class MapsFragment extends Fragment {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
+
                 //mMap.setMyLocationEnabled(true);
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                Marker markeruser = googleMap.addMarker(new MarkerOptions().position(userLive)
-                        .title("Está aqui").snippet("You are here").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_my_location_24)));
+                Marker markeruser = googleMap.addMarker(new MarkerOptions()
+                        .position(userLive)
+                        .title("Está aqui")
+                        .snippet("You are here")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
@@ -273,4 +336,14 @@ public class MapsFragment extends Fragment {
         }
 
     }
+    /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
+        Drawable vectorDrawable -ContextCompat.getDrawable(getContext(),);
+        vectorDrawable.setBounds(left=0, top:0, vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }*/
 }
