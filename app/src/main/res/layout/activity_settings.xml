@@ -4,8 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Settings"
-    android:orientation="vertical">
+    android:background="@drawable/profilebackground"
+    android:orientation="vertical"
+    tools:context=".UI.Settings">
+
     <include
-        layout="@layout/toolbar2"/>
+        android:id="@+id/include"
+        layout="@layout/toolbar2" />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="507dp"
+        android:layout_marginBottom="120dp"
+        android:onClick="onClickLogout"
+        android:text="LogOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 </androidx.constraintlayout.widget.ConstraintLayout>
