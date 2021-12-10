@@ -38,6 +38,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -108,7 +109,7 @@ public class MapsFragment extends Fragment {
                     LatLng Spots = new LatLng(spotLatitude.get(0), spotLongitude.get(0));
 
                     //Marcadores dos spots
-                    mMap.addMarker(new MarkerOptions().position(Spots).title(spotname1).snippet(spotdescription))
+                    mMap.addMarker(new MarkerOptions().position(Spots).title(spotname1).snippet(spotdescription).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_place_24)));
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -146,7 +147,7 @@ public class MapsFragment extends Fragment {
                 //mMap.setMyLocationEnabled(true);
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 Marker markeruser = googleMap.addMarker(new MarkerOptions().position(userLive)
-                        .title("Está aqui").snippet("You are here"));
+                        .title("Está aqui").snippet("You are here").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_my_location_24)));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
