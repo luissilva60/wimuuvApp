@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    tools:context=".UI.OrgLoginActivity">
+
+    <EditText
+        android:id="@+id/EmaileditText"
+        android:layout_width="279dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="278dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="304dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmaileditText" />
+
+    <Button
+        android:id="@+id/forgotpw"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="104dp"
+        android:backgroundTint="#EB1C24"
+        android:onClick="onClickfgtpw"
+        android:shadowColor="#EB1C24"
+        android:text="Forgot password?"
+        android:textAlignment="gravity"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#EB1C24"
+        android:textColorHint="#EB1C24"
+        android:textColorLink="#EB1C24"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:rippleColor="#EB1C24" />
+
+    <Button
+        android:id="@+id/loginBTN"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="183dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="onClickLogin"
+        android:text="Login"
+        android:textColor="#FF0000"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="132dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="211dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="13dp"
+        android:text="Organization Login"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/EmaileditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
