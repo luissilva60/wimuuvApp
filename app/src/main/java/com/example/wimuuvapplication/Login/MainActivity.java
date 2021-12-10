@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.ForgotPassword;
 import com.example.wimuuvapplication.UI.MainActivity2;
+import com.example.wimuuvapplication.UI.OrgLoginActivity;
 import com.example.wimuuvapplication.UI.Register;
 //import com.example.wimuuvapplication.databinding.ActivityMainBinding;
 
@@ -169,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickSignup(View v) {
         Intent intent = new Intent(getApplicationContext(), Register.class);
+
+
+        startActivity(intent);
+    }
+    public void onClickOrgSignIn(View v) {
+        Intent intent = new Intent(getApplicationContext(), OrgLoginActivity.class);
 
 
         startActivity(intent);
