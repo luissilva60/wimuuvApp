@@ -64,6 +64,7 @@ public class MapsFragment extends Fragment {
     private View rootView;
     HashMap<String, String> markerMap = new HashMap<String, String>();
     private GoogleMap mMap;
+    LocationRequest mLocationRequest;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     public ArrayList<String> spots;
@@ -150,6 +151,7 @@ public class MapsFragment extends Fragment {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
                 LatLng userLive = new LatLng(tvLatitude, tvLongitude);
                 JSONArrayDownloader task = new JSONArrayDownloader();
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
                 //download spots
                 try {
