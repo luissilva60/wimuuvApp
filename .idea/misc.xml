@@ -64,7 +64,8 @@
         <entry key="..\:/wimuuvApp/app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.2611111111111111" />
         <entry key="..\:/wimuuvApp/app/src/main/res/drawable/ic_baseline_perm_identity_24.xml" value="0.2611111111111111" />
         <entry key="..\:/wimuuvApp/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.2611111111111111" />
-        <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_main.xml" value="0.18135764944275581" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_main2.xml" value="0.14722222222222223" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_settings.xml" value="0.18135764944275581" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_feed.xml" value="0.18135764944275581" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_find_spots.xml" value="0.18135764944275581" />
