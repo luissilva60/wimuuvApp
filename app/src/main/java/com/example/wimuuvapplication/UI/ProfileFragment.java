@@ -5,12 +5,14 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.wimuuvapplication.R;
@@ -40,6 +42,7 @@ public class ProfileFragment extends Fragment {
     int stuCourseId;
     int stuPhotoId;
     Button editperfil;
+    Button settings;
 
 
     public ProfileFragment() {
@@ -52,6 +55,7 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         JSONObjDownloader task = new JSONObjDownloader();
         JSONObjDownloader task2 = new JSONObjDownloader();
+
 
         try {
             student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
@@ -95,7 +99,9 @@ public class ProfileFragment extends Fragment {
         TextView currentAge = (TextView)RootView.findViewById(R.id.currentAge);
         TextView gender = (TextView)RootView.findViewById(R.id.gender);
         Button editperfil = (Button)RootView.findViewById(R.id.editperfil);
+        ImageButton settings = (ImageButton)RootView.findViewById(R.id.settingsBtn);
         editperfil.setOnClickListener(this::editOnClick);
+        settings.setOnClickListener(this::settingsOnClick);
         name.setText("Name: " + stuName);
         email.setText("Email: " + stuEmail);
         bdate.setText("Data Nascimento: " + stuBdate);
@@ -109,6 +115,12 @@ public class ProfileFragment extends Fragment {
 
     public void editOnClick(View view) {
         Intent intent = new Intent(getContext(),EditPerfil.class);
+
+        startActivity(intent);
+    }
+
+    public void settingsOnClick(View view) {
+        Intent intent = new Intent(getContext(),Settings.class);
 
         startActivity(intent);
     }
