@@ -146,9 +146,19 @@ public class MapsFragment extends Fragment {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
-                LatLng userLocation = new LatLng(tvLatitude, tvLongitude);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                googleMap.setMyLocationEnabled(true);
+                LatLng userLocation =new LatLng(tvLatitude, tvLongitude);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
-                LatLng userLive = new LatLng(tvLatitude, tvLongitude);
                 JSONArrayDownloader task = new JSONArrayDownloader();
 
                 //download spots
