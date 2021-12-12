@@ -157,8 +157,8 @@ public class MapsFragment extends Fragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
-                LatLng userLocation =new LatLng(tvLatitude, tvLongitude);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 16));
+
+                // JSON array downloader
                 JSONArrayDownloader task = new JSONArrayDownloader();
 
                 //download spots
@@ -216,13 +216,10 @@ public class MapsFragment extends Fragment {
 
                 //mMap.setMyLocationEnabled(true);
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                Marker markeruser = googleMap.addMarker(new MarkerOptions()
-                        .position(userLive)
-                        .title("Está aqui")
-                        .snippet("You are here")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
+
                 Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
                         .title("UE - IADE")
                         .snippet("Universidade"));
