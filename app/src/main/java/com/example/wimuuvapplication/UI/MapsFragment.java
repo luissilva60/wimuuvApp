@@ -61,13 +61,13 @@ public class MapsFragment extends Fragment  {
     private GoogleMap mMap;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
-    public ArrayList<String> spots;
-    public ArrayList<Integer> spotId;
-    public ArrayList<String> spotName;
-    public ArrayList<Double> spotLongitude;
-    public ArrayList<Double> spotLatitude;
-    public ArrayList<String> spotDescription;
-    public ArrayList<LatLng> spotlocation;
+    private ArrayList<String> spots;
+    private ArrayList<Integer> spotId;
+    private ArrayList<String> spotName;
+    private ArrayList<Double> spotLongitude;
+    private ArrayList<Double> spotLatitude;
+    private ArrayList<String> spotDescription;
+    private ArrayList<LatLng> spotlocation;
     private ArrayList<Marker> markers;
 
     JSONArray objspots;
@@ -96,12 +96,13 @@ public class MapsFragment extends Fragment  {
 
 
         JSONObject obj;
-        spots = new ArrayList<>();
-        spotId = new ArrayList<>();
-        spotName = new ArrayList<>();
-        spotLatitude = new ArrayList<>();
-        spotLongitude = new ArrayList<>();
-        spotDescription = new ArrayList<>();
+        ArrayList<String> spots = new ArrayList<>();
+        ArrayList<Integer> spotId = new ArrayList<>();
+        ArrayList<String> spotName = new ArrayList<>();
+        ArrayList<Double> spotLatitude = new ArrayList<>();
+        ArrayList<Double> spotLongitude = new ArrayList<>();
+        ArrayList<String> spotDescription = new ArrayList<>();
+        ArrayList<LatLng> spotlocation = new ArrayList<>();
         if(objspots != null) {
             for(int i = 0; i < objspots.length(); i++) {
                 try {
@@ -115,6 +116,7 @@ public class MapsFragment extends Fragment  {
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }
         //Log.e("Array List", spots.toString());
@@ -140,7 +142,7 @@ public class MapsFragment extends Fragment  {
 
                 markers = new ArrayList<>();
                 for(int i = 0; i < spotlocation.size(); i++){
-                    markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
+                    markers.add(googleMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                 }
                 ///
