@@ -108,10 +108,8 @@ public class MapsFragment extends Fragment  {
                     obj = objspots.getJSONObject(i);
                     spotId.add(obj.getInt("id"));
                     spotName.add(obj.getString("name"));
-                    spotlocation.add(obj.getString(new LatLng(Double.parseDouble(obj.getString("spLat")),
-                            Double.parseDouble(obj.getString("spLong"))));
-                    spotLatitude.add(obj.getDouble("latitude"));
-                    spotLongitude.add(obj.getDouble("longitude"));
+                    spotlocation.add(new LatLng(Double.parseDouble(obj.getString("latitude")),
+                            Double.parseDouble(obj.getString("longitude"))));
                     spotDescription.add(obj.getString("description"));
                 }
                 catch (JSONException e) {
@@ -141,8 +139,9 @@ public class MapsFragment extends Fragment  {
                 googleMap.setMyLocationEnabled(true);
 
                 markers = new ArrayList<>();
-                for(int i = 0; i < spotsPos.size(); i++){
-                    markers.add(mMap.addMarker(new MarkerOptions().position(spotsPos.get(i)).title(spotsName.get(i))));
+                for(int i = 0; i < spotlocation.size(); i++){
+                    markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
+                            (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                 }
                 ///
                 //
