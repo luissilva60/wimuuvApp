@@ -185,6 +185,7 @@ public class MapsFragment extends Fragment  {
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         //Add marker on map
                         googleMap.addMarker(markerOptions);
+                        
 
                     }
                 });
