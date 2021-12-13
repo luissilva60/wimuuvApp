@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.provider.Settings;
 
@@ -61,16 +62,16 @@ public class MapsFragment extends Fragment  {
     private GoogleMap mMap;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
-    public ArrayList<String> spots;
-    public ArrayList<Integer> spotId;
-    public ArrayList<String> spotName;
-    public ArrayList<Double> spotLongitude;
-    public ArrayList<Double> spotLatitude;
-    public ArrayList<String> spotDescription;
-    public ArrayList<LatLng> spotlocation;
+    private ArrayList<String> spots;
+    private ArrayList<Integer> spotId;
+    private ArrayList<String> spotName;
+    private ArrayList<Double> spotLongitude;
+    private ArrayList<Double> spotLatitude;
+    private ArrayList<String> spotDescription;
+    private ArrayList<LatLng> spotlocation;
     private ArrayList<Marker> markers;
 
-    JSONArray objspots;
+    private JSONArray objspots;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,9 +84,13 @@ public class MapsFragment extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        JSONArrayDownloader task = new JSONArrayDownloader();
+
+
+
 
         //download spots
+
+        JSONArrayDownloader task = new JSONArrayDownloader();
         try {
             objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
         } catch (ExecutionException e) {
@@ -99,9 +104,8 @@ public class MapsFragment extends Fragment  {
         spots = new ArrayList<>();
         spotId = new ArrayList<>();
         spotName = new ArrayList<>();
-        spotLatitude = new ArrayList<>();
-        spotLongitude = new ArrayList<>();
         spotDescription = new ArrayList<>();
+        spotlocation = new ArrayList<>();
         if(objspots != null) {
             for(int i = 0; i < objspots.length(); i++) {
                 try {
@@ -115,6 +119,7 @@ public class MapsFragment extends Fragment  {
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }
         //Log.e("Array List", spots.toString());
@@ -133,6 +138,7 @@ public class MapsFragment extends Fragment  {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
+
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -140,8 +146,9 @@ public class MapsFragment extends Fragment  {
 
                 markers = new ArrayList<>();
                 for(int i = 0; i < spotlocation.size(); i++){
-                    markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
+                    markers.add(googleMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
+                    Log.e("error", "add marker in : " + spotlocation);
                 }
                 ///
                 //
@@ -159,12 +166,10 @@ public class MapsFragment extends Fragment  {
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
+                Log.e("YOOOOOOOOOOOOOO","marker in iade" + iade  );
 
-                Marker markerOne = googleMap.addMarker(new MarkerOptions().position(iade)
-                        .title("UE - IADE")
-                        .snippet("Universidade"));
 
-                String firstid = markerOne.getId();
+
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
@@ -175,9 +180,6 @@ public class MapsFragment extends Fragment  {
                         markerOptions.position(latLng);
                         // Set title of marker
                         markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-                        String firstid = markerOne.getId();
-                        markerMap.put(firstid, "action_first");
-                        //Remove all marker
 
                         // Animating to zoom the marker
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
@@ -210,6 +212,8 @@ public class MapsFragment extends Fragment  {
 
 
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

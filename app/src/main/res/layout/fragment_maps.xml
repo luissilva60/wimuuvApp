@@ -11,7 +11,7 @@
         android:id="@+id/mapsFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="710dp"
         mapsFragment:cameraTilt="30"
         mapsFragment:uiRotateGestures="true"
         mapsFragment:uiZoomControls="true"
