@@ -11,11 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
@@ -27,22 +23,20 @@ import android.widget.Toast;
 import android.provider.Settings;
 
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
+import com.example.wimuuvapplication.UI.directions.Route;
+import com.example.wimuuvapplication.UI.directions.RouteException;
+import com.example.wimuuvapplication.UI.directions.RoutingListener;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -56,10 +50,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment {
+public class MapsFragment extends Fragment  {
     private GPSTracker gpsTracker;
     private View rootView;
     HashMap<String, String> markerMap = new HashMap<String, String>();
@@ -72,6 +67,8 @@ public class MapsFragment extends Fragment {
     public ArrayList<Double> spotLongitude;
     public ArrayList<Double> spotLatitude;
     public ArrayList<String> spotDescription;
+    public ArrayList<LatLng> spotlocation;
+    private ArrayList<Marker> markers;
 
     JSONArray objspots;
 
@@ -86,7 +83,7 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        /*JSONArrayDownloader task = new JSONArrayDownloader();
+        JSONArrayDownloader task = new JSONArrayDownloader();
 
         //download spots
         try {
@@ -109,27 +106,19 @@ public class MapsFragment extends Fragment {
             for(int i = 0; i < objspots.length(); i++) {
                 try {
                     obj = objspots.getJSONObject(i);
-                    String spotname1 = obj.getString("name");
-                    String spotdescription = obj.getString("description");
                     spotId.add(obj.getInt("id"));
                     spotName.add(obj.getString("name"));
+                    spotlocation.add(obj.getString(new LatLng(Double.parseDouble(obj.getString("spLat")),
+                            Double.parseDouble(obj.getString("spLong"))));
                     spotLatitude.add(obj.getDouble("latitude"));
                     spotLongitude.add(obj.getDouble("longitude"));
                     spotDescription.add(obj.getString("description"));
-                    LatLng Spots = new LatLng(spotLatitude.get(i), spotLongitude.get(i));
-
-                    //Marcadores dos spots
-                    mMap.addMarker(new MarkerOptions()
-                            .position(Spots)
-                            .title(spotname1)
-                            .snippet(spotdescription)
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }*/
+        }
         //Log.e("Array List", spots.toString());
 
         // Initialize view
@@ -147,74 +136,24 @@ public class MapsFragment extends Fragment {
             public void onMapReady(@NonNull GoogleMap googleMap) {
                 LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
 
-                // JSON array downloader
-                JSONArrayDownloader task = new JSONArrayDownloader();
-
-                //download spots
-                try {
-                    objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                markers = new ArrayList<>();
+                for(int i = 0; i < spotsPos.size(); i++){
+                    markers.add(mMap.addMarker(new MarkerOptions().position(spotsPos.get(i)).title(spotsName.get(i))));
                 }
+                ///
+                //
+                //Marcadores dos spots
+                //                    mMap.addMarker(new MarkerOptions()
+                //                            .position(Spots)
+                //                            .title(spotname1)
+                //                            .snippet(spotdescription)
+                //                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+                //
 
-
-                JSONObject obj;
-                spots = new ArrayList<>();
-                spotId = new ArrayList<>();
-                spotName = new ArrayList<>();
-                spotLatitude = new ArrayList<>();
-                spotLongitude = new ArrayList<>();
-                spotDescription = new ArrayList<>();
-                if(objspots != null) {
-                    for(int i = 0; i < objspots.length(); i++) {
-                        try {
-                            obj = objspots.getJSONObject(i);
-                            String spotname1 = obj.getString("name");
-                            String spotdescription = obj.getString("description");
-                            Double spotlatitude1 = obj.getDouble("latitude");
-                            Double spotlongitude1 = obj.getDouble("longitude");
-                            spotId.add(obj.getInt("id"));
-                            spotName.add(obj.getString("name"));
-                            spotLatitude.add(obj.getDouble("latitude"));
-                            spotLongitude.add(obj.getDouble("longitude"));
-                            spotDescription.add(obj.getString("description"));
-                            LatLng Spots = new LatLng(spotlatitude1, spotlongitude1);
-
-                            //Marcadores dos spots
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(Spots)
-                                    .title(spotname1)
-                                    .snippet(spotdescription)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
-                        }
-                        catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
 
                 //mMap.setMyLocationEnabled(true);
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -345,6 +284,7 @@ public class MapsFragment extends Fragment {
         }
 
     }
+
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
         Drawable vectorDrawable -ContextCompat.getDrawable(getContext(),);
         vectorDrawable.setBounds(left=0, top:0, vectorDrawable.getIntrinsicWidth(),
