@@ -162,7 +162,7 @@ public class MapsFragment extends Fragment  {
 
 
                 //mMap.setMyLocationEnabled(true);
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
