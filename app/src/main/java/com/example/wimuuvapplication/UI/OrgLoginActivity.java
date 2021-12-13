@@ -29,7 +29,7 @@ public class OrgLoginActivity extends AppCompatActivity {
     }
 
     public void onClickfgtpw(View v) {
-        Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+        Intent intent = new Intent(getApplicationContext(), ForgotPasswordOrg.class);
 
 
         startActivity(intent);
