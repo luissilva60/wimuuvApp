@@ -184,12 +184,14 @@ public class MapsFragment extends Fragment {
                             obj = objspots.getJSONObject(i);
                             String spotname1 = obj.getString("name");
                             String spotdescription = obj.getString("description");
+                            Double spotlatitude1 = obj.getDouble("latitude");
+                            Double spotlongitude1 = obj.getDouble("longitude");
                             spotId.add(obj.getInt("id"));
                             spotName.add(obj.getString("name"));
                             spotLatitude.add(obj.getDouble("latitude"));
                             spotLongitude.add(obj.getDouble("longitude"));
                             spotDescription.add(obj.getString("description"));
-                            LatLng Spots = new LatLng(spotLatitude.get(i), spotLongitude.get(i));
+                            LatLng Spots = new LatLng(spotlatitude1, spotlongitude1);
 
                             //Marcadores dos spots
                             googleMap.addMarker(new MarkerOptions()
