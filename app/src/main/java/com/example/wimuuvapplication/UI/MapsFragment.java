@@ -140,7 +140,7 @@ public class MapsFragment extends Fragment  {
 
                 markers = new ArrayList<>();
                 for(int i = 0; i < spotlocation.size(); i++){
-                    markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
+                    markers.add(googleMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).icon
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                 }
                 ///
