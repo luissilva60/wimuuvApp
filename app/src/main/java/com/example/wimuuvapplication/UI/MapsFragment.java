@@ -240,9 +240,9 @@ public class MapsFragment extends Fragment {
                         String firstid = markerOne.getId();
                         markerMap.put(firstid, "action_first");
                         //Remove all marker
-                        googleMap.clear();
+
                         // Animating to zoom the marker
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         //Add marker on map
                         googleMap.addMarker(markerOptions);
 
