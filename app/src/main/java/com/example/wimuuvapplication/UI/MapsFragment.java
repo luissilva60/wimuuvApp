@@ -56,17 +56,11 @@ import java.util.concurrent.ExecutionException;
 
 
 public class MapsFragment extends Fragment  {
-    private GPSTracker gpsTracker;
-    private View rootView;
-    HashMap<String, String> markerMap = new HashMap<String, String>();
-    private GoogleMap mMap;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
-    private ArrayList<String> spots;
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
-    private ArrayList<Double> spotLongitude;
-    private ArrayList<Double> spotLatitude;
+
     private ArrayList<String> spotDescription;
     private ArrayList<LatLng> spotlocation;
     private ArrayList<Marker> markers;
@@ -101,7 +95,6 @@ public class MapsFragment extends Fragment  {
 
 
         JSONObject obj;
-        spots = new ArrayList<>();
         spotId = new ArrayList<>();
         spotName = new ArrayList<>();
         spotDescription = new ArrayList<>();
@@ -167,6 +160,7 @@ public class MapsFragment extends Fragment  {
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
                 Log.e("YOOOOOOOOOOOOOO","marker in iade" + iade  );
+
 
 
 
