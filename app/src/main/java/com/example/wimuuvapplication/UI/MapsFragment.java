@@ -283,6 +283,8 @@ public class MapsFragment extends Fragment  {
 
     }
 
+
+
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
         Drawable vectorDrawable -ContextCompat.getDrawable(getContext(),);
         vectorDrawable.setBounds(left=0, top:0, vectorDrawable.getIntrinsicWidth(),
