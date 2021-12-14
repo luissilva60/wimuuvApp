@@ -171,46 +171,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickLogin(View v) throws JSONException {
-        Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
 
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
-        if (TextUtils.isEmpty(Email)) {
-            email.setError("Email required!");
-        }
-        if (Password.length() < 6 || TextUtils.isEmpty(Password)) {
-            password.setError("Password is to short");
-        }
-        // JSON array downloader (liga a task)
-        JSONArrayDownloader task = new JSONArrayDownloader();
+        if (Email.isEmpty() || Password.isEmpty()) {
+            Toast.makeText(this, "Preencha todos os campos!!!", Toast.LENGTH_SHORT).show();
+        } else {
+            // JSON array downloader (liga a task)
+            JSONArrayDownloader task = new JSONArrayDownloader();
 
 
-        //download dos utilizadores e mete-os dentro do array LoginCredentials
-        try {
-            LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //vamos verificar se dentro do array existem as strings que o utilizador inseriu
-        if (LoginCredentials != null) {
+            //download dos utilizadores e mete-os dentro do array LoginCredentials
+            try {
+                LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            //vamos verificar se dentro do array existem as strings que o utilizador inseriu
             for (int i = 0; i < LoginCredentials.length(); i++) {
                 if (LoginCredentials.get(i).toString().contains(Email) && LoginCredentials.get(i).toString().contains(Password)) {
-                    Intent intent1 = new Intent(getApplicationContext(), MainActivity2.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
 
 
-
-
                 }
             }
+
+
         }
-
-
-        startActivity(intent);
     }
 
     public void onClickfgtpw(View v) {
@@ -231,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
 
 
 }
