@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private EditText email;
     private EditText password;
-    JSONArray LoginCredentials = null;
+    private JSONArray LoginCredentials = null;
 
 
 

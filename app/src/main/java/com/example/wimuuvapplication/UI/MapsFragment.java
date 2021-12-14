@@ -55,7 +55,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment  {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -143,6 +143,8 @@ public class MapsFragment extends Fragment  {
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                     Log.e("error", "add marker in : " + spotlocation);
                 }
+
+                googleMap.setOnMarkerClickListener(MapsFragment.this);
                 ///
                 //
                 //Marcadores dos spots
@@ -283,6 +285,14 @@ public class MapsFragment extends Fragment  {
 
     }
 
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        for (int i = 0; i < markers.size(); i++){
+            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        }
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        return false;
+    }
 
 
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
