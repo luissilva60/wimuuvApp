@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         String Password = password.getText().toString();
 
         if (Email.isEmpty() || Password.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
         } else {
             // JSON array downloader (liga a task)
             JSONArrayDownloader task = new JSONArrayDownloader();
