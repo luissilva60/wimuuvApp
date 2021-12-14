@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
             //vamos verificar se dentro do array existem as strings que o utilizador inseriu
             for (int i = 0; i < LoginCredentials.length(); i++) {
-                if (LoginCredentials.get(i).toString().contains(Email) && LoginCredentials.get(i).toString().contains(Password)) {
+                if (LoginCredentials.get(i).toString().contains(Email) && LoginCredentials.get(i).toString().contains(Password) && Email.length() > 0 && Password.length() > 0) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
