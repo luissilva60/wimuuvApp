@@ -14,7 +14,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -29,6 +31,12 @@ import com.example.wimuuvapplication.UI.ForgotPassword;
 import com.example.wimuuvapplication.UI.MainActivity2;
 import com.example.wimuuvapplication.UI.OrgLoginActivity;
 import com.example.wimuuvapplication.UI.Register;
+import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.concurrent.ExecutionException;
 //import com.example.wimuuvapplication.databinding.ActivityMainBinding;
 
 
@@ -38,13 +46,18 @@ public class MainActivity extends AppCompatActivity {
     private LoginViewModel loginViewMod;
     //private ActivityMainBinding binding;
     private LoginViewModel loginViewModel;
-    private EditText emailEditText;
-    private EditText passwordEditText;
+    private EditText email;
+    private EditText password;
+    JSONArray LoginCredentials = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        email = findViewById(R.id.edittextEmail);
+        password = findViewById(R.id.editTextPassword);
 
         /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -155,8 +168,39 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void onClickLogin(View v) {
+    public void onClickLogin(View v) throws JSONException {
         Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+
+        String Email = email.getText().toString();
+        String Password = password.getText().toString();
+
+        if (TextUtils.isEmpty(Email)) {
+            email.setError("Email required!");
+        }
+        if (Password.length() < 6 || TextUtils.isEmpty(Password)) {
+            password.setError("Password is to short");
+        }
+        // JSON array downloader (liga a task)
+        JSONArrayDownloader task = new JSONArrayDownloader();
+
+        //download dos utilizadores e mete-os dentro do array LoginCredentials
+        try {
+            LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //vamos verificar se dentro do array existem as strings que o utilizador inseriu
+        if (LoginCredentials != null) {
+            for (int i = 0; i < LoginCredentials.length(); i++) {
+                if (LoginCredentials.get(i).toString().contains(Email) && LoginCredentials.get(i).toString().contains(Password)) {
+                    Intent intent1 = new Intent(getApplicationContext(), MainActivity2.class);
+                    startActivity(intent);
+                    Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
+                }
+            }
+        }
 
 
         startActivity(intent);

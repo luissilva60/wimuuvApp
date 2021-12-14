@@ -54,6 +54,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
+
+
 public class MapsFragment extends Fragment  {
     private GPSTracker gpsTracker;
     private View rootView;
@@ -165,6 +167,8 @@ public class MapsFragment extends Fragment  {
                         .snippet("Universidade"));
 
                 String firstid = markerOne.getId();
+
+                googleMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) getContext());
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
@@ -173,6 +177,7 @@ public class MapsFragment extends Fragment  {
                         MarkerOptions markerOptions = new MarkerOptions();
                         // Set position of marker
                         markerOptions.position(latLng);
+
                         // Set title of marker
                         markerOptions.title(latLng.latitude + " : " + latLng.longitude);
                         String firstid = markerOne.getId();
@@ -283,6 +288,9 @@ public class MapsFragment extends Fragment  {
         }
 
     }
+
+
+
 
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
         Drawable vectorDrawable -ContextCompat.getDrawable(getContext(),);
