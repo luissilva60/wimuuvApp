@@ -32,9 +32,11 @@ import com.example.wimuuvapplication.UI.MainActivity2;
 import com.example.wimuuvapplication.UI.OrgLoginActivity;
 import com.example.wimuuvapplication.UI.Register;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 //import com.example.wimuuvapplication.databinding.ActivityMainBinding;
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         // JSON array downloader (liga a task)
         JSONArrayDownloader task = new JSONArrayDownloader();
 
+
         //download dos utilizadores e mete-os dentro do array LoginCredentials
         try {
             LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
@@ -198,6 +201,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity2.class);
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
+
+
+
+
                 }
             }
         }
