@@ -1,6 +1,7 @@
 package com.example.wimuuvapplication.UI;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.wimuuvapplication.R;
@@ -29,36 +31,37 @@ import org.json.JSONObject;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class FeedFragment extends Fragment {
+public class FeedFragment extends Fragment implements AdapterView.OnItemClickListener {
 
 
-    public ArrayList<String> events;
-    public ArrayList<String> eventId;
-    public ArrayList<String> eventName;
-    public ArrayList<String> eventDescription;
-    public ArrayList<Integer> eventTypeId;
-    public ArrayList<String> eventDate;
-    public ArrayList<String> eventStartTime;
-    public ArrayList<String> eventEndTime;
-    public ArrayList<Time> eventDuration;
-    public ArrayList<Integer> eventsOrgId;
-    public ArrayList<Integer> eventSpotId;
-    public ArrayList<Integer> eventCapacity;
-    public ArrayList<Integer> eventPhotosId;
-    public ArrayList<Integer> eventStateId;
-    public ArrayList<Integer> eventRateId;
-    public ArrayAdapter<String> adapterEvents;
-    String spotname;
-    String typename;
-    JSONObject spot;
-    JSONObject type;
-    JSONArray objevents;
+    private ArrayList<String> events;
+    private ArrayList<String> eventId;
+    private ArrayList<String> eventName;
+    private ArrayList<String> eventDescription;
+    private ArrayList<Integer> eventTypeId;
+    private ArrayList<String> eventDate;
+    private ArrayList<String> eventStartTime;
+    private ArrayList<String> eventEndTime;
+    private ArrayList<Time> eventDuration;
+    private ArrayList<Integer> eventsOrgId;
+    private ArrayList<Integer> eventSpotId;
+    private ArrayList<Integer> eventCapacity;
+    private ArrayList<Integer> eventPhotosId;
+    private ArrayList<Integer> eventStateId;
+    private ArrayList<Integer> eventRateId;
+    private ArrayAdapter<String> adapterEvents;
+    private String spotname;
+    private String typename;
+    private JSONObject spot;
+    private JSONObject type;
+    private JSONArray objevents;
     private ListView listViewEvents;
     private FragmentFeedBinding binding;
     public static String ID_EVENT;
-    private RecycleViewEventsFragment.RecyclerViewClickListener listener;
+    private int id;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -78,6 +81,7 @@ public class FeedFragment extends Fragment {
         binding = FragmentFeedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listViewEvents = binding.listEvents;
+        listViewEvents.setOnItemClickListener(FeedFragment.this);
         JSONArrayDownloader task = new JSONArrayDownloader();
         JSONObjDownloader task2 = new JSONObjDownloader();
         JSONObjDownloader task3 = new JSONObjDownloader();
@@ -145,6 +149,7 @@ public class FeedFragment extends Fragment {
                     String eventstartime1 = obj.getString("starttime");
                     String eventendtime1 = obj.getString("endtime");
 
+                    eventId.add(obj.getString("id"));
                     eventName.add(obj.getString("event_name"));
                     eventDescription.add(obj.getString("description"));
                     eventDate.add(obj.getString("date"));
@@ -166,30 +171,21 @@ public class FeedFragment extends Fragment {
     public void InitializeAdapter() {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
-        createListViewClickItemEvent(listViewEvents,events,eventId,eventName);
     }
 
-    private void createListViewClickItemEvent(ListView list, final ArrayList<String> item, final ArrayList<String> id, final ArrayList<String> name) {
-
-        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("INFO",item.get(i));
-                Log.e("INFO",id.get(i));
-                Bundle result = new Bundle();
-                ID_EVENT = id.get(i);
-                result.putString("id",id.get(i));
-                result.putString("name",name.get(i));
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        String list = events.get(position);
 
 
-                getParentFragmentManager().setFragmentResult("event", result);
-
-                Navigation.findNavController(view)
-                        .navigate(R.id.item);
-
-            }
-        });
+                /*Log.e("INFO",item.get(i));
+                Log.e("INFO",id.get(i));*/
+        Bundle result = new Bundle();
+                /*ID_EVENT = id.get(position);
+                result.putString("id",id.get(position));*/
+        //result.putString("name",name.get(position));
+        getParentFragmentManager().setFragmentResult("event", result);
+        Intent intent = new Intent(getContext(),FeedDetails.class);
+        startActivity(intent);
     }
-
-
 }
