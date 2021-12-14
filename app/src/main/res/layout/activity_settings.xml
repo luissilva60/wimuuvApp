@@ -8,6 +8,38 @@
     android:orientation="vertical"
     tools:context=".UI.Settings">
 
+    <Switch
+        android:id="@+id/gpslocation"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#9E9C9C"
+        android:text="GPS services"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/notifications"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <Switch
+        android:id="@+id/notifications"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="21dp"
+        android:text="Notifications"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/tagInPhotos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpslocation" />
+
     <include
         android:id="@+id/include"
         layout="@layout/toolbar2" />
@@ -24,4 +56,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <Switch
+        android:id="@+id/tagInPhotos"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="249dp"
+        android:text="Allow tag in photos"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifications" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

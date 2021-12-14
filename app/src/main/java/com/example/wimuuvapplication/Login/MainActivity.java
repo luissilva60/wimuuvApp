@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         email = findViewById(R.id.edittextEmail);
         password = findViewById(R.id.editTextPassword);
+        email.setText("example2@iol.xyz");
+        password.setText("admin");
 
         /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
