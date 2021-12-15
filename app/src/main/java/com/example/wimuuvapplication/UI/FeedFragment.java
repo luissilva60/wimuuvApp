@@ -20,7 +20,6 @@ import android.widget.ListView;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
-import com.example.wimuuvapplication.databinding.FragmentFeedBindingImpl;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class FeedFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class FeedFragment extends Fragment {
 
 
     private ArrayList<String> events;
@@ -82,7 +81,6 @@ public class FeedFragment extends Fragment implements AdapterView.OnItemClickLis
         binding = FragmentFeedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listViewEvents = binding.listEvents;
-        listViewEvents.setOnItemClickListener(FeedFragment.this);
         JSONArrayDownloader task = new JSONArrayDownloader();
         JSONObjDownloader task2 = new JSONObjDownloader();
         JSONObjDownloader task3 = new JSONObjDownloader();
@@ -173,20 +171,29 @@ public class FeedFragment extends Fragment implements AdapterView.OnItemClickLis
     public void InitializeAdapter() {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
+        createListViewClickItemEvent(listViewEvents, events, eventId, eventName);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        String list = events.get(position);
+    private void createListViewClickItemEvent(ListView listViewEvents, ArrayList<String> events, ArrayList<String> eventId, ArrayList<String> eventName) {
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                /*Log.e("INFO",item.get(i));
-                Log.e("INFO",id.get(i));*/
-        Bundle result = new Bundle();
-                /*ID_EVENT = id.get(position);
-                result.putString("id",id.get(position));*/
-        //result.putString("name",name.get(position));
-        //getParentFragmentManager().setFragmentResult("event", result);
-        Intent intent = new Intent(getContext(),FeedDetails.class);
-        startActivity(intent);
+
+                Bundle result = new Bundle();
+                ID_EVENT = eventId.get(i);
+                result.putString("id",eventId.get(i));
+                result.putString("name",eventName.get(i));
+                getParentFragmentManager().setFragmentResult("event", result);
+                Intent intent = new Intent(getContext(),FeedDetails.class);
+
+                intent.putExtras(result);
+                startActivity(intent);
+                //intent.putExtra("id",eventId.get(i));
+                //intent.putExtra("name",eventName.get(i));
+
+            }
+        });
     }
+
 }
