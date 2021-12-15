@@ -13,8 +13,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Spannable;
+import android.text.TextUtils;
+import android.text.style.URLSpan;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +60,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -143,7 +148,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                     Log.e("error", "add marker in : " + spotlocation);
                 }
-
+                googleMap.setOnInfoWindowClickListener(MapsFragment.this);
                 googleMap.setOnMarkerClickListener(MapsFragment.this);
                 ///
                 //
@@ -291,7 +296,16 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        //Intent intent = new Intent(getContext(),FeedDetails.class);
+        //startActivity(intent);
+
         return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Intent intent = new Intent(getContext(),FeedDetails.class);
+        startActivity(intent);
     }
 
 
