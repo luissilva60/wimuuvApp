@@ -62,6 +62,7 @@ public class FeedFragment extends Fragment implements AdapterView.OnItemClickLis
     private FragmentFeedBinding binding;
     public static String ID_EVENT;
     private int id;
+    public static JSONArray test;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -143,6 +144,7 @@ public class FeedFragment extends Fragment implements AdapterView.OnItemClickLis
             for(int i = 0; i < objevents.length(); i++) {
                 try {
                     obj = objevents.getJSONObject(i);
+                    test = objevents;
                     String eventname1 = obj.getString("event_name");
                     String eventdescription1 = obj.getString("description");
                     String eventdate1 = obj.getString("date");
@@ -177,14 +179,13 @@ public class FeedFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         String list = events.get(position);
 
-
                 /*Log.e("INFO",item.get(i));
                 Log.e("INFO",id.get(i));*/
         Bundle result = new Bundle();
                 /*ID_EVENT = id.get(position);
                 result.putString("id",id.get(position));*/
         //result.putString("name",name.get(position));
-        getParentFragmentManager().setFragmentResult("event", result);
+        //getParentFragmentManager().setFragmentResult("event", result);
         Intent intent = new Intent(getContext(),FeedDetails.class);
         startActivity(intent);
     }
