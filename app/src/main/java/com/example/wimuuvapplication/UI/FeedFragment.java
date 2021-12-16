@@ -140,56 +140,54 @@ public class FeedFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
+            try {
+                type = task2.execute("https://wimuuv.herokuapp.com/api/type/" + eventTypeId1).get();
+                typename = type.getString("event");
 
-        try {
-            type = task2.execute("https://wimuuv.herokuapp.com/api/type/"+ eventTypeId1).get();
-            typename = type.getString("event");
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            try {
+                org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId1).get();
+                orgname = org.getString("name");
 
-        try {
-            org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId1).get();
-            orgname = org.getString("name");
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
-        try {
-            spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/"+ eventSpotId1).get();
-            spotname = spot.getString("name");
+            try {
+                spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/" + eventSpotId1).get();
+                spotname = spot.getString("name");
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            state = task5.execute("https://wimuuv.herokuapp.com/api/state/"+ eventStateId1).get();
-            statename = state.getString("event");
+            try {
+                state = task5.execute("https://wimuuv.herokuapp.com/api/state/" + eventStateId1).get();
+                statename = state.getString("event");
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
 
