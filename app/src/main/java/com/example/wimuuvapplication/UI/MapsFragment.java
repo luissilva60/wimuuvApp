@@ -304,15 +304,14 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getContext(),FeedDetails.class);
+        Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-               intent.putExtra("id", spotId.get(i));
-                Log.e("esaese", "onInfoWindowClick: "+ spotId.get(i) );
+                int id = spotId.get(i);
+                intent.putExtra("id", id);
+                Log.e("esaeseasdsadsa", "Spot id: "+ id );
             }
         }
-        //intent.putExtra("id", spotId.get());
-        Log.e("Marker ID", marker.getId());
         startActivity(intent);
     }
 
