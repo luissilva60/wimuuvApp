@@ -52,18 +52,18 @@ public class FeedFragment extends Fragment {
     private ArrayList<Integer> eventRateId;
     private ArrayList<Integer> eventTypeId;
     private ArrayAdapter<String> adapterEvents;
-    String spotname;
-    String statename;
-    String typename;
-    String orgname;
+    public static String spotname;
+    public static String statename;
+    public static String typename;
+    public static String orgname;
     private JSONObject spot;
     private JSONObject type;
     private JSONObject state;
     private JSONObject org;
-    int eventTypeId1;
-    String eventSpotId1;
-    String eventStateId1;
-    String eventOrgId1;
+    public static int eventTypeId1;
+    public static int eventSpotId1;
+    public static int eventStateId1;
+    public static int eventOrgId1;
     private JSONArray objevents;
     private JSONObject event;
     private ListView listViewEvents;
@@ -108,20 +108,21 @@ public class FeedFragment extends Fragment {
 
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
-            /*for (int i = 0; i < objevents.length(); i++){
-                eventTypeId = (ArrayList<Integer>) objevents.getString("typeId");
-                eventStateId = objevents.getString(Integer.parseInt("stateId"));
-                eventSpotId = objevents.getString(Integer.parseInt("spotId"));
-                eventOrgId = objevents.getString(Integer.parseInt("orgId"));
-            }*/
+            for (int i = 0; i < objevents.length(); i++){
+                JSONObject object = objevents.getJSONObject(i);
+                    eventTypeId1 = object.getInt("typeId");
+                    eventStateId1 = object.getInt("stateId");
+                    eventSpotId1 = object.getInt("spotId");
+                    eventOrgId1 = object.getInt("orgId");
+            }
 
 
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        /*} catch (JSONException e) {
-            e.printStackTrace();*/
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
 
@@ -143,6 +144,7 @@ public class FeedFragment extends Fragment {
         try {
             type = task2.execute("https://wimuuv.herokuapp.com/api/type/"+ eventTypeId1).get();
             typename = type.getString("event");
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -152,8 +154,9 @@ public class FeedFragment extends Fragment {
         }
 
         try {
-            org = task5.execute("https://wimuuv.herokuapp.com/api/orgs/"+ eventOrgId1).get();
+            org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId1).get();
             orgname = org.getString("name");
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -164,8 +167,9 @@ public class FeedFragment extends Fragment {
 
 
         try {
-            spot = task3.execute("https://wimuuv.herokuapp.com/api/spot/"+ eventSpotId1).get();
+            spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/"+ eventSpotId1).get();
             spotname = spot.getString("name");
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -175,8 +179,9 @@ public class FeedFragment extends Fragment {
         }
 
         try {
-            state = task4.execute("https://wimuuv.herokuapp.com/api/state/"+ eventStateId1).get();
+            state = task5.execute("https://wimuuv.herokuapp.com/api/state/"+ eventStateId1).get();
             statename = state.getString("event");
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -214,11 +219,18 @@ public class FeedFragment extends Fragment {
                     String eventdate1 = obj.getString("date");
                     String eventstartime1 = obj.getString("starttime");
                     String eventendtime1 = obj.getString("endtime");
-                    typename = obj.getString("event");
-                    spotname = obj.getString("name");
-                    statename = obj.getString("event");
-                    orgname = obj.getString("name");
-
+                    if(obj.has("event")){
+                        typename = obj.getString("event");
+                    }
+                    if(obj.has("name")){
+                        spotname = obj.getString("name");
+                    }
+                    if(obj.has("event")){
+                        statename = obj.getString("event");
+                    }
+                    if(obj.has("name")){
+                        orgname = obj.getString("name");
+                    }
 
                     eventId.add(obj.getString("id"));
                     eventName.add(obj.getString("event_name"));
