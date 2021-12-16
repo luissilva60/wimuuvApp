@@ -63,13 +63,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, RoutingListener  {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, RoutingListener, GoogleMap.OnMyLocationChangeListener  {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
+    private  LatLng UserCurrentLocation;
+
 
     private ArrayList<String> spotDescription;
     private ArrayList<LatLng> spotlocation;
@@ -160,6 +163,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 }
                 googleMap.setOnInfoWindowClickListener(MapsFragment.this);
                 googleMap.setOnMarkerClickListener(MapsFragment.this);
+                googleMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsFragment.this);
                 ///
                 //
                 //Marcadores dos spots
@@ -222,6 +226,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
         return view;
 
+
+    }
+
+    @Override
+    public void onMyLocationChange(@NonNull Location location) {
+        UserCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
     }
 
@@ -303,21 +313,26 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
 
-        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
 
 
         for (int i = 0; i < markers.size(); i++){
-            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             if (markers.get(i).getId().equals(marker.getId())) {
 
                 LatLng location = spotlocation.get(i);
                 Log.e("sadasdsadsadasda", "spots location: "+ location );
-                getRouteToMarker(location);
+                //getRouteToMarker(location);
             }
         }
 
+        for (int i = 0; i < markers.size(); i++) {
+            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        }
 
-        
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
+
+
 
 
 
@@ -326,12 +341,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     }
 
     private void getRouteToMarker(LatLng location) {
-        Routing routing = new Routing.Builder()
+
+        Log.e("wi", "YOOOOOOOOOOOOOOOOOOOOO" + UserCurrentLocation );
+        Routing routing;
+        routing = new Routing.Builder()
                 .key("AIzaSyDVe28Yx5jnxbaE6HyGVdmly60yIS5k2Io")
                 .travelMode(AbstractRouting.TravelMode.WALKING)
-                .withListener((com.directions.route.RoutingListener) this)
+                .withListener((com.directions.route.RoutingListener) getContext())
                 .alternativeRoutes(false)
-                .waypoints(new LatLng(tvLatitude, tvLongitude), location)
+                .waypoints(UserCurrentLocation, location)
                 .build();
         routing.execute();
 
@@ -344,11 +362,14 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
                 int id = spotId.get(i);
-                intent.putExtra("id", id);
+                LatLng location = spotlocation.get(i);
+                Log.e("sadasdsadsadasda", "spots location: "+ location );
+                getRouteToMarker(location);
+                //intent.putExtra("id", id);
                 Log.e("esaeseasdsadsa", "Spot id: "+ id );
             }
         }
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     @Override
@@ -402,6 +423,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         }
         polylines.clear();
     }
+
+
 
 
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
