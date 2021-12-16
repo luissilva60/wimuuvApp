@@ -25,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".UI.SpotDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.FeedDetails"
             android:exported="false" />
         <activity

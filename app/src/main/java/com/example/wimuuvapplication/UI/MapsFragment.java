@@ -303,18 +303,21 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
 
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
+
         for (int i = 0; i < markers.size(); i++){
+            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             if (markers.get(i).getId().equals(marker.getId())) {
+
                 LatLng location = spotlocation.get(i);
+                Log.e("sadasdsadsadasda", "spots location: "+ location );
                 getRouteToMarker(location);
             }
         }
 
 
-        for (int i = 0; i < markers.size(); i++){
-            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        }
-        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        
 
 
 
@@ -325,26 +328,26 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private void getRouteToMarker(LatLng location) {
         Routing routing = new Routing.Builder()
                 .key("AIzaSyDVe28Yx5jnxbaE6HyGVdmly60yIS5k2Io")
-                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .travelMode(AbstractRouting.TravelMode.WALKING)
                 .withListener((com.directions.route.RoutingListener) this)
                 .alternativeRoutes(false)
                 .waypoints(new LatLng(tvLatitude, tvLongitude), location)
                 .build();
         routing.execute();
 
+
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getContext(),FeedDetails.class);
+        Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-               intent.putExtra("id", spotId.get(i));
-                Log.e("esaese", "onInfoWindowClick: "+ spotId.get(i) );
+                int id = spotId.get(i);
+                intent.putExtra("id", id);
+                Log.e("esaeseasdsadsa", "Spot id: "+ id );
             }
         }
-        //intent.putExtra("id", spotId.get());
-        Log.e("Marker ID", marker.getId());
         startActivity(intent);
     }
 
@@ -393,6 +396,13 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     @Override
     public void onRoutingCancelled() {
 
+    }
+
+    private void erasePolylines(){
+        for(Polyline line : polylines){
+            line.remove();
+        }
+        polylines.clear();
     }
 
 
