@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    EditText name,email,birthdate,password;
+    EditText name,email,password,birthdate;
     Spinner gender,curso;
     String postBDate;
     Button signUp;

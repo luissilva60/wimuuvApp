@@ -60,6 +60,7 @@ public class FeedFragment extends Fragment {
     private ListView listViewEvents;
     private FragmentFeedBinding binding;
     public static String ID_EVENT;
+    public static String EVENT_NAME;
     private int id;
     public static JSONArray test;
 
@@ -179,19 +180,20 @@ public class FeedFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-                Bundle result = new Bundle();
-                ID_EVENT = eventId.get(i);
-                result.putString("id",eventId.get(i));
-                result.putString("name",eventName.get(i));
-                getParentFragmentManager().setFragmentResult("event", result);
                 Intent intent = new Intent(getContext(),FeedDetails.class);
+                //Bundle result = new Bundle();
+                ID_EVENT = eventId.get(i);
+                EVENT_NAME = eventName.get(i);
+                intent.putExtra("name",EVENT_NAME);
 
-                intent.putExtras(result);
+                //result.putString("id",eventId.get(i));
+                //result.putString("name",eventName.get(i));
+                //getParentFragmentManager().setFragmentResult("event", result);
+
+                //intent.putExtras(result);
                 startActivity(intent);
                 //intent.putExtra("id",eventId.get(i));
                 //intent.putExtra("name",eventName.get(i));
-
             }
         });
     }

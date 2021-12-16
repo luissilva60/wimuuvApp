@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -29,23 +30,31 @@ public class FeedDetails extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        name = (TextView) findViewById(R.id.textViewEventName);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
-            name.setText("Nome do Evento:  "+ bundle.getString("name"));
-        }
-        bundle.getString("id");
-        bundle.getString("name");
-        Log.e("INFO",bundle.getString("id"));
-
-
-
-        name.setText("Nome: " + bundle.getString("name"));
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_details);
+
+        Intent intent = getIntent();
+
+        String eventName = intent.getStringExtra("name");
+        name = (TextView)findViewById(R.id.textViewEventName);
+        name.setText("Nome: "+ eventName);
+        //Bundle bundle = getIntent().getExtras();
+        //if(bundle!=null){
+        //name.setText("Nome do Evento:  "+ bundle.getString("name"));
+        //}
+        //bundle.getString("id");
+        //bundle.getString("name");
+        //Log.e("INFO",bundle.getString("name"));
+        //name.setText(bundle.getString("name"));
+
+
+
+        //name.setText("Nome: " + bundle.getString("name"));
+
+
+
+
+
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         toolbar2.setTitle("Detalhes do Evento");
         setSupportActionBar(toolbar2);

@@ -41,6 +41,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -195,7 +196,11 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                         // Animating to zoom the marker
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         //Add marker on map
+                        //googleMap.clear();
+
                         googleMap.addMarker(markerOptions);
+
+
 
 
                     }
@@ -312,7 +317,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
                 LatLng location = spotlocation.get(i);
                 Log.e("sadasdsadsadasda", "spots location: "+ location );
-                getRouteToMarker(location);
+                //getRouteToMarker(location);
             }
         }
 
