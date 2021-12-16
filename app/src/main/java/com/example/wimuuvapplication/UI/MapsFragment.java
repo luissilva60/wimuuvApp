@@ -28,6 +28,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.provider.Settings;
 
+
+import com.directions.route.AbstractRouting;
+import com.directions.route.Routing;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.directions.Route;
 import com.example.wimuuvapplication.UI.directions.RouteException;
@@ -47,6 +50,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -60,7 +65,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, RoutingListener  {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -69,13 +74,18 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private ArrayList<String> spotDescription;
     private ArrayList<LatLng> spotlocation;
     private ArrayList<Marker> markers;
-
+    private GoogleMap googleMap;
     private JSONArray objspots;
+
+    private List<Polyline> polylines;
+    private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MapsInitializer.initialize(getContext());
+
+        polylines = new ArrayList<>();
     }
 
     @Nullable
@@ -292,6 +302,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
+
+        for (int i = 0; i < markers.size(); i++){
+            if (markers.get(i).getId().equals(marker.getId())) {
+                LatLng location = spotlocation.get(i);
+                getRouteToMarker(location);
+            }
+        }
+
+
         for (int i = 0; i < markers.size(); i++){
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         }
@@ -299,7 +318,20 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
+
         return false;
+    }
+
+    private void getRouteToMarker(LatLng location) {
+        Routing routing = new Routing.Builder()
+                .key("AIzaSyDVe28Yx5jnxbaE6HyGVdmly60yIS5k2Io")
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener((com.directions.route.RoutingListener) this)
+                .alternativeRoutes(false)
+                .waypoints(new LatLng(tvLatitude, tvLongitude), location)
+                .build();
+        routing.execute();
+
     }
 
     @Override
@@ -314,6 +346,51 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         //intent.putExtra("id", spotId.get());
         Log.e("Marker ID", marker.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        if(e != null) {
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(getContext(), "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
+        if(polylines.size()>0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            int colorIndex = i % COLORS.length;
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+            polyOptions.width(10 + i * 3);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = googleMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+
+            Toast.makeText(getContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 
 
