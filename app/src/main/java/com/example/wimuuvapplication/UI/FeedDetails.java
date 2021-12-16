@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 public class FeedDetails extends AppCompatActivity {
 
     JSONArray test;
-    TextView name;
+    TextView name, desc, spot, org, starttime, endtime, date, type,state;
     TextView id;
 
 
@@ -36,8 +36,37 @@ public class FeedDetails extends AppCompatActivity {
         Intent intent = getIntent();
 
         String eventName = intent.getStringExtra("name");
+        String eventDesc = intent.getStringExtra("desc");
+        String eventSpot = intent.getStringExtra("spot");
+        String eventOrg = intent.getStringExtra("org");
+        String eventStarttime = intent.getStringExtra("starttime");
+        String eventEndtime = intent.getStringExtra("endtime");
+        String eventDate = intent.getStringExtra("date");
+        String eventType = intent.getStringExtra("type");
+        String eventState = intent.getStringExtra("state");
+
+
+
         name = (TextView)findViewById(R.id.textViewEventName);
+        desc = (TextView)findViewById(R.id.textViewEventDescription);
+        spot = (TextView)findViewById(R.id.textViewEventSpot);
+        org = (TextView)findViewById(R.id.textViewEventOrg);
+        starttime = (TextView)findViewById(R.id.textViewEventStarttime);
+        endtime = (TextView)findViewById(R.id.textViewEventEndtime);
+        date = (TextView)findViewById(R.id.textViewEventDate);
+        type = (TextView)findViewById(R.id.textViewEventType);
+        state = (TextView)findViewById(R.id.textViewEventState);
+
+
         name.setText("Nome: "+ eventName);
+        desc.setText("Desc: "+ eventDesc);
+        spot.setText("Spot: "+ eventSpot);
+        org.setText("Org: "+ eventOrg);
+        starttime.setText("Start: "+ eventStarttime);
+        endtime.setText("End: "+ eventEndtime);
+        date.setText("Data: "+ eventDate);
+        type.setText("Tipo: "+ eventType);
+        state.setText("Estado: "+ eventState);
         //Bundle bundle = getIntent().getExtras();
         //if(bundle!=null){
         //name.setText("Nome do Evento:  "+ bundle.getString("name"));
