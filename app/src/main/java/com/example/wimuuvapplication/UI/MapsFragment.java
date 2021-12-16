@@ -54,6 +54,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -310,7 +311,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
 
-
+        private void erasePolylines();
 
 
         for (int i = 0; i < markers.size(); i++){
@@ -330,6 +331,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
         String url = getUrl(UserCurrentLocation, marker.getPosition(), "driving");
+        OkHttpClient client = new OkHttpClient().newBuilder()
 
 
 
@@ -346,7 +348,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         // Mode
         String mode = "mode= " + directionMode;
         // Building the parameters to the web service
-        String parameters = str_origin + "" + str_dest + "6" + mode;
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
         // Output format
         String output = "json";
         // Building the url to the web service
@@ -380,11 +382,11 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 LatLng location = spotlocation.get(i);
                 Log.e("sadasdsadsadasda", "spots location: "+ location );
                 //getRouteToMarker(location);
-                //intent.putExtra("id", id);
+                intent.putExtra("id", id);
                 Log.e("esaeseasdsadsa", "Spot id: "+ id );
             }
         }
-        //startActivity(intent);
+        startActivity(intent);
     }
 
 
