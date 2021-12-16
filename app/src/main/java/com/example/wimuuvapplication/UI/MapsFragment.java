@@ -296,8 +296,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        //Intent intent = new Intent(getContext(),FeedDetails.class);
-        //startActivity(intent);
+
+
 
         return false;
     }
@@ -307,7 +307,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         Intent intent = new Intent(getContext(),FeedDetails.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-               intent.putExtra("id", spotId);
+               intent.putExtra("id", spotId.get(i));
+                Log.e("esaese", "onInfoWindowClick: "+ spotId.get(i) );
             }
         }
         //intent.putExtra("id", spotId.get());
