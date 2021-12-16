@@ -40,26 +40,44 @@ public class FeedFragment extends Fragment {
     private ArrayList<String> eventId;
     private ArrayList<String> eventName;
     private ArrayList<String> eventDescription;
-    private ArrayList<Integer> eventTypeId;
     private ArrayList<String> eventDate;
     private ArrayList<String> eventStartTime;
     private ArrayList<String> eventEndTime;
     private ArrayList<Time> eventDuration;
-    private ArrayList<Integer> eventsOrgId;
+    private ArrayList<Integer> eventOrgId;
     private ArrayList<Integer> eventSpotId;
     private ArrayList<Integer> eventCapacity;
     private ArrayList<Integer> eventPhotosId;
     private ArrayList<Integer> eventStateId;
     private ArrayList<Integer> eventRateId;
+    private ArrayList<Integer> eventTypeId;
     private ArrayAdapter<String> adapterEvents;
-    private String spotname;
-    private String typename;
+    public static String spotname;
+    public static String statename;
+    public static String typename;
+    public static String orgname;
     private JSONObject spot;
     private JSONObject type;
+    private JSONObject state;
+    private JSONObject org;
+    public static int eventTypeId1;
+    public static int eventSpotId1;
+    public static int eventStateId1;
+    public static int eventOrgId1;
     private JSONArray objevents;
+    private JSONObject event;
     private ListView listViewEvents;
     private FragmentFeedBinding binding;
     public static String ID_EVENT;
+    public static String EVENT_NAME;
+    public static String EVENT_DESC;
+    public static String EVENT_STARTTIME;
+    public static String EVENT_ENDTIME;
+    public static String EVENT_DATE;
+    public static String EVENT_SPOT;
+    public static String EVENT_STATE;
+    public static String EVENT_TYPE;
+    public static String EVENT_ORG;
     private int id;
     public static JSONArray test;
 
@@ -84,21 +102,37 @@ public class FeedFragment extends Fragment {
         JSONArrayDownloader task = new JSONArrayDownloader();
         JSONObjDownloader task2 = new JSONObjDownloader();
         JSONObjDownloader task3 = new JSONObjDownloader();
-        JSONArrayDownloader task4 = new JSONArrayDownloader();
-        JSONArrayDownloader task5 = new JSONArrayDownloader();
-        JSONArrayDownloader task6 = new JSONArrayDownloader();
+        JSONObjDownloader task4 = new JSONObjDownloader();
+        JSONObjDownloader task5 = new JSONObjDownloader();
+
 
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
+            for (int i = 0; i < objevents.length(); i++){
+                JSONObject object = objevents.getJSONObject(i);
+                    eventTypeId1 = object.getInt("typeId");
+                    eventStateId1 = object.getInt("stateId");
+                    eventSpotId1 = object.getInt("spotId");
+                    eventOrgId1 = object.getInt("orgId");
+            }
+
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
+
         /*try {
-            type = task2.execute("https://wimuuv.herokuapp.com/api/type/"+ eventTypeId).get();
-            typename = type.getString("event");
+            event = task4.execute("https://wimuuv.herokuapp.com/api/events").get();
+            eventTypeId1 = event.getInt("typeId");
+            eventStateId1 = event.getInt("stateId");
+            eventSpotId1 = event.getInt("spotId");
+            eventOrgId1 = event.getInt("orgId");
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -106,19 +140,54 @@ public class FeedFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
+            try {
+                type = task2.execute("https://wimuuv.herokuapp.com/api/type/" + eventTypeId1).get();
+                typename = type.getString("event");
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId1).get();
+                orgname = org.getString("name");
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
-        /*try {
-            spot = task3.execute("https://wimuuv.herokuapp.com/api/spot/"+ eventSpotId).get();
-            spotname = spot.getString("name");
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
+            try {
+                spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/" + eventSpotId1).get();
+                spotname = spot.getString("name");
 
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                state = task5.execute("https://wimuuv.herokuapp.com/api/state/" + eventStateId1).get();
+                statename = state.getString("event");
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
 
@@ -132,7 +201,7 @@ public class FeedFragment extends Fragment {
         eventStartTime = new ArrayList<>();
         eventEndTime = new ArrayList<>();
         eventDuration = new ArrayList<>();
-        eventsOrgId = new ArrayList<>();
+        eventOrgId = new ArrayList<>();
         eventSpotId = new ArrayList<>();
         eventCapacity = new ArrayList<>();
         eventPhotosId = new ArrayList<>();
@@ -148,6 +217,18 @@ public class FeedFragment extends Fragment {
                     String eventdate1 = obj.getString("date");
                     String eventstartime1 = obj.getString("starttime");
                     String eventendtime1 = obj.getString("endtime");
+                    if(obj.has("event")){
+                        typename = obj.getString("event");
+                    }
+                    if(obj.has("name")){
+                        spotname = obj.getString("name");
+                    }
+                    if(obj.has("event")){
+                        statename = obj.getString("event");
+                    }
+                    if(obj.has("name")){
+                        orgname = obj.getString("name");
+                    }
 
                     eventId.add(obj.getString("id"));
                     eventName.add(obj.getString("event_name"));
@@ -171,27 +252,45 @@ public class FeedFragment extends Fragment {
     public void InitializeAdapter() {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
-        createListViewClickItemEvent(listViewEvents, events, eventId, eventName);
+        createListViewClickItemEvent(listViewEvents, events, eventId, eventName,typename,spotname,statename,eventDescription,eventDate,eventStartTime,eventEndTime,orgname);
     }
 
-    private void createListViewClickItemEvent(ListView listViewEvents, ArrayList<String> events, ArrayList<String> eventId, ArrayList<String> eventName) {
+
+    private void createListViewClickItemEvent(ListView listViewEvents, ArrayList<String> events, ArrayList<String> eventId, ArrayList<String> eventName, String typename, String spotname, String statename, ArrayList<String> eventDescription, ArrayList<String> eventDate, ArrayList<String> eventStartTime, ArrayList<String> eventEndTime, String orgname) {
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-                Bundle result = new Bundle();
-                ID_EVENT = eventId.get(i);
-                result.putString("id",eventId.get(i));
-                result.putString("name",eventName.get(i));
-                getParentFragmentManager().setFragmentResult("event", result);
                 Intent intent = new Intent(getContext(),FeedDetails.class);
+                //Bundle result = new Bundle();
+                ID_EVENT = eventId.get(i);
+                EVENT_NAME = eventName.get(i);
+                EVENT_DESC = eventDescription.get(i);
+                EVENT_STARTTIME = eventStartTime.get(i);
+                EVENT_ENDTIME = eventEndTime.get(i);
+                EVENT_DATE = eventDate.get(i);
+                EVENT_SPOT = spotname;
+                EVENT_STATE = statename;
+                EVENT_TYPE = typename;
+                EVENT_ORG = orgname;
+                intent.putExtra("name",EVENT_NAME);
+                intent.putExtra("desc",EVENT_DESC);
+                intent.putExtra("starttime",EVENT_STARTTIME);
+                intent.putExtra("endtime",EVENT_ENDTIME);
+                intent.putExtra("date",EVENT_DATE);
+                intent.putExtra("spot",EVENT_SPOT);
+                intent.putExtra("state",EVENT_STATE);
+                intent.putExtra("type",EVENT_TYPE);
+                intent.putExtra("org",EVENT_ORG);
 
-                intent.putExtras(result);
+                //result.putString("id",eventId.get(i));
+                //result.putString("name",eventName.get(i));
+                //getParentFragmentManager().setFragmentResult("event", result);
+
+                //intent.putExtras(result);
                 startActivity(intent);
                 //intent.putExtra("id",eventId.get(i));
                 //intent.putExtra("name",eventName.get(i));
-
             }
         });
     }
