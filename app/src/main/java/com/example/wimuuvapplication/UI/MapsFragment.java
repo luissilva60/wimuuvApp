@@ -77,7 +77,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private GoogleMap googleMap;
     private JSONArray objspots;
 
-    private List<Polyline> polylines;
+    private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
 
     @Override
@@ -364,6 +364,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
+        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(tvLatitude, tvLongitude));
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
         if(polylines.size()>0) {
             for (Polyline poly : polylines) {
                 poly.remove();
