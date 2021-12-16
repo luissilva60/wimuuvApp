@@ -13,28 +13,23 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.provider.Settings;
 
 
 import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
 import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.UI.directions.Route;
-import com.example.wimuuvapplication.UI.directions.RouteException;
-import com.example.wimuuvapplication.UI.directions.RoutingListener;
+
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -60,10 +55,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Logger;
 
 
 public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, RoutingListener, GoogleMap.OnMyLocationChangeListener  {
@@ -72,6 +65,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
     private  LatLng UserCurrentLocation;
+    Polyline currentPolyline;
+
 
 
     private ArrayList<String> spotDescription;
@@ -89,6 +84,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         MapsInitializer.initialize(getContext());
 
         polylines = new ArrayList<>();
+
+
     }
 
     @Nullable
@@ -321,7 +318,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
                 LatLng location = spotlocation.get(i);
                 Log.e("sadasdsadsadasda", "spots location: "+ location );
-                //getRouteToMarker(location);
+                //getRouteToMarker(marker.getPosition());
             }
         }
 
@@ -332,6 +329,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
 
+        String url = getUrl(UserCurrentLocation, marker.getPosition(), "driving");
 
 
 
@@ -339,6 +337,23 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
         return false;
     }
+
+    private String getUrl(LatLng origin, LatLng dest, String directionMode) {
+        //Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Mode
+        String mode = "mode= " + directionMode;
+        // Building the parameters to the web service
+        String parameters = str_origin + "" + str_dest + "6" + mode;
+        // Output format
+        String output = "json";
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/"+ output + "?"+ parameters + "&key=" + getString(R.string.google_maps_key);
+        return url;
+    }
+
 
     private void getRouteToMarker(LatLng location) {
 
@@ -364,13 +379,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 int id = spotId.get(i);
                 LatLng location = spotlocation.get(i);
                 Log.e("sadasdsadsadasda", "spots location: "+ location );
-                getRouteToMarker(location);
+                //getRouteToMarker(location);
                 //intent.putExtra("id", id);
                 Log.e("esaeseasdsadsa", "Spot id: "+ id );
             }
         }
         //startActivity(intent);
     }
+
+
 
     @Override
     public void onRoutingFailure(RouteException e) {
@@ -387,9 +404,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     }
 
     @Override
-    public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
-        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(tvLatitude, tvLongitude));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+    public void onRoutingSuccess(ArrayList<Route> route, int shortestRouteIndex) {
         if(polylines.size()>0) {
             for (Polyline poly : polylines) {
                 poly.remove();
@@ -413,6 +428,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             Toast.makeText(getContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @Override
     public void onRoutingCancelled() {
