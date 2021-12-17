@@ -100,20 +100,13 @@ public class FeedFragment extends Fragment {
         View root = binding.getRoot();
         listViewEvents = binding.listEvents;
         JSONArrayDownloader task = new JSONArrayDownloader();
-        JSONObjDownloader task2 = new JSONObjDownloader();
-        JSONObjDownloader task3 = new JSONObjDownloader();
-        JSONObjDownloader task4 = new JSONObjDownloader();
-        JSONObjDownloader task5 = new JSONObjDownloader();
+
 
 
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
             for (int i = 0; i < objevents.length(); i++){
-                JSONObject object = objevents.getJSONObject(i);
-                    eventTypeId1 = object.getInt("typeId");
-                    eventStateId1 = object.getInt("stateId");
-                    eventSpotId1 = object.getInt("spotId");
-                    eventOrgId1 = object.getInt("orgId");
+                    JSONObject object = objevents.getJSONObject(i);
             }
 
 
@@ -140,54 +133,7 @@ public class FeedFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
-            try {
-                type = task2.execute("https://wimuuv.herokuapp.com/api/type/" + eventTypeId1).get();
-                typename = type.getString("event");
 
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId1).get();
-                orgname = org.getString("name");
-
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-                spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/" + eventSpotId1).get();
-                spotname = spot.getString("name");
-
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                state = task5.execute("https://wimuuv.herokuapp.com/api/state/" + eventStateId1).get();
-                statename = state.getString("event");
-
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
 
 
@@ -217,19 +163,11 @@ public class FeedFragment extends Fragment {
                     String eventdate1 = obj.getString("date");
                     String eventstartime1 = obj.getString("starttime");
                     String eventendtime1 = obj.getString("endtime");
-                    if(obj.has("event")){
-                        typename = obj.getString("event");
-                    }
-                    if(obj.has("name")){
-                        spotname = obj.getString("name");
-                    }
-                    if(obj.has("event")){
-                        statename = obj.getString("event");
-                    }
-                    if(obj.has("name")){
-                        orgname = obj.getString("name");
-                    }
 
+                    eventTypeId.add(obj.getInt("typeId"));
+                    eventStateId.add(obj.getInt("stateId"));
+                    eventSpotId.add(obj.getInt("spotId"));
+                    eventOrgId.add(obj.getInt("orgId"));
                     eventId.add(obj.getString("id"));
                     eventName.add(obj.getString("event_name"));
                     eventDescription.add(obj.getString("description"));
@@ -252,14 +190,66 @@ public class FeedFragment extends Fragment {
     public void InitializeAdapter() {
         adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
         listViewEvents.setAdapter(adapterEvents);
-        createListViewClickItemEvent(listViewEvents, events, eventId, eventName,typename,spotname,statename,eventDescription,eventDate,eventStartTime,eventEndTime,orgname);
+        createListViewClickItemEvent(listViewEvents, events, eventId,eventName,eventDescription,eventDate,eventStartTime,eventEndTime,eventTypeId,eventStateId,eventOrgId,eventSpotId);
     }
 
 
-    private void createListViewClickItemEvent(ListView listViewEvents, ArrayList<String> events, ArrayList<String> eventId, ArrayList<String> eventName, String typename, String spotname, String statename, ArrayList<String> eventDescription, ArrayList<String> eventDate, ArrayList<String> eventStartTime, ArrayList<String> eventEndTime, String orgname) {
+    private void createListViewClickItemEvent(ListView listViewEvents, ArrayList<String> events, ArrayList<String> eventId, ArrayList<String> eventName, ArrayList<String> eventDescription, ArrayList<String> eventDate, ArrayList<String> eventStartTime,ArrayList<String> eventEndTime, ArrayList<Integer> eventTypeId, ArrayList<Integer> eventStateId, ArrayList<Integer> eventOrgId, ArrayList<Integer> eventSpotId) {
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                JSONObjDownloader task2 = new JSONObjDownloader();
+                JSONObjDownloader task3 = new JSONObjDownloader();
+                JSONObjDownloader task4 = new JSONObjDownloader();
+                JSONObjDownloader task5 = new JSONObjDownloader();
+                try {
+                    type = task2.execute("https://wimuuv.herokuapp.com/api/type/" + eventTypeId.get(i)).get();
+                    typename = type.getString("event");
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    org = task3.execute("https://wimuuv.herokuapp.com/api/orgs/" + eventOrgId.get(i)).get();
+                    orgname = org.getString("name");
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                try {
+                    spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/" + eventSpotId.get(i)).get();
+                    spotname = spot.getString("name");
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    state = task5.execute("https://wimuuv.herokuapp.com/api/state/" + eventStateId.get(i)).get();
+                    statename = state.getString("event");
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 Intent intent = new Intent(getContext(),FeedDetails.class);
                 //Bundle result = new Bundle();
