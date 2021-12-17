@@ -76,7 +76,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener/*,OnMapReadyCallback*/ {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -170,6 +170,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 }
                 googleMap.setOnInfoWindowClickListener(MapsFragment.this);
                 googleMap.setOnMarkerClickListener(MapsFragment.this);
+                googleMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsFragment.this);
                 ///
                 //
                 //Marcadores dos spots
@@ -329,12 +330,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             }
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-
-        String userlocation = String.valueOf(USERLOCATION.latitude) + "," + String.valueOf(USERLOCATION.longitude);
+        Log.e("USERLOCATION", ""+USERLOCATION);
+        String userlocationString = String.valueOf(38.7065483) + "," + String.valueOf(-9.15546);
         String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
 
         ApiServices apiServices = RetrofitClient.apiServices(getContext());
-        apiServices.getDirection(userlocation, end, getString(R.string.api_key))
+        apiServices.getDirection(userlocationString, end, getString(R.string.api_key))
                 .enqueue(new Callback<DirectionResponses>() {
 
                     @Override
@@ -368,9 +369,43 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public void onMyLocationChange(@NonNull Location location) {
-        USERLOCATION = new LatLng(location.getLongitude(), location.getLatitude());
-        
+        USERLOCATION = new LatLng(location.getLatitude(), location.getLongitude());
     }
+
+/*
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        /*GoogleMap map = googleMap;
+
+        MarkerOptions markerFkip = new MarkerOptions()
+                .position(fkip)
+                .title("FKIP");
+        MarkerOptions markerMonas = new MarkerOptions()
+                .position(monas)
+                .title("Monas");
+
+        map.addMarker(markerFkip);
+        map.addMarker(markerMonas);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(monas, 11.6f));
+
+        String fromFKIP = String.valueOf(fkip.latitude) + "," + String.valueOf(fkip.longitude);
+        String toMonas = String.valueOf(monas.latitude) + "," + String.valueOf(monas.longitude);
+
+        ApiServices apiServices = RetrofitClient.apiServices(getContext());
+        apiServices.getDirection(fromFKIP, toMonas, getString(R.string.api_key))
+                .enqueue(new Callback<DirectionResponses>() {
+                    @Override
+                    public void onResponse(@NonNull Call<DirectionResponses> call, @NonNull Response<DirectionResponses> response) {
+                        drawPolyline(response);
+                        Log.d("bisa dong oke", response.message());
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<DirectionResponses> call, @NonNull Throwable t) {
+                        Log.e("anjir error", t.getLocalizedMessage());
+                    }
+                });
+    }*/
 
     private interface ApiServices {
         @GET("maps/api/directions/json")
