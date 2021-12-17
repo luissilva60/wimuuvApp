@@ -36,5 +36,7 @@
     <string name="enter_bdate">Enter your birth date</string>
     <string name="enter_your_gender">Enter your gender</string>
     <string name="enter_your_password">Enter your password</string>
+    <string name="api_key">AIzaSyC3RwBupXyFdul5XtIAWjDsF9f8ogyLam4</string>
+    <string name="base_url">https://maps.googleapis.com/</string>
 
 </resources>

@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -31,10 +32,18 @@ import android.provider.Settings;
 
 //import com.directions.route.AbstractRouting;
 //import com.directions.route.Routing;
+
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.UI.directions.Route;
-import com.example.wimuuvapplication.UI.directions.RouteException;
-import com.example.wimuuvapplication.UI.directions.RoutingListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+import com.example.wimuuvapplication.UI.directions.DirectionResponses;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -55,6 +64,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.android.PolyUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +76,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -77,6 +87,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private ArrayList<Marker> markers;
     private GoogleMap googleMap;
     private JSONArray objspots;
+    
+    private LatLng USERLOCATION;
 
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
@@ -318,12 +330,64 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
-        
+        String userlocation = String.valueOf(USERLOCATION.latitude) + "," + String.valueOf(USERLOCATION.longitude);
+        String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
+
+        ApiServices apiServices = RetrofitClient.apiServices(getContext());
+        apiServices.getDirection(userlocation, end, getString(R.string.api_key))
+                .enqueue(new Callback<DirectionResponses>() {
+
+                    @Override
+                    public void onResponse(Call<DirectionResponses> call, retrofit2.Response<DirectionResponses> response) {
+                        drawPolyline(response);
+                        Log.d("bisa dong oke", response.message());
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<DirectionResponses> call, @NonNull Throwable t) {
+                        Log.e("anjir error", t.getLocalizedMessage());
+                    }
+                });
 
 
 
 
         return false;
+    }
+
+    private void drawPolyline(@NonNull Response<DirectionResponses> response) {
+        if (response.body() != null) {
+            String shape = response.body().getRoutes().get(0).getOverviewPolyline().getPoints();
+            PolylineOptions polyline = new PolylineOptions()
+                    .addAll(PolyUtil.decode(shape))
+                    .width(8f)
+                    .color(Color.RED);
+            googleMap.addPolyline(polyline);
+        }
+    }
+
+    @Override
+    public void onMyLocationChange(@NonNull Location location) {
+        USERLOCATION = new LatLng(location.getLongitude(), location.getLatitude());
+        
+    }
+
+    private interface ApiServices {
+        @GET("maps/api/directions/json")
+        Call<DirectionResponses> getDirection(@Query("origin") String origin,
+                                              @Query("destination") String destination,
+                                              @Query("key") String apiKey);
+    }
+
+    private static class RetrofitClient {
+        static ApiServices apiServices(Context context) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(context.getResources().getString(R.string.base_url))
+                    .build();
+
+            return retrofit.create(ApiServices.class);
+        }
     }
 
     /*private void getRouteToMarker(LatLng location) {
