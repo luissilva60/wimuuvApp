@@ -22,7 +22,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
         listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setTitle("Detalhes do Evento");
+        toolbar2.setTitle("Eventos neste Spot");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

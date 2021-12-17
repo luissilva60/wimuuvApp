@@ -29,8 +29,8 @@ import android.widget.Toast;
 import android.provider.Settings;
 
 
-import com.directions.route.AbstractRouting;
-import com.directions.route.Routing;
+//import com.directions.route.AbstractRouting;
+//import com.directions.route.Routing;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.directions.Route;
 import com.example.wimuuvapplication.UI.directions.RouteException;
@@ -66,7 +66,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, RoutingListener  {
+public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -86,7 +86,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         super.onCreate(savedInstanceState);
         MapsInitializer.initialize(getContext());
 
-        polylines = new ArrayList<>();
+        //polylines = new ArrayList<>();
     }
 
     @Nullable
@@ -94,8 +94,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-
 
 
         //download spots
@@ -146,7 +144,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
-                LatLng santos = new LatLng(38.70843814152426, -9.15501526730533);
 
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
@@ -182,7 +179,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+               /* googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
                         // When clicked on map
@@ -194,17 +191,17 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                         markerOptions.title(latLng.latitude + " : " + latLng.longitude);
 
                         // Animating to zoom the marker
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                        //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         //Add marker on map
                         //googleMap.clear();
 
-                        googleMap.addMarker(markerOptions);
+                        //googleMap.addMarker(markerOptions);
 
 
 
 
                     }
-                });
+                });*/
             }
         });
         //Initialize Location client
@@ -308,7 +305,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
 
-        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
 
         for (int i = 0; i < markers.size(); i++){
@@ -320,7 +316,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 //getRouteToMarker(location);
             }
         }
-
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
         
 
@@ -330,7 +326,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         return false;
     }
 
-    private void getRouteToMarker(LatLng location) {
+    /*private void getRouteToMarker(LatLng location) {
         Routing routing = new Routing.Builder()
                 .key("AIzaSyDVe28Yx5jnxbaE6HyGVdmly60yIS5k2Io")
                 .travelMode(AbstractRouting.TravelMode.WALKING)
@@ -338,10 +334,10 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 .alternativeRoutes(false)
                 .waypoints(new LatLng(tvLatitude, tvLongitude), location)
                 .build();
-        routing.execute();
+        routing.execute();*/
 
 
-    }
+
 
     @Override
     public void onInfoWindowClick(Marker marker) {
@@ -356,21 +352,21 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         startActivity(intent);
     }
 
-    @Override
+    /*@Override
     public void onRoutingFailure(RouteException e) {
         if(e != null) {
             Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(getContext(), "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onRoutingStart() {
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(tvLatitude, tvLongitude));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
@@ -396,9 +392,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
             Toast.makeText(getContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onRoutingCancelled() {
 
     }
@@ -408,7 +404,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             line.remove();
         }
         polylines.clear();
-    }
+    }*/
 
 
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
