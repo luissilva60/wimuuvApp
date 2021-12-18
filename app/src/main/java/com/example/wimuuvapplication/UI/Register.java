@@ -120,7 +120,7 @@ public class Register extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month+1;
                         postBDate = year+"-"+month+"-"+day;
-                        String date = day+"/"+month+"/"+year;
+                        String date = year+"/"+month+"/"+day;
                         birthdate.setText(date);
                     }
                 }, year, month, day);
@@ -152,17 +152,18 @@ public class Register extends AppCompatActivity {
                     }
                     else {
                         Map<String, String> postData = new HashMap<>();
-                        postData.put("usName", name.getText().toString());
-                        postData.put("usBdate", postBDate);
-                        postData.put("usGender", "M");
-                        postData.put("usEmail", email.getText().toString());
-                        postData.put("usPassword", password.getText().toString());
+                        postData.put("name", name.getText().toString());
+                        postData.put("bdate", postBDate);
+                        postData.put("gender", "M");
+                        postData.put("email", email.getText().toString());
+                        postData.put("password", password.getText().toString());
+                        //postData.put("crseId",);
 
                         JSONArray arr;
                         PostData task = new PostData(postData);
                         arr = task.execute("https://wimuuv.herokuapp.com/api/student/new").get();
 
-                        Toast.makeText(getApplicationContext(), "Welcome !"+ name.getText().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
                         LoginDataSource login = new LoginDataSource();
