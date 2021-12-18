@@ -64,6 +64,18 @@ public class MainActivity extends AppCompatActivity {
         email.setText("example2@iol.xyz");
         password.setText("admin");
 
+
+        // JSON array downloader (liga a task)
+        JSONArrayDownloader task = new JSONArrayDownloader();
+
+        LoginCredentials = new JSONArray();
+        try {
+            LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -182,18 +194,8 @@ public class MainActivity extends AppCompatActivity {
         if (Email.isEmpty() || Password.isEmpty()) {
             Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
         } else {
-            // JSON array downloader (liga a task)
-            JSONArrayDownloader task = new JSONArrayDownloader();
 
-            LoginCredentials = new JSONArray();
-            //download dos utilizadores e mete-os dentro do array LoginCredentials
-            try {
-                LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
 
             JSONObject student;
             //vamos verificar se dentro do array existem as strings que o utilizador inseriu
