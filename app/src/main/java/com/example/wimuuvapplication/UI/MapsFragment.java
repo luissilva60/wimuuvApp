@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -85,6 +86,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
+    private PolylineOptions polyline1;
 
     private ArrayList<String> spotDescription;
     private ArrayList<LatLng> spotlocation;
@@ -245,6 +247,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
+
+
                         /*// When clicked on map
                         // Initialize marker options
                         MarkerOptions markerOptions = new MarkerOptions();
@@ -367,7 +371,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-        
+
         directions.setVisibility(View.VISIBLE);
 
         for (int i = 0; i < markers.size(); i++){
@@ -384,6 +388,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.e("USERLOCATION", ""+USERLOCATION);
                 String userlocationString = String.valueOf(USERLOCATION.latitude) + "," + String.valueOf(USERLOCATION.longitude);
                 String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
@@ -415,11 +420,11 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private void drawPolyline(@NonNull Response<DirectionResponses> response) {
         if (response.body() != null) {
             String shape = response.body().getRoutes().get(0).getOverviewPolyline().getPoints();
-            PolylineOptions polyline = new PolylineOptions()
+            polyline1 = new PolylineOptions()
                     .addAll(PolyUtil.decode(shape))
                     .width(8f)
                     .color(Color.RED);
-            googleMap.addPolyline(polyline);
+            googleMap.addPolyline(polyline1);
         }
     }
 
