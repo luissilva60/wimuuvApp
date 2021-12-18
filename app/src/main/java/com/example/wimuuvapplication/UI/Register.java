@@ -63,14 +63,9 @@ public class Register extends AppCompatActivity {
         JSONArrayDownloader task = new JSONArrayDownloader();
         try {
             courses = task.execute("https://wimuuv.herokuapp.com/api/student_course/").get();
-            for (int i = 0; i < courses.length(); i++){
-                JSONObject object = courses.getJSONObject(i);
-            }
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -99,8 +94,8 @@ public class Register extends AppCompatActivity {
 
         listGender = new ArrayList<>();
 
-        listGender.add("Male");
-        listGender.add("Female");
+        listGender.add("M");
+        listGender.add("F");
         listGender.add("Non Binary");
 
         adapterGender = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listGender);
