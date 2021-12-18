@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
@@ -58,7 +59,7 @@ public class ProfileFragment extends Fragment {
 
 
         try {
-            student = task.execute("https://wimuuv.herokuapp.com/api/student/2" ).get();
+            student = task.execute("https://wimuuv.herokuapp.com/api/student/"+ MainActivity.USER_ID).get();
             stuName = student.getString("name");
             stuEmail = student.getString("email");
             stuBdate = student.getString("bdate");
