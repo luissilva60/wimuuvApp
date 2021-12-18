@@ -19,22 +19,30 @@ import android.widget.Toast;
 import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.LoginDetails.LoginDataSource;
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.PostData;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class Register extends AppCompatActivity {
     EditText name,email,password,birthdate;
     Spinner gender,curso;
     String postBDate;
     Button signUp;
+    JSONArray courses;
     ArrayList<String> listGender;
+    ArrayList<String> coursesNames;
+    ArrayList<String> course;
     ArrayAdapter<String> adapterGender;
+    ArrayAdapter<String> adapterCourses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,43 @@ public class Register extends AppCompatActivity {
         gender = findViewById(R.id.spinnerGender);
         curso = findViewById(R.id.spinnerCurso);
         signUp = findViewById(R.id.button3);
+
+        JSONArrayDownloader task = new JSONArrayDownloader();
+        try {
+            courses = task.execute("https://wimuuv.herokuapp.com/api/student_course/").get();
+            for (int i = 0; i < courses.length(); i++){
+                JSONObject object = courses.getJSONObject(i);
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject obj;
+        course = new ArrayList<>();
+        coursesNames = new ArrayList<>();
+        if(courses != null) {
+            for (int i = 0; i < courses.length();i++){
+                try{
+                    obj = courses.getJSONObject(i);
+                    String courseName = obj.getString("name");
+
+                    coursesNames.add(obj.getString("name"));
+                    course.add(String.format("%s",courseName));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        adapterCourses = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, course);
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        curso.setAdapter(adapterCourses);
+
+
 
         listGender = new ArrayList<>();
 

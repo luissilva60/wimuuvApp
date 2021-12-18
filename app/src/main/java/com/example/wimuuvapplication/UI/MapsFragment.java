@@ -96,6 +96,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     
     private LatLng USERLOCATION;
     private ImageButton directions;
+    public static int EVENT_SPOT_ID;
 
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
@@ -504,9 +505,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-                int id = spotId.get(i);
-                intent.putExtra("id", id);
-                Log.e("esaeseasdsadsa", "Spot id: "+ id );
+                EVENT_SPOT_ID = spotId.get(i);
+                intent.putExtra("spotid", EVENT_SPOT_ID);
+                Log.e("esaeseasdsadsa", "Spot id: "+ EVENT_SPOT_ID);
             }
         }
         startActivity(intent);
