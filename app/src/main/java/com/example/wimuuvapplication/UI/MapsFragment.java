@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.provider.Settings;
 
@@ -44,6 +45,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
+import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
+import com.example.wimuuvapplication.databinding.FragmentMapsBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -77,6 +80,7 @@ import java.util.concurrent.ExecutionException;
 
 
 public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener/*,OnMapReadyCallback*/ {
+    FragmentMapsBinding binding;
     double tvLatitude, tvLongitude;
     FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
@@ -89,6 +93,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private JSONArray objspots;
     
     private LatLng USERLOCATION;
+    private ImageButton directions;
 
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
@@ -97,6 +102,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MapsInitializer.initialize(getContext());
+
+
 
         //polylines = new ArrayList<>();
 
@@ -141,7 +148,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
+        binding = FragmentMapsBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        directions = binding.imageButton4;
         //download spots
 
         JSONArrayDownloader task = new JSONArrayDownloader();
@@ -178,7 +187,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         //Log.e("Array List", spots.toString());
 
         // Initialize view
-        View view = inflater.inflate(R.layout.fragment_maps, container, false);
+        //View view = inflater.inflate(R.layout.fragment_maps, container, false);
 
 
         // Initialize map fragment
@@ -225,11 +234,18 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
-
-               /* googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
-                        // When clicked on map
+                        directions.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
+
+                        /*// When clicked on map
                         // Initialize marker options
                         MarkerOptions markerOptions = new MarkerOptions();
                         // Set position of marker
@@ -243,12 +259,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                         //googleMap.clear();
 
                         //googleMap.addMarker(markerOptions);
-
+*/
 
 
 
                     }
-                });*/
+                });
             }
         });
         //Initialize Location client
@@ -269,7 +285,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
         }
 
-        return view;
+        return root;
 
 
     }
@@ -351,8 +367,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-
-
+        
+        directions.setVisibility(View.VISIBLE);
 
         for (int i = 0; i < markers.size(); i++){
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
@@ -364,25 +380,31 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             }
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        Log.e("USERLOCATION", ""+USERLOCATION);
-        String userlocationString = String.valueOf(38.7065483) + "," + String.valueOf(-9.15546);
-        String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
 
-        ApiServices apiServices = RetrofitClient.apiServices(getContext());
-        apiServices.getDirection(userlocationString, end, getString(R.string.api_key))
-                .enqueue(new Callback<DirectionResponses>() {
+        directions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("USERLOCATION", ""+USERLOCATION);
+                String userlocationString = String.valueOf(USERLOCATION.latitude) + "," + String.valueOf(USERLOCATION.longitude);
+                String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
 
-                    @Override
-                    public void onResponse(Call<DirectionResponses> call, retrofit2.Response<DirectionResponses> response) {
-                        drawPolyline(response);
-                        Log.d("bisa dong oke", response.message());
-                    }
+                ApiServices apiServices = RetrofitClient.apiServices(getContext());
+                apiServices.getDirection(userlocationString, end, getString(R.string.api_key))
+                        .enqueue(new Callback<DirectionResponses>() {
 
-                    @Override
-                    public void onFailure(@NonNull Call<DirectionResponses> call, @NonNull Throwable t) {
-                        Log.e("anjir error", t.getLocalizedMessage());
-                    }
-                });
+                            @Override
+                            public void onResponse(Call<DirectionResponses> call, retrofit2.Response<DirectionResponses> response) {
+                                drawPolyline(response);
+                                Log.d("bisa dong oke", response.message());
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<DirectionResponses> call, @NonNull Throwable t) {
+                                Log.e("anjir error", t.getLocalizedMessage());
+                            }
+                        });
+            }
+        });
 
 
 
