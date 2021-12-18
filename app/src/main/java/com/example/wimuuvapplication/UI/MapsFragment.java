@@ -189,22 +189,22 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-
+            public void onMapReady(@NonNull GoogleMap mMap) {
+                googleMap = mMap;
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
-                googleMap.setMyLocationEnabled(true);
+                mMap.setMyLocationEnabled(true);
 
                 markers = new ArrayList<>();
                 for(int i = 0; i < spotlocation.size(); i++){
-                    markers.add(googleMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).snippet(spotDescription.get(i)).icon
+                    markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).snippet(spotDescription.get(i)).icon
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                     Log.e("error", "add marker in : " + spotlocation);
                 }
-                googleMap.setOnInfoWindowClickListener(MapsFragment.this);
-                googleMap.setOnMarkerClickListener(MapsFragment.this);
-                googleMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsFragment.this);
+                mMap.setOnInfoWindowClickListener(MapsFragment.this);
+                mMap.setOnMarkerClickListener(MapsFragment.this);
+                mMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsFragment.this);
                 ///
                 //
                 //Marcadores dos spots
@@ -217,10 +217,10 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
                 //mMap.setMyLocationEnabled(true);
-                googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 //When map is loaded
                 LatLng iade = new LatLng(38.707300302202206, -9.152475617141915);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iade, 16));
                 Log.e("YOOOOOOOOOOOOOO","marker in iade" + iade  );
 
 

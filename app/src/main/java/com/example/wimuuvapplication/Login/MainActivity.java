@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private JSONArray LoginCredentials = null;
+    public static String USER_ID;
 
 
 
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickLogin(View v) throws JSONException {
 
-
+        JSONArray test = new JSONArray();
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
             // JSON array downloader (liga a task)
             JSONArrayDownloader task = new JSONArrayDownloader();
 
-
+            LoginCredentials = new JSONArray();
             //download dos utilizadores e mete-os dentro do array LoginCredentials
             try {
                 LoginCredentials = task.execute("https://wimuuv.herokuapp.com/api/student").get();
@@ -194,9 +195,16 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            JSONObject student;
             //vamos verificar se dentro do array existem as strings que o utilizador inseriu
             for (int i = 0; i < LoginCredentials.length(); i++) {
-                if (LoginCredentials.get(i).toString().contains(Email) && LoginCredentials.get(i).toString().contains(Password) && Email.length() > 0 && Password.length() > 0) {
+                student = LoginCredentials.getJSONObject(i);
+
+
+                if (student.getString("email").equals(Email) && student.getString("password").equals(Password)) {
+
+                    USER_ID = student.getString("id");
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
