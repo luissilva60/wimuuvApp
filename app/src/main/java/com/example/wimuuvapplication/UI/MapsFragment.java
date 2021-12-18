@@ -99,6 +99,40 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         MapsInitializer.initialize(getContext());
 
         //polylines = new ArrayList<>();
+
+        //download spots
+
+        JSONArrayDownloader task = new JSONArrayDownloader();
+        try {
+            objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        JSONObject obj;
+        spotId = new ArrayList<>();
+        spotName = new ArrayList<>();
+        spotDescription = new ArrayList<>();
+        spotlocation = new ArrayList<>();
+        if(objspots != null) {
+            for(int i = 0; i < objspots.length(); i++) {
+                try {
+                    obj = objspots.getJSONObject(i);
+                    spotId.add(obj.getInt("id"));
+                    spotName.add(obj.getString("name"));
+                    spotlocation.add(new LatLng(Double.parseDouble(obj.getString("latitude")),
+                            Double.parseDouble(obj.getString("longitude"))));
+                    spotDescription.add(obj.getString("description"));
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 
     @Nullable
