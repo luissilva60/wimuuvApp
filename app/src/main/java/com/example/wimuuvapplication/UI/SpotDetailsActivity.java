@@ -1,20 +1,15 @@
 package com.example.wimuuvapplication.UI;
 
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_NAME;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_DESC;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_STARTTIME;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_ENDTIME;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_DATE;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_SPOT;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_STATE;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_TYPE;
-import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_ORG;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +18,7 @@ import android.widget.ListView;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.databinding.ActivitySpotDetailsBinding;
+import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
@@ -63,35 +59,41 @@ public class SpotDetailsActivity extends AppCompatActivity {
     private JSONObject state;
     private JSONObject org;
     private JSONArray objevents;
+    public static String ID_EVENT;
+    public static String EVENT_NAME;
+    public static String EVENT_DESC;
+    public static String EVENT_STARTTIME;
+    public static String EVENT_ENDTIME;
+    public static String EVENT_DATE;
+    public static String EVENT_SPOT;
+    public static String EVENT_STATE;
+    public static String EVENT_TYPE;
+    public static String EVENT_ORG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spot_details);
-        //listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
-        binding = ActivitySpotDetailsBinding.inflate(getLayoutInflater());
-        listViewEventsfSpot = binding.eventsFromSpot2;
-
+        listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
+        events = new ArrayList<String>();
+        JSONObject obj;
         JSONArrayDownloader task = new JSONArrayDownloader();
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("spotId");
-
-        Log.e("asdasdasdasdas", "Spot id in spot details: " + id);
-        try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + id).get();
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setTitle("Eventos neste Spot");
+        toolbar2.setTitle("Eventos neste Spot: ");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        JSONObject obj;
+        try {
+            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + MapsFragment.EVENT_SPOT_ID).get();
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         events = new ArrayList<>();
         eventId = new ArrayList<>();
         eventName = new ArrayList<>();
@@ -136,7 +138,6 @@ public class SpotDetailsActivity extends AppCompatActivity {
             Log.e("Array List", events.toString());
             InitializeAdapter();
         }
-        return;
 
     }
 
@@ -204,8 +205,18 @@ public class SpotDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent2 = new Intent(getApplicationContext(), SpotDetailsActivity.class);
-                //Bundle result = new Bundle();
+                Intent intent2 = new Intent(getApplicationContext(), FeedDetails.class);
+
+                ID_EVENT = eventId.get(i);
+                EVENT_NAME = eventName.get(i);
+                EVENT_DESC = eventDescription.get(i);
+                EVENT_STARTTIME = eventStartTime.get(i);
+                EVENT_ENDTIME = eventEndTime.get(i);
+                EVENT_DATE = eventDate.get(i);
+                EVENT_SPOT = spotname;
+                EVENT_STATE = statename;
+                EVENT_TYPE = typename;
+                EVENT_ORG = orgname;
 
                 intent2.putExtra("name", EVENT_NAME);
                 intent2.putExtra("desc", EVENT_DESC);
