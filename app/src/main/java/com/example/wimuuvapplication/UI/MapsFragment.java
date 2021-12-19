@@ -96,7 +96,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     
     private LatLng USERLOCATION;
     private ImageButton directions;
-    public static int EVENT_SPOT_ID;
+    public static String EVENT_SPOT_ID;
 
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
@@ -241,7 +241,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
-                        erasePolylines();
 
 
 
@@ -374,7 +373,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-        erasePolylines();
 
         directions.setVisibility(View.VISIBLE);
 
@@ -508,20 +506,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-                EVENT_SPOT_ID = spotId.get(i);
-                intent.putExtra("spotid", EVENT_SPOT_ID);
+                EVENT_SPOT_ID = spotId.get(i).toString();
+                intent.putExtra("spotId", EVENT_SPOT_ID);
                 Log.e("esaeseasdsadsa", "Spot id: "+ EVENT_SPOT_ID);
             }
         }
         startActivity(intent);
     }
 
-    private void erasePolylines(){
-        for(Polyline line : polylines){
-            line.remove();
-        }
-        polylines.clear();
-    }
+
 
     /*@Override
     public void onRoutingFailure(RouteException e) {
