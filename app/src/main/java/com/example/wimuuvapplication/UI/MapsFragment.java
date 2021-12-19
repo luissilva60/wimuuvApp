@@ -401,12 +401,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                             @Override
                             public void onResponse(Call<DirectionResponses> call, retrofit2.Response<DirectionResponses> response) {
                                 drawPolyline(response);
-                                Log.d("bisa dong oke", response.message());
+                                Log.d("Polilynes activated", response.message());
                             }
 
                             @Override
                             public void onFailure(@NonNull Call<DirectionResponses> call, @NonNull Throwable t) {
-                                Log.e("anjir error", t.getLocalizedMessage());
+                                Log.e("Error", t.getLocalizedMessage());
                             }
                         });
             }

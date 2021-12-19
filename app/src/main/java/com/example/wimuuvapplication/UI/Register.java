@@ -32,9 +32,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
 public class Register extends AppCompatActivity {
     EditText name,email,password,birthdate;
-    Spinner gender,curso;
     String postBDate;
     Button signUp;
     JSONArray courses;
@@ -56,9 +59,11 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmailAddress2);
         birthdate = findViewById(R.id.editTextDate);
         password = findViewById(R.id.editTextTextPassword2);
-        gender = findViewById(R.id.spinnerGender);
-        curso = findViewById(R.id.spinnerCurso);
+        Spinner gender = (Spinner) findViewById(R.id.spinnerGender);
+        Spinner curso = (Spinner) findViewById(R.id.spinnerCurso);
         signUp = findViewById(R.id.button3);
+
+
 
         JSONArrayDownloader task = new JSONArrayDownloader();
         try {
@@ -126,9 +131,9 @@ public class Register extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Long cursoId = curso.getSelectedItemId();
+                String genderAtt = gender.getSelectedItem().toString();
                 try {
-
-
                     if (name.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         name.setHintTextColor(Color.RED);
@@ -146,17 +151,22 @@ public class Register extends AppCompatActivity {
                         email.setHintTextColor(Color.RED);
                     }
                     else {
-                        Map<String, String> postData = new HashMap<>();
+                        HashMap<String, String> postData = new HashMap<>();
                         postData.put("name", name.getText().toString());
                         postData.put("bdate", postBDate);
-                        postData.put("gender", "M");
+                        postData.put("gender", genderAtt);
                         postData.put("email", email.getText().toString());
                         postData.put("password", password.getText().toString());
-                        //postData.put("crseId",);
+                        postData.put("crseId", cursoId.toString());
 
-                        JSONArray arr;
-                        PostData task = new PostData(postData);
-                        arr = task.execute("https://wimuuv.herokuapp.com/api/student/new").get();
+                        JSONArray arr = new JSONArray();
+                        arr.put(postData);
+
+
+                        PostData task2 = new PostData(postData);
+                           arr = task2.execute("https://wimuuv.herokuapp.com/api/student/new").get();
+
+
 
                         Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
@@ -173,6 +183,7 @@ public class Register extends AppCompatActivity {
         });
 
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
