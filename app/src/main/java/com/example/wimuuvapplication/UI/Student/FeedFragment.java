@@ -1,13 +1,10 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Student;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
@@ -28,9 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class FeedFragment extends Fragment {
@@ -251,7 +245,7 @@ public class FeedFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(getContext(),FeedDetails.class);
+                Intent intent = new Intent(getContext(), FeedDetails.class);
                 //Bundle result = new Bundle();
                 ID_EVENT = eventId.get(i);
                 EVENT_NAME = eventName.get(i);

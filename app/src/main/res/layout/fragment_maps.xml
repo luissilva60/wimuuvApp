@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#00FFFFFF"
     android:orientation="vertical"
-    tools:context=".UI.MapsFragment">
+    tools:context=".UI.Student.MapsFragment">
 
     <fragment
         android:id="@+id/mapsFragment"

@@ -1,4 +1,4 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Org;
 
 import android.os.Bundle;
 
@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.databinding.FragmentFeedOrgBinding;
-import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
 public class FeedOrgFragment extends Fragment {
 

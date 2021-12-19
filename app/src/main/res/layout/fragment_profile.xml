@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
     android:visibility="visible"
-    tools:context=".UI.ProfileFragment">
+    tools:context=".UI.Student.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

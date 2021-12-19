@@ -1,4 +1,4 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,10 +32,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
 
 public class Register extends AppCompatActivity {
     EditText name,email,password,birthdate;

@@ -1,17 +1,12 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wimuuvapplication.R;
 
@@ -29,7 +24,7 @@ public class ForgotPassword extends AppCompatActivity {
     }
 
     public void onClickButton2(View v) {
-        Intent intent = new Intent(getApplicationContext(),Register.class);
+        Intent intent = new Intent(getApplicationContext(), Register.class);
 
         startActivity(intent);
     }

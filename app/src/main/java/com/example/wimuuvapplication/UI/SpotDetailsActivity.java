@@ -1,26 +1,20 @@
 package com.example.wimuuvapplication.UI;
 
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_NAME;
-import static com.example.wimuuvapplication.UI.FeedFragment.ID_EVENT;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_DESC;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_STARTTIME;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_ENDTIME;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_DATE;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_SPOT;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_STATE;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_TYPE;
-import static com.example.wimuuvapplication.UI.FeedFragment.EVENT_ORG;
-import static com.example.wimuuvapplication.UI.MapsFragment.EVENT_SPOT_ID;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_NAME;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_DESC;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_STARTTIME;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_ENDTIME;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_DATE;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_SPOT;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_STATE;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_TYPE;
+import static com.example.wimuuvapplication.UI.Student.FeedFragment.EVENT_ORG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +23,6 @@ import android.widget.ListView;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.databinding.ActivitySpotDetailsBinding;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 

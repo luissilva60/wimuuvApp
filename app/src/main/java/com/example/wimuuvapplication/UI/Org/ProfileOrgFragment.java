@@ -1,4 +1,4 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Org;
 
 import android.os.Bundle;
 

@@ -1,11 +1,10 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Student;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -15,18 +14,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.provider.Settings;
@@ -45,8 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+import com.example.wimuuvapplication.UI.SpotDetailsActivity;
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.databinding.FragmentMapsBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -54,7 +47,6 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -75,7 +67,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -503,7 +494,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
+        Intent intent = new Intent(getContext(), SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
                 EVENT_SPOT_ID = spotId.get(i).toString();

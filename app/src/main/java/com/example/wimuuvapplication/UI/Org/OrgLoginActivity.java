@@ -1,4 +1,4 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Org;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Org.ForgotPasswordOrg;
+import com.example.wimuuvapplication.UI.Org.OrgActivity;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
 import org.json.JSONArray;
