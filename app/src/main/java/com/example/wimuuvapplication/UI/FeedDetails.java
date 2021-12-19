@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.wimuuvapplication.R;
@@ -22,9 +24,10 @@ import java.util.concurrent.ExecutionException;
 
 public class FeedDetails extends AppCompatActivity {
 
-    JSONArray test;
-    TextView name, desc, spot, org, starttime, endtime, date, type,state;
-    TextView id;
+    private JSONArray test;
+    private TextView name, desc, spot, org, starttime, endtime, date, type,state;
+    private TextView id;
+    private Button qrcode;
 
 
     @SuppressLint("SetTextI18n")
@@ -32,6 +35,7 @@ public class FeedDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_details);
+        qrcode = findViewById(R.id.qrcodebtn);
 
         Intent intent = getIntent();
 
@@ -88,6 +92,14 @@ public class FeedDetails extends AppCompatActivity {
         toolbar2.setTitle("Detalhes do Evento");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        qrcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QRCodeEventActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
