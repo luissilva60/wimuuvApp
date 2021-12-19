@@ -250,6 +250,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
+
                         /*// When clicked on map
                         // Initialize marker options
                         MarkerOptions markerOptions = new MarkerOptions();
