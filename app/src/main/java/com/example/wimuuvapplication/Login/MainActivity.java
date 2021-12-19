@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        Log.e("credentuals:" , ""+ LoginCredentials) ;
         /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -201,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
+            Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
 
 
         }
