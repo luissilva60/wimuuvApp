@@ -184,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
 
-
             JSONObject student;
             //vamos verificar se dentro do array existem as strings que o utilizador inseriu
             for (int i = 0; i < LoginCredentials.length(); i++) {
@@ -200,16 +199,20 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
 
 
-                }
-                else if(student.getString("email").isEmpty() && student.getString("password").isEmpty())
+                } else if (student.getString("email").isEmpty() && student.getString("password").isEmpty()) {
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }else if (student.getString("email").isEmpty()){
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }else if (student.getString("password").isEmpty()){
                     Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
 
-
         }
-    
+    }
+
 
     public void onClickfgtpw(View v) {
         Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
