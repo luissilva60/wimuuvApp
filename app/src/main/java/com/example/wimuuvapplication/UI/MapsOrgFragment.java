@@ -69,9 +69,9 @@ import retrofit2.http.Query;
 
 public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener {
 
-    FragmentMapsOrgBinding binding;
-    double tvLatitude, tvLongitude;
-    FusedLocationProviderClient client;
+    private FragmentMapsOrgBinding binding;
+    private double tvLatitude, tvLongitude;
+    private FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
     private PolylineOptions polyline1;
