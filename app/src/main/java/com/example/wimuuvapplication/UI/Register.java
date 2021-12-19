@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.LoginDetails.LoginDataSource;
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.downloaders.GetPersons;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.PostData;
 
@@ -47,6 +48,7 @@ public class Register extends AppCompatActivity {
     ArrayList<Integer> courseId;
     ArrayAdapter<String> adapterGender;
     ArrayAdapter<String> adapterCourses;
+    JSONArray students = null;
     int cursoId1;
     int cursoId2;
     @Override
@@ -100,7 +102,8 @@ public class Register extends AppCompatActivity {
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         curso.setAdapter(adapterCourses);
 
-
+        Log.e("IDS CURSOS",courseId.toString());
+        Log.e("IDS CURSOS 2", String.valueOf(courseId.get(0)));
 
         listGender = new ArrayList<>();
 
@@ -138,10 +141,16 @@ public class Register extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cursoId1 = curso.getId();
-                Long cursoId = curso.getSelectedItemId();
+                String cursoId = new String();
+                GetPersons getStudents = new GetPersons();
+                String valorphotoId = "1";
+
                 String genderAtt = gender.getSelectedItem().toString();
                 try {
+
+                    students = getStudents.execute("https://wimuuv.herokuapp.com/api/student").get();
+                    JSONObject aux = new JSONObject(students.get(0).toString());
+
                     if (name.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         name.setHintTextColor(Color.RED);
@@ -158,31 +167,43 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         email.setHintTextColor(Color.RED);
                     }
+                    if(curso.getSelectedItemId() == 0){
+                        cursoId = String.valueOf(courseId.get(0));
+                    }
+                    if(curso.getSelectedItemId() == 1){
+                        cursoId = String.valueOf(courseId.get(1));
+                    }
+                    if(curso.getSelectedItemId() == 2){
+                        cursoId = String.valueOf(courseId.get(2));
+                    }
                     else {
                         Map<String, String> postData = new HashMap<>();
-                        postData.put("name", name.getText().toString());
-                        postData.put("bdate", birthdate.getText().toString());
+                        postData.put("crseId", cursoId);
                         postData.put("gender", genderAtt);
-                        postData.put("email", email.getText().toString());
+                        postData.put("bdate", birthdate.getText().toString());
                         postData.put("password", password.getText().toString());
-                        postData.put("crseId", courseId.toString());
+                        postData.put("email", email.getText().toString());
+                        postData.put("name", name.getText().toString());
+                        postData.put("photoId", valorphotoId);
+                        Log.e("IDS CURSOS",courseId.toString());
+                        Log.e("IDS CURSOS 2", String.valueOf(courseId.get(0)));
 
-                        JSONArray arr;
                         PostData task2 = new PostData(postData);
-                        arr = task2.execute("https://wimuuv.herokuapp.com/api/student/new").get();
+                        task2.execute("https://wimuuv.herokuapp.com/api/student/new");
 
 
 
                         Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
-                        //LoginDataSource login = new LoginDataSource();
-                        //login.login(""+email.getText().toString(), ""+password.getText().toString());
+                        LoginDataSource login = new LoginDataSource();
+                        login.login(""+email.getText().toString(), ""+password.getText().toString());
                         Log.e("Id Sign up activity", ""+ postData.toString());
-                        //startActivity(new Intent(Register.this, MainActivity.class));
+                        startActivity(new Intent(Register.this, MainActivity.class));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    students = null;
                 }
             }
         });
