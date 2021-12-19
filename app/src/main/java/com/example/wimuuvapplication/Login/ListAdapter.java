@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.UI.FeedDetails;
-import com.example.wimuuvapplication.UI.FeedFragment;
+import com.example.wimuuvapplication.UI.Student.FeedDetails;
 
 import java.util.ArrayList;
 

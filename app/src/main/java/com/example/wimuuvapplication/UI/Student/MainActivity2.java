@@ -1,24 +1,22 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Student;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class OrgActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_org);
+        setContentView(R.layout.activity_main2);
 
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
         navView.setOnNavigationItemSelectedListener(navListener);
@@ -31,14 +29,6 @@ public class OrgActivity extends AppCompatActivity {
                 .commit();
     }
 
-
-    public void onClickLogoutOrg(View v) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-
-        startActivity(intent);
-    }
-
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -47,13 +37,13 @@ public class OrgActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_map:
-                            selectedFragment = new MapsOrgFragment();
+                            selectedFragment = new MapsFragment();
                             break;
                         case R.id.nav_feed:
-                            selectedFragment = new FeedOrgFragment();
+                            selectedFragment = new FeedFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new ProfileOrgFragment();
+                            selectedFragment = new ProfileFragment();
                             break;
                     }
 
@@ -67,6 +57,5 @@ public class OrgActivity extends AppCompatActivity {
 
                     return true;
                 }
-            };
-
+    };
 }

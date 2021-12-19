@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
     android:visibility="visible"
-    tools:context=".UI.ProfileOrgFragment">
+    tools:context=".UI.Org.ProfileOrgFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/nameorg"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -31,7 +31,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/emailorg"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -39,7 +39,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/bdateorg"
+            android:id="@+id/bdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -47,7 +47,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/currentAgeorg"
+            android:id="@+id/currentAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -55,7 +55,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/genderorg"
+            android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -63,7 +63,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/courseorg"
+            android:id="@+id/course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -71,7 +71,7 @@
             android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/editperfilorg"
+            android:id="@+id/editperfil"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
@@ -89,7 +89,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/settingsBtnorg"
+        android:id="@+id/settingsBtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="347dp"

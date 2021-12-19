@@ -15,10 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.UI.ForgotPassword;
-import com.example.wimuuvapplication.UI.MainActivity2;
-import com.example.wimuuvapplication.UI.OrgLoginActivity;
-import com.example.wimuuvapplication.UI.Register;
+import com.example.wimuuvapplication.UI.Student.ForgotPassword;
+import com.example.wimuuvapplication.UI.Student.MainActivity2;
+import com.example.wimuuvapplication.UI.Org.OrgLoginActivity;
+import com.example.wimuuvapplication.UI.Student.Register;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 
 import org.json.JSONArray;
@@ -26,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
-import com.example.wimuuvapplication.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {

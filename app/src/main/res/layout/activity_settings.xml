@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/profilebackground"
     android:orientation="vertical"
-    tools:context=".UI.Settings">
+    tools:context=".UI.Student.Settings">
 
     <Switch
         android:id="@+id/gpslocation"

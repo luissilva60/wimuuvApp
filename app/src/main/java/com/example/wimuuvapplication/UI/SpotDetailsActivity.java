@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Student.FeedDetails;
+import com.example.wimuuvapplication.UI.Student.MapsFragment;
 import com.example.wimuuvapplication.databinding.ActivitySpotDetailsBinding;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;

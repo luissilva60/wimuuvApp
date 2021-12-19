@@ -1,11 +1,4 @@
-package com.example.wimuuvapplication.UI;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+package com.example.wimuuvapplication.UI.Org;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -15,46 +8,33 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import android.os.Looper;
-import android.text.Spannable;
-import android.text.TextUtils;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import android.provider.Settings;
-
-
-//import com.directions.route.AbstractRouting;
-//import com.directions.route.Routing;
 
 import com.example.wimuuvapplication.R;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-
+import com.example.wimuuvapplication.UI.SpotDetailsActivity;
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
-import com.example.wimuuvapplication.databinding.FragmentMapsBinding;
+import com.example.wimuuvapplication.databinding.FragmentMapsOrgBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
@@ -75,15 +55,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
-public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener/*,OnMapReadyCallback*/ {
-    FragmentMapsBinding binding;
-    double tvLatitude, tvLongitude;
-    FusedLocationProviderClient client;
+
+public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMyLocationChangeListener {
+
+    private FragmentMapsOrgBinding binding;
+    private double tvLatitude, tvLongitude;
+    private FusedLocationProviderClient client;
     private ArrayList<Integer> spotId;
     private ArrayList<String> spotName;
     private PolylineOptions polyline1;
@@ -93,10 +81,10 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private ArrayList<Marker> markers;
     private GoogleMap googleMap;
     private JSONArray objspots;
-    
+
     private LatLng USERLOCATION;
     private ImageButton directions;
-    public static String EVENT_SPOT_ID;
+    public static int EVENT_SPOT_ID;
 
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
@@ -151,9 +139,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentMapsBinding.inflate(inflater, container, false);
+        binding = FragmentMapsOrgBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        directions = binding.imageButton4;
+        directions = binding.imageButtonorgdirections;
         //download spots
 
         JSONArrayDownloader task = new JSONArrayDownloader();
@@ -214,9 +202,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                             (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
                     Log.e("error", "add marker in : " + spotlocation);
                 }
-                mMap.setOnInfoWindowClickListener(MapsFragment.this);
-                mMap.setOnMarkerClickListener(MapsFragment.this);
-                mMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsFragment.this);
+                mMap.setOnInfoWindowClickListener(MapsOrgFragment.this);
+                mMap.setOnMarkerClickListener(MapsOrgFragment.this);
+                mMap.setOnMyLocationChangeListener((GoogleMap.OnMyLocationChangeListener) MapsOrgFragment.this);
                 ///
                 //
                 //Marcadores dos spots
@@ -242,7 +230,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
 
-
+                        erasePolylines();
 
 
 
@@ -373,7 +361,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-
+        erasePolylines();
         directions.setVisibility(View.VISIBLE);
 
         for (int i = 0; i < markers.size(); i++){
@@ -395,7 +383,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 String userlocationString = String.valueOf(USERLOCATION.latitude) + "," + String.valueOf(USERLOCATION.longitude);
                 String end = String.valueOf(marker.getPosition().latitude) + "," + String.valueOf(marker.getPosition().longitude);
 
-                ApiServices apiServices = RetrofitClient.apiServices(getContext());
+                MapsOrgFragment.ApiServices apiServices = MapsOrgFragment.RetrofitClient.apiServices(getContext());
                 apiServices.getDirection(userlocationString, end, getString(R.string.api_key))
                         .enqueue(new Callback<DirectionResponses>() {
 
@@ -478,13 +466,13 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     }
 
     private static class RetrofitClient {
-        static ApiServices apiServices(Context context) {
+        static MapsOrgFragment.ApiServices apiServices(Context context) {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(context.getResources().getString(R.string.base_url))
                     .build();
 
-            return retrofit.create(ApiServices.class);
+            return retrofit.create(MapsOrgFragment.ApiServices.class);
         }
     }
 
@@ -503,18 +491,23 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getContext(),SpotDetailsActivity.class);
+        Intent intent = new Intent(getContext(), SpotDetailsActivity.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
-                EVENT_SPOT_ID = spotId.get(i).toString();
-                intent.putExtra("spotId", EVENT_SPOT_ID);
+                EVENT_SPOT_ID = spotId.get(i);
+                intent.putExtra("spotid", EVENT_SPOT_ID);
                 Log.e("esaeseasdsadsa", "Spot id: "+ EVENT_SPOT_ID);
             }
         }
         startActivity(intent);
     }
 
-
+    private void erasePolylines(){
+        for(Polyline line : polylines){
+            line.remove();
+        }
+        polylines.clear();
+    }
 
     /*@Override
     public void onRoutingFailure(RouteException e) {

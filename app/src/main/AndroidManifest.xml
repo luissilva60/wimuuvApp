@@ -25,25 +25,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".UI.QRCodeEventActivity"
+            android:name=".UI.Org.SettingsOrgActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Student.QRCodeEventActivity"
             android:exported="true" />
         <activity
             android:name=".UI.SpotDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.FeedDetails"
+            android:name=".UI.Student.FeedDetails"
             android:exported="false" />
         <activity
-            android:name=".UI.ForgotPasswordOrg"
+            android:name=".UI.Org.ForgotPasswordOrg"
             android:exported="false" />
         <activity
-            android:name=".UI.OrgLoginActivity"
+            android:name=".UI.Org.OrgLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.OrgActivity"
+            android:name=".UI.Org.OrgActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.EditPerfil"
+            android:name=".UI.Student.EditPerfil"
             android:exported="false" />
 
         <meta-data
@@ -51,7 +54,7 @@
             android:value="AIzaSyDVe28Yx5jnxbaE6HyGVdmly60yIS5k2Io" />
 
         <activity
-            android:name=".UI.MainActivity2"
+            android:name=".UI.Student.MainActivity2"
             android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -62,13 +65,13 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".UI.Settings"
+            android:name=".UI.Student.Settings"
             android:exported="true" />
         <activity
-            android:name=".UI.Register"
+            android:name=".UI.Student.Register"
             android:exported="false" />
         <activity
-            android:name=".UI.ForgotPassword"
+            android:name=".UI.Student.ForgotPassword"
             android:exported="false" />
         <activity
             android:name=".Login.MainActivity"

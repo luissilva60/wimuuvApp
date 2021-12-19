@@ -6,17 +6,17 @@
     app:startDestination="@id/feedOrgFragment">
     <fragment
         android:id="@+id/feedOrgFragment"
-        android:name="com.example.wimuuvapplication.UI.FeedOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.Org.FeedOrgFragment"
         android:label="fragment_feed_org"
         tools:layout="@layout/fragment_feed_org" />
     <fragment
         android:id="@+id/mapsOrgFragment"
-        android:name="com.example.wimuuvapplication.UI.MapsOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.Org.MapsOrgFragment"
         android:label="fragment_maps_org"
         tools:layout="@layout/fragment_maps_org" />
     <fragment
         android:id="@+id/profileOrgFragment"
-        android:name="com.example.wimuuvapplication.UI.ProfileOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.Org.ProfileOrgFragment"
         android:label="fragment_profile_org"
         tools:layout="@layout/fragment_profile_org" />
 </navigation>
