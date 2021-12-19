@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navorg"
+    app:startDestination="@id/feedOrgFragment">
+    <fragment
+        android:id="@+id/feedOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.FeedOrgFragment"
+        android:label="fragment_feed_org"
+        tools:layout="@layout/fragment_feed_org" />
+    <fragment
+        android:id="@+id/mapsOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.MapsOrgFragment"
+        android:label="fragment_maps_org"
+        tools:layout="@layout/fragment_maps_org" />
+    <fragment
+        android:id="@+id/profileOrgFragment"
+        android:name="com.example.wimuuvapplication.UI.ProfileOrgFragment"
+        android:label="fragment_profile_org"
+        tools:layout="@layout/fragment_profile_org" />
+</navigation>

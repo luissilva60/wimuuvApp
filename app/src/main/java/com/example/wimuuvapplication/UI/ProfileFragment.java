@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment {
         ImageButton settings = (ImageButton)RootView.findViewById(R.id.settingsBtn);
         editperfil.setOnClickListener(this::editOnClick);
         settings.setOnClickListener(this::settingsOnClick);
-        name.setText("Name: " + stuName);
+        name.setText("Nome: " + stuName);
         email.setText("Email: " + stuEmail);
         bdate.setText("Data Nascimento: " + stuBdate);
         course.setText("Curso: " + courseName);

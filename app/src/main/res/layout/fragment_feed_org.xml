@@ -2,20 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".UI.FindSpotsFragment">
-    <data>
-        <variable
-            name="Spots"
-            type="com.example.wimuuvapplication.databinding.FragmentFindSpotsBindingImpl" />
-    </data>
+    tools:context=".UI.FeedFragment">
 
     <ListView
-        android:id="@+id/listSpots"
+        android:id="@+id/listEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/profilebackground"
+        android:cacheColorHint="#FBFBFB"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
     </ListView>
 </layout>
