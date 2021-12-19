@@ -144,6 +144,7 @@ public class Register extends AppCompatActivity {
                 String cursoId = new String();
                 GetPersons getStudents = new GetPersons();
                 String valorphotoId = "1";
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
 
                 String genderAtt = gender.getSelectedItem().toString();
                 try {
@@ -199,7 +200,7 @@ public class Register extends AppCompatActivity {
                         LoginDataSource login = new LoginDataSource();
                         login.login(""+email.getText().toString(), ""+password.getText().toString());
                         Log.e("Id Sign up activity", ""+ postData.toString());
-                        startActivity(new Intent(Register.this, MainActivity.class));
+                        startActivity(i);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
