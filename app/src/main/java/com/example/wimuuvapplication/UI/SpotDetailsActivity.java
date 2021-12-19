@@ -75,9 +75,9 @@ public class SpotDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spot_details);
-        //listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
+        listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
         binding = ActivitySpotDetailsBinding.inflate(getLayoutInflater());
-        listViewEventsfSpot = binding.eventsFromSpot2;
+        listViewEventsfSpot = binding.listEventsfromSpot;
 
         JSONArrayDownloader task = new JSONArrayDownloader();
         Intent intent = getIntent();
@@ -87,10 +87,9 @@ public class SpotDetailsActivity extends AppCompatActivity {
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + id).get();
 
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            objevents = null;
         }
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
@@ -143,7 +142,6 @@ public class SpotDetailsActivity extends AppCompatActivity {
             Log.e("Array List", events.toString());
             InitializeAdapter();
         }
-        return;
 
     }
 
@@ -211,8 +209,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent2 = new Intent(getApplicationContext(), SpotDetailsActivity.class);
-                //Bundle result = new Bundle();
+                Intent intent2 = new Intent(getApplicationContext(), FeedDetails.class);
 
                 intent2.putExtra("name", EVENT_NAME);
                 intent2.putExtra("desc", EVENT_DESC);
