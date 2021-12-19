@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
-//import com.example.wimuuvapplication.databinding.ActivityMainBinding;
+import com.example.wimuuvapplication.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -201,12 +201,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+                else if(student.getString("email").isEmpty() && student.getString("password").isEmpty())
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }
             }
-            Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+
 
 
         }
-    }
+    
 
     public void onClickfgtpw(View v) {
         Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);

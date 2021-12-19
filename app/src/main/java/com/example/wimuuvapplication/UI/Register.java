@@ -48,6 +48,7 @@ public class Register extends AppCompatActivity {
     ArrayAdapter<String> adapterGender;
     ArrayAdapter<String> adapterCourses;
     int cursoId1;
+    int cursoId2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
