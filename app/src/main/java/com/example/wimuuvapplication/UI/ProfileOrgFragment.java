@@ -24,7 +24,7 @@ public class ProfileOrgFragment extends Fragment {
     public ProfileOrgFragment() {
         // Required empty public constructor
     }
-    
+
     public static ProfileOrgFragment newInstance(String param1, String param2) {
         ProfileOrgFragment fragment = new ProfileOrgFragment();
         Bundle args = new Bundle();
