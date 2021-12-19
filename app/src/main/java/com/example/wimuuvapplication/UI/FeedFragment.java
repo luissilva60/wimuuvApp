@@ -105,17 +105,10 @@ public class FeedFragment extends Fragment {
 
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events").get();
-            for (int i = 0; i < objevents.length(); i++){
-                    JSONObject object = objevents.getJSONObject(i);
-            }
 
-
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+            objevents = null;
         }
 
 
