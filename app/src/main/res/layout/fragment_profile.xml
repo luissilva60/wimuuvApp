@@ -77,7 +77,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="92dp"
             android:clickable="true"
-
             android:onClick="editOnClick"
             android:text="Editar Perfil"
             android:visibility="visible"
