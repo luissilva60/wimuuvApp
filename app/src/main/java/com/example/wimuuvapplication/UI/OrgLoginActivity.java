@@ -54,7 +54,7 @@ public class OrgLoginActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v) throws JSONException {
-        Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+        Intent intent = new Intent(getApplicationContext(), OrgActivity.class);
         /*String Email = email.getText().toString();
         String Password = password.getText().toString();
 
@@ -74,7 +74,7 @@ public class OrgLoginActivity extends AppCompatActivity {
 
                     ORG_ID = student.getString("id");
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                    Intent intent = new Intent(getApplicationContext(), OrgActivity.class);
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
 
