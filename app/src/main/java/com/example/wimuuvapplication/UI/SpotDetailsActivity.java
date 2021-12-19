@@ -80,15 +80,10 @@ public class SpotDetailsActivity extends AppCompatActivity {
         JSONArrayDownloader task = new JSONArrayDownloader();
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setTitle("Eventos neste Spot");
+        toolbar2.setTitle("Eventos neste Spot: ");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        /*Intent intent = getIntent();
-        String id = intent.getStringExtra("spotId");*/
-
-        //Log.e("asdasdasdasdas", "Spot id in spot details: " + id);
         try {
             objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + MapsFragment.EVENT_SPOT_ID).get();
 
