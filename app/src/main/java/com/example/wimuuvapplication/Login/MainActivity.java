@@ -179,10 +179,6 @@ public class MainActivity extends AppCompatActivity {
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
-        if (Email.isEmpty() || Password.isEmpty()) {
-            Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
-        } else {
-
 
 
             JSONObject student;
@@ -199,17 +195,22 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     Log.e(String.valueOf(this), LoginCredentials.get(i).toString());
 
-
-                }
-                else if(student.getString("email").isEmpty() && student.getString("password").isEmpty())
+                } else if (student.getString("email").isEmpty() && student.getString("password").isEmpty()) {
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }else if (student.getString("email").isEmpty()){
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }else if (student.getString("password").isEmpty()){
+                    Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
+                }else if (Email.isEmpty() || Password.isEmpty()) {
                     Toast.makeText(this, "Credenciais erradas!!! Verifique se está tudo bem!!!", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
 
 
         }
-    
+
 
     public void onClickfgtpw(View v) {
         Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
