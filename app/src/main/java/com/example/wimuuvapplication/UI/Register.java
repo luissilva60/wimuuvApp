@@ -44,8 +44,10 @@ public class Register extends AppCompatActivity {
     ArrayList<String> listGender;
     ArrayList<String> coursesNames;
     ArrayList<String> course;
+    ArrayList<Integer> courseId;
     ArrayAdapter<String> adapterGender;
     ArrayAdapter<String> adapterCourses;
+    int cursoId1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,12 +79,14 @@ public class Register extends AppCompatActivity {
         JSONObject obj;
         course = new ArrayList<>();
         coursesNames = new ArrayList<>();
+        courseId = new ArrayList<>();
         if(courses != null) {
             for (int i = 0; i < courses.length();i++){
                 try{
                     obj = courses.getJSONObject(i);
                     String courseName = obj.getString("name");
 
+                    courseId.add(obj.getInt("id"));
                     coursesNames.add(obj.getString("name"));
                     course.add(String.format("%s",courseName));
                 } catch (JSONException e) {
@@ -128,9 +132,12 @@ public class Register extends AppCompatActivity {
             }
         });
 
+
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cursoId1 = curso.getId();
                 Long cursoId = curso.getSelectedItemId();
                 String genderAtt = gender.getSelectedItem().toString();
                 try {
@@ -151,30 +158,27 @@ public class Register extends AppCompatActivity {
                         email.setHintTextColor(Color.RED);
                     }
                     else {
-                        HashMap<String, String> postData = new HashMap<>();
+                        Map<String, String> postData = new HashMap<>();
                         postData.put("name", name.getText().toString());
-                        postData.put("bdate", postBDate);
+                        postData.put("bdate", birthdate.getText().toString());
                         postData.put("gender", genderAtt);
                         postData.put("email", email.getText().toString());
                         postData.put("password", password.getText().toString());
-                        postData.put("crseId", cursoId.toString());
+                        postData.put("crseId", courseId.toString());
 
-                        JSONArray arr = new JSONArray();
-                        arr.put(postData);
-
-
+                        JSONArray arr;
                         PostData task2 = new PostData(postData);
-                           arr = task2.execute("https://wimuuv.herokuapp.com/api/student/new").get();
+                        arr = task2.execute("https://wimuuv.herokuapp.com/api/student/new").get();
 
 
 
                         Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
-                        LoginDataSource login = new LoginDataSource();
-                        login.login(""+email.getText().toString(), ""+password.getText().toString());
-                        Log.e("Id Sign up activity", ""+LoginDataSource.ID);
-                        startActivity(new Intent(Register.this, MainActivity.class));
+                        //LoginDataSource login = new LoginDataSource();
+                        //login.login(""+email.getText().toString(), ""+password.getText().toString());
+                        Log.e("Id Sign up activity", ""+ postData.toString());
+                        //startActivity(new Intent(Register.this, MainActivity.class));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

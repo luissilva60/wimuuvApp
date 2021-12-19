@@ -69,10 +69,10 @@ public class PostData extends AsyncTask<String, Void, JSONArray> {
 
         } catch (Exception e) {
             Log.d("ERRO", e.getLocalizedMessage());
-            return null;
+            return arr;
         }
 
-        return null;
+        return arr;
     }
 
     private String convertInputStreamToString(InputStream inputStream) {
