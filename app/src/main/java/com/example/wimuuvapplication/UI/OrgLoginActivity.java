@@ -54,8 +54,8 @@ public class OrgLoginActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View v) throws JSONException {
-        Intent intent = new Intent(getApplicationContext(), OrgActivity.class);
-        /*String Email = email.getText().toString();
+
+        String Email = email.getText().toString();
         String Password = password.getText().toString();
 
         if (Email.isEmpty() || Password.isEmpty()) {
@@ -83,8 +83,7 @@ public class OrgLoginActivity extends AppCompatActivity {
             }
 
 
-        }*/
-        startActivity(intent);
+        }
 
 
 
