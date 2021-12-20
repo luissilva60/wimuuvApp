@@ -26,6 +26,8 @@ public class OrgLoginActivity extends AppCompatActivity {
     private EditText password;
     private JSONArray LoginCredentials = null;
     public static String ORG_ID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,8 @@ public class OrgLoginActivity extends AppCompatActivity {
         email = findViewById(R.id.edittextEmailorg);
         password = findViewById(R.id.editTextPasswordorg);
 
-        email.setText("example2@iol.xyz");
-        password.setText("admin");
+        email.setText("aeiade@gmail.com");
+        password.setText("aeiade");
 
 
         // JSON array downloader (liga a task)

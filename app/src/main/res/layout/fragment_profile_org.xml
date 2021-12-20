@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileorgnav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
@@ -12,7 +13,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="338dp"
-        android:layout_height="410dp"
+        android:layout_height="234dp"
         android:layout_marginTop="210dp"
         android:layout_marginBottom="84dp"
         android:orientation="vertical"
@@ -23,7 +24,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/nameOrg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -31,7 +32,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/emailOrg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -39,31 +40,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/bdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text=""
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/currentAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text=""
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text=""
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/course"
+            android:id="@+id/initialsOrg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -71,13 +48,12 @@
             android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/editperfil"
+            android:id="@+id/editperfilOrg"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginBottom="92dp"
             android:clickable="true"
-
             android:onClick="editOnClick"
             android:text="Editar Perfil"
             android:visibility="visible"
@@ -89,7 +65,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/settingsBtn"
+        android:id="@+id/settingsBtnOrg"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="347dp"
@@ -106,4 +82,4 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
