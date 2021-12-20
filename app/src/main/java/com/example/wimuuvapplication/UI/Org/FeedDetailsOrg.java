@@ -29,9 +29,9 @@ public class FeedDetailsOrg extends AppCompatActivity {
         setContentView(R.layout.activity_feed_details_org);
         qrcode = findViewById(R.id.lerQRCODE);
 
+
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
-        Log.e("Info:", "id" + id );
         String eventName = intent.getStringExtra("name");
         String eventDesc = intent.getStringExtra("desc");
         String eventSpot = intent.getStringExtra("spot");
@@ -42,6 +42,11 @@ public class FeedDetailsOrg extends AppCompatActivity {
         String eventType = intent.getStringExtra("type");
         String eventState = intent.getStringExtra("state");
 
+
+
+        if(OrgLoginActivity.ORG_ID.equals(id)){
+            qrcode.setVisibility(View.VISIBLE);
+        }
 
 
         name = (TextView)findViewById(R.id.textViewEventNameOrg);

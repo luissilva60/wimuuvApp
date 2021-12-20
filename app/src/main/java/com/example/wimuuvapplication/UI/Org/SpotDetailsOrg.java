@@ -212,6 +212,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
                 EVENT_TYPE = typename;
                 EVENT_ORG = orgname;
 
+                intent2.putExtra("id", ID_EVENT);
                 intent2.putExtra("name", EVENT_NAME);
                 intent2.putExtra("desc", EVENT_DESC);
                 intent2.putExtra("starttime", EVENT_STARTTIME);

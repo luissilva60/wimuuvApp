@@ -32,6 +32,7 @@ public class OrgLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_org_login);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar2);
         toolbar.setTitle("Settings");
         setSupportActionBar(toolbar);
