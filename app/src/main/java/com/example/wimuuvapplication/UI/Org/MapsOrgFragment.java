@@ -26,7 +26,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.R;
-import com.example.wimuuvapplication.UI.SpotDetailsActivity;
+import com.example.wimuuvapplication.UI.Student.SpotDetailsActivity;
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
 import com.example.wimuuvapplication.databinding.FragmentMapsOrgBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
@@ -491,7 +491,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getContext(), SpotDetailsActivity.class);
+        Intent intent = new Intent(getContext(), SpotDetailsOrg.class);
         for (int i = 0; i < markers.size(); i++){
             if (markers.get(i).getId().equals(marker.getId())) {
                 EVENT_SPOT_ID = spotId.get(i);

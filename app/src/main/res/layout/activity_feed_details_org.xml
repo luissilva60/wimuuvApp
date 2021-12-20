@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Org.FeedDetailsOrg">
+    <include
+        layout="@layout/toolbar2"/>
+
+    <TextView
+        android:id="@+id/textViewEventNameOrg"
+        android:layout_width="303dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="115dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Event Name"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEventDescriptionOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="170dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventTypeOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventSpotOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="191dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="191dp"
+        android:gravity="center"
+        android:text="Spot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventDescriptionOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventOrgOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="194dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="195dp"
+        android:gravity="center"
+        android:text="Org"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventSpotOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventStarttimeOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="175dp"
+        android:gravity="center"
+        android:text="StartTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventDateOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventEndtimeOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="178dp"
+        android:gravity="center"
+        android:text="EndTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventStarttimeOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventDateOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="191dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="191dp"
+        android:gravity="center"
+        android:text="Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventOrgOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventStateOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="189dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="189dp"
+        android:gravity="center"
+        android:text="State"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventEndtimeOrg" />
+
+    <TextView
+        android:id="@+id/textViewEventTypeOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="191dp"
+        android:gravity="center"
+        android:text="Type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventNameOrg" />
+
+    <Button
+        android:id="@+id/lerQRCODE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="451dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginBottom="26dp"
+        android:backgroundTint="#FF0000"
+        android:text="Ler QRCODE"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventName" />
+</androidx.constraintlayout.widget.ConstraintLayout>
