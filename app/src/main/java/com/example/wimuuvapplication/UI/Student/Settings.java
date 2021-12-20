@@ -10,14 +10,18 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 
 public class Settings extends AppCompatActivity {
-    private Button logout;
+    private Button logout,changepass;
+    private TextView chpass;
+    private EditText insPass;
     private Switch gpslocation, notifications, TaginPhotos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,10 @@ public class Settings extends AppCompatActivity {
         gpslocation = findViewById(R.id.gpslocation);
         notifications = findViewById(R.id.notifications);
         TaginPhotos = findViewById(R.id.tagInPhotos);
+        changepass = findViewById(R.id.buttonChangePassword);
+        chpass = findViewById(R.id.textViewchPass);
+        insPass = findViewById(R.id.editTextChangePassword);
+
         gpslocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -57,7 +65,7 @@ public class Settings extends AppCompatActivity {
                 if(isChecked){
                     Toast.makeText(getApplicationContext(), "Agora poderá ser taggado em fotos", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Não pode ser tagado em fotos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Não pode ser taggado em fotos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
