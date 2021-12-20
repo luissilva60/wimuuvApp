@@ -230,7 +230,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
 
-                        erasePolylines();
+
 
 
 
@@ -361,7 +361,6 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-        erasePolylines();
         directions.setVisibility(View.VISIBLE);
 
         for (int i = 0; i < markers.size(); i++){
@@ -502,12 +501,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
         startActivity(intent);
     }
 
-    private void erasePolylines(){
-        for(Polyline line : polylines){
-            line.remove();
-        }
-        polylines.clear();
-    }
+
 
     /*@Override
     public void onRoutingFailure(RouteException e) {
