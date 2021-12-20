@@ -181,7 +181,7 @@ public class Register extends AppCompatActivity {
                         postData.put("password", password.getText().toString());
                         postData.put("email", email.getText().toString());
                         postData.put("name", name.getText().toString());
-                        postData.put("photoId", valorphotoId);
+                        //postData.put("photoId", valorphotoId);
                         Log.e("IDS CURSOS",courseId.toString());
                         Log.e("IDS CURSOS 2", String.valueOf(courseId.get(0)));
 

@@ -34,7 +34,6 @@ public class ProfileFragment extends Fragment {
     int stuCurrentAge;
     String stuGender;
     int stuCourseId;
-    int stuPhotoId;
     Button editperfil;
     Button settings;
 
@@ -58,7 +57,6 @@ public class ProfileFragment extends Fragment {
             stuBdate = student.getString("bdate");
             stuGender =  student.getString("gender");
             stuCourseId = student.getInt("crseId");
-            stuPhotoId = student.getInt("photoId");
             stuCurrentAge = student.getInt("currentAge");
         } catch (ExecutionException e) {
             e.printStackTrace();
