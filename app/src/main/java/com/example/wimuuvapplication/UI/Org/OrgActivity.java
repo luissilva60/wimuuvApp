@@ -24,7 +24,7 @@ public class OrgActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
         navView.setOnNavigationItemSelectedListener(navListener);
 
-        Fragment fragment = new MapsFragment();
+        Fragment fragment = new MapsOrgFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()

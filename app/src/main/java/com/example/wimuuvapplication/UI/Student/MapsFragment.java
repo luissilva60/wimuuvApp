@@ -38,7 +38,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-import com.example.wimuuvapplication.UI.SpotDetailsActivity;
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
 import com.example.wimuuvapplication.databinding.FragmentMapsBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
