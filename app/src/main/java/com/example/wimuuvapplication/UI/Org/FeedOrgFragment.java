@@ -1,5 +1,6 @@
 package com.example.wimuuvapplication.UI.Org;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -63,6 +64,7 @@ public class FeedOrgFragment extends Fragment {
     private ListView listViewEvents;
     private FragmentFeedOrgBinding binding;
     public static String ID_EVENT;
+    public static String EVENT_ORG_ID;
     public static String EVENT_NAME;
     public static String EVENT_DESC;
     public static String EVENT_STARTTIME;
@@ -109,7 +111,7 @@ public class FeedOrgFragment extends Fragment {
 
 
         try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/spot/" + OrgLoginActivity.ORG_ID).get();
+            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + OrgLoginActivity.ORG_ID).get();
 
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -253,6 +255,7 @@ public class FeedOrgFragment extends Fragment {
                 Intent intent = new Intent(getContext(), FeedDetailsOrg.class);
                 //Bundle result = new Bundle();
                 ID_EVENT = eventId.get(i);
+                EVENT_ORG_ID = eventOrgId.get(i).toString();
                 EVENT_NAME = eventName.get(i);
                 EVENT_DESC = eventDescription.get(i);
                 EVENT_STARTTIME = eventStartTime.get(i);
@@ -262,7 +265,7 @@ public class FeedOrgFragment extends Fragment {
                 EVENT_STATE = statename;
                 EVENT_TYPE = typename;
                 EVENT_ORG = orgname;
-                intent.putExtra("id", ID_EVENT);
+                intent.putExtra("id", EVENT_ORG_ID);
                 intent.putExtra("name",EVENT_NAME);
                 intent.putExtra("desc",EVENT_DESC);
                 intent.putExtra("starttime",EVENT_STARTTIME);
