@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.Student.FeedFragment">
 
-    
+
 
     <ListView
         android:id="@+id/listEvents"
