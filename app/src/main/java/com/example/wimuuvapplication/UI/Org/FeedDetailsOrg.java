@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,7 +30,8 @@ public class FeedDetailsOrg extends AppCompatActivity {
         qrcode = findViewById(R.id.lerQRCODE);
 
         Intent intent = getIntent();
-
+        String id = intent.getStringExtra("id");
+        Log.e("Info:", "id" + id );
         String eventName = intent.getStringExtra("name");
         String eventDesc = intent.getStringExtra("desc");
         String eventSpot = intent.getStringExtra("spot");

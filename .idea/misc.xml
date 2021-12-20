@@ -33,7 +33,6 @@
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.3875" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_feed.xml" value="0.1" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_feed_details.xml" value="0.33" />
-        <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_feed_details_org.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.3663949275362319" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_main.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_main2.xml" value="0.33" />
@@ -41,7 +40,6 @@
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_profile.xml" value="0.370018115942029" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_spot_details.xml" value="0.33" />
-        <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/activity_spot_details_org.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/fragment_feed.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/fragment_find_events.xml" value="0.36594202898550726" />
         <entry key="..\:/Users/rikky/wimuuvApp/app/src/main/res/layout/fragment_find_spots.xml" value="0.21875" />
@@ -81,6 +79,8 @@
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_feed_details_org.xml" value="0.2341485507246377" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_qrcode_event.xml" value="0.2341485507246377" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/activity_spot_details.xml" value="0.3" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/feed_details.xml" value="0.3" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_feed.xml" value="0.18363728470111448" />
