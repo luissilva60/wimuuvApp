@@ -235,12 +235,9 @@ public class CreateEventOrg extends AppCompatActivity {
 
                     }
 
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    events = null;
                 }
 
             }
