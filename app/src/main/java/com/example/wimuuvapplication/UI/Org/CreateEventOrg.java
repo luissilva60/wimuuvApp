@@ -222,7 +222,7 @@ public class CreateEventOrg extends AppCompatActivity {
                         postData.put("spotId",spotId2);
                         postData.put("stateId",valorStateId);
                         postData.put("event_name", eventName.getText().toString());
-                        postData.put("photos",valorphotos);
+                        //postData.put("photos",valorphotos);
                         postData.put("rating",valorrating);
 
 
