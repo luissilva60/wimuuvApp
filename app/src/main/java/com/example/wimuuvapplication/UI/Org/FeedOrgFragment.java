@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.databinding.FragmentFeedOrgBinding;
@@ -76,6 +79,7 @@ public class FeedOrgFragment extends Fragment {
     public static String EVENT_ORG;
     private int id;
     public static JSONArray test;
+    ImageButton criarEv;
 
 
 
@@ -106,7 +110,16 @@ public class FeedOrgFragment extends Fragment {
         binding = FragmentFeedOrgBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listViewEvents = binding.listEventsOrg;
+        criarEv = binding.imageButtonCriarEv;
         JSONArrayDownloader task = new JSONArrayDownloader();
+
+        criarEv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(getContext(),CreateEventOrg.class);
+                startActivity(i2);
+            }
+        });
 
 
 
@@ -287,4 +300,5 @@ public class FeedOrgFragment extends Fragment {
             }
         });
     }
+
 }

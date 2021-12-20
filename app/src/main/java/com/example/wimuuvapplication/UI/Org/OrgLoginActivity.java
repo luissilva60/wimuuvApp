@@ -34,7 +34,7 @@ public class OrgLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_org_login);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar2);
-        toolbar.setTitle("Settings");
+        toolbar.setTitle("Org Login");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
