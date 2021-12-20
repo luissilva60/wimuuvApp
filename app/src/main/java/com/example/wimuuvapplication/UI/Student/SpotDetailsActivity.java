@@ -87,7 +87,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + MapsFragment.EVENT_SPOT_ID).get();
+            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/spot/" + MapsFragment.EVENT_SPOT_ID).get();
 
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
