@@ -92,7 +92,7 @@ public class ProfileOrgFragment extends Fragment {
     }
 
     public void settingsOnClick(View view) {
-        Intent intent = new Intent(getContext(), Settings.class);
+        Intent intent = new Intent(getContext(), SettingsOrgActivity.class);
 
         startActivity(intent);
     }
