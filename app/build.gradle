@@ -51,6 +51,8 @@ dependencies {
     implementation 'com.github.jd-alexander:library:1.1.0'
     implementation 'com.google.android.libraries.places:places:2.5.0'
 
+    implementation ('eu.livotov.labs.android:CAMView:2.0.1@aar') {transitive=true}
+
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'

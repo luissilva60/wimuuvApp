@@ -38,5 +38,6 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="api_key">AIzaSyC3RwBupXyFdul5XtIAWjDsF9f8ogyLam4</string>
     <string name="base_url">https://maps.googleapis.com/</string>
+    <string name="scanned_data">Scanned Data</string>
 
 </resources>

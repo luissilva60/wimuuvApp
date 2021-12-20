@@ -12,6 +12,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.PRIORITY_HIGH_ACCURACY" />
     <uses-permission android:name="android.permission.ACTION_LOCATION_SOURCE_SETTINGS" />
+    <!--Permission for camera-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--Permission to vibrate-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"
