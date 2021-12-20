@@ -250,6 +250,7 @@ public class FeedFragment extends Fragment {
                 EVENT_STATE = statename;
                 EVENT_TYPE = typename;
                 EVENT_ORG = orgname;
+                intent.putExtra("id", ID_EVENT);
                 intent.putExtra("name",EVENT_NAME);
                 intent.putExtra("desc",EVENT_DESC);
                 intent.putExtra("starttime",EVENT_STARTTIME);
