@@ -103,7 +103,7 @@ public class FeedOrgFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentFeedOrgBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        listViewEvents = binding.listEvents;
+        listViewEvents = binding.listEventsOrg;
         JSONArrayDownloader task = new JSONArrayDownloader();
 
 
@@ -250,7 +250,7 @@ public class FeedOrgFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(getContext(), FeedDetails.class);
+                Intent intent = new Intent(getContext(), FeedDetailsOrg.class);
                 //Bundle result = new Bundle();
                 ID_EVENT = eventId.get(i);
                 EVENT_NAME = eventName.get(i);
