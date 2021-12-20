@@ -54,6 +54,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
     private JSONObject org;
     private JSONArray objevents;
     public static String ID_EVENT;
+    public static String EVENT_ORG_ID;
     public static String EVENT_NAME;
     public static String EVENT_DESC;
     public static String EVENT_STARTTIME;
@@ -202,6 +203,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
                 Intent intent2 = new Intent(getApplicationContext(), FeedDetailsOrg.class);
 
                 ID_EVENT = eventId.get(i);
+                EVENT_ORG_ID = eventOrgId.get(i).toString();
                 EVENT_NAME = eventName.get(i);
                 EVENT_DESC = eventDescription.get(i);
                 EVENT_STARTTIME = eventStartTime.get(i);
@@ -212,7 +214,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
                 EVENT_TYPE = typename;
                 EVENT_ORG = orgname;
 
-                intent2.putExtra("id", ID_EVENT);
+                intent2.putExtra("id", EVENT_ORG_ID);
                 intent2.putExtra("name", EVENT_NAME);
                 intent2.putExtra("desc", EVENT_DESC);
                 intent2.putExtra("starttime", EVENT_STARTTIME);
