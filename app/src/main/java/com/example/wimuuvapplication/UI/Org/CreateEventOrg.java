@@ -222,12 +222,12 @@ public class CreateEventOrg extends AppCompatActivity {
                         postData.put("spotId",spotId2);
                         postData.put("stateId",valorStateId);
                         postData.put("event_name", eventName.getText().toString());
-                        //postData.put("photos",valorphotos);
-                        postData.put("rating",valorrating);
+                        postData.put("photosId",valorphotos);
+                        postData.put("rateId",valorrating);
 
 
                         PostData task3 = new PostData(postData);
-                        task3.execute("https://wimuuv.herokuapp.com/api/events/new");
+                        task3.execute("https://wimuuv.herokuapp.com/api/events/add");
 
 
                         Log.e("Create Event Activity", ""+ postData.toString());

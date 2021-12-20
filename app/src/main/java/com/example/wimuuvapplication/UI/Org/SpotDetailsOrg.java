@@ -108,7 +108,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
             for (int i = 0; i < objevents.length(); i++) {
                 try {
                     obj = objevents.getJSONObject(i);
-                    String eventname1 = obj.getString("event_name");
+                    String eventname1 = obj.getString("name");
                     String eventdescription1 = obj.getString("description");
                     String eventdate1 = obj.getString("date");
                     String eventstartime1 = obj.getString("starttime");
@@ -119,7 +119,7 @@ public class SpotDetailsOrg extends AppCompatActivity {
                     eventSpotId.add(obj.getInt("spotId"));
                     eventOrgId.add(obj.getInt("orgId"));
                     eventId.add(obj.getString("id"));
-                    eventName.add(obj.getString("event_name"));
+                    eventName.add(obj.getString("name"));
                     eventDescription.add(obj.getString("description"));
                     eventDate.add(obj.getString("date"));
                     eventStartTime.add(obj.getString("starttime"));
