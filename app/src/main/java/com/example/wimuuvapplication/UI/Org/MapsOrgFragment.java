@@ -230,8 +230,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
 
-
-
+                        
 
 
 
