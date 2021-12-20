@@ -1,15 +1,10 @@
-package com.example.wimuuvapplication.UI;
+package com.example.wimuuvapplication.UI.Org;
 
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,8 +14,6 @@ import android.widget.ListView;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.UI.Student.MapsFragment;
-import com.example.wimuuvapplication.databinding.ActivitySpotDetailsBinding;
-import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
@@ -32,9 +25,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class SpotDetailsActivity extends AppCompatActivity {
+public class SpotDetailsOrg extends AppCompatActivity {
 
-    private ActivitySpotDetailsBinding binding;
     private ListView listViewEventsfSpot;
     private ArrayList<String> events;
     private ArrayList<String> eventId;
@@ -75,7 +67,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spot_details);
+        setContentView(R.layout.activity_spot_details_org);
         listViewEventsfSpot = findViewById(R.id.listEventsfromSpot);
         events = new ArrayList<String>();
         JSONObject obj;
@@ -87,7 +79,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + MapsFragment.EVENT_SPOT_ID).get();
+            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + MapsOrgFragment.EVENT_SPOT_ID).get();
 
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -207,7 +199,7 @@ public class SpotDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent2 = new Intent(getApplicationContext(), FeedDetails.class);
+                Intent intent2 = new Intent(getApplicationContext(), FeedDetailsOrg.class);
 
                 ID_EVENT = eventId.get(i);
                 EVENT_NAME = eventName.get(i);
@@ -243,4 +235,3 @@ public class SpotDetailsActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 }
-
