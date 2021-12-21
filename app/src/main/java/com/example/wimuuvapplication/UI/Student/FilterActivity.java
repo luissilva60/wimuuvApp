@@ -46,6 +46,15 @@ public class FilterActivity extends AppCompatActivity {
         Spinner spotS = (Spinner) findViewById(R.id.FiltersSpinnerSpot);
         Spinner typeS = (Spinner) findViewById(R.id.FiltersSpinnerType);
 
+
+        try {
+            typeEvents = task.execute("https://wimuuv.herokuapp.com/api/type/").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         JSONObject obj;
         type1 = new ArrayList<>();
         typeNames = new ArrayList<>();
