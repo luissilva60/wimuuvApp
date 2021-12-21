@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class Register extends AppCompatActivity {
+
     EditText name,email,password,birthdate;
     String postBDate;
     Button signUp;
@@ -108,7 +109,7 @@ public class Register extends AppCompatActivity {
 
         listGender.add("M");
         listGender.add("F");
-        listGender.add("Non Binary");
+        listGender.add("X");
 
         adapterGender = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listGender);
         adapterGender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -152,12 +153,17 @@ public class Register extends AppCompatActivity {
                 GetPersons getStudents = new GetPersons();
                 String valorphotoId = "1";
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
-
                 String genderAtt = gender.getSelectedItem().toString();
+
                 try {
                     students = getStudents.execute("https://wimuuv.herokuapp.com/api/student").get();
                     JSONObject aux = new JSONObject(students.get(0).toString());
 
+                    for (int position = 0; position < 3; position++) {
+                        if (curso.getSelectedItemId() == position){
+                            cursoId = String.valueOf(courseId.get(position));
+                        }
+                    }
                     if (name.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         name.setHintTextColor(Color.RED);
@@ -173,15 +179,6 @@ public class Register extends AppCompatActivity {
                     if (email.getText().toString().isEmpty()){
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         email.setHintTextColor(Color.RED);
-                    }
-                    if(curso.getSelectedItemId() == 0){
-                        cursoId = String.valueOf(courseId.get(0));
-                    }
-                    if(curso.getSelectedItemId() == 1){
-                        cursoId = String.valueOf(courseId.get(1));
-                    }
-                    if(curso.getSelectedItemId() == 2){
-                        cursoId = String.valueOf(courseId.get(2));
                     }
                     else {
                         Map<String, String> postData = new HashMap<>();

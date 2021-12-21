@@ -180,6 +180,16 @@ public class CreateEventOrg extends AppCompatActivity {
                     events = getEvents.execute("https://wimuuv.herokuapp.com/api/events").get();
                     JSONObject aux = new JSONObject(events.get(0).toString());
 
+
+                    for (int position = 0; position < 4; position++) {
+                        if (typeS.getSelectedItemId() == position){
+                            typeId2 = String.valueOf(typeId.get(position));
+                        }
+                    for (int p = 0; p < 3; p++)
+                        if (spotS.getSelectedItemId() == position){
+                            spotId2 = String.valueOf(spotId.get(position));
+                        }
+                    }
                     if (eventName.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         eventName.setHintTextColor(Color.RED);
@@ -204,24 +214,6 @@ public class CreateEventOrg extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         capacity.setHintTextColor(Color.RED);
                     }
-                    if(typeS.getSelectedItemId() == 0){
-                        typeId2 = String.valueOf(typeId.get(0));
-                    }
-                    if(typeS.getSelectedItemId() == 1){
-                        typeId2 = String.valueOf(typeId.get(1));
-                    }
-                    if(typeS.getSelectedItemId() == 2){
-                        typeId2 = String.valueOf(typeId.get(2));
-                    }
-                    if(typeS.getSelectedItemId() == 3) {
-                        typeId2 = String.valueOf(typeId.get(3));
-                    }
-                    if(spotS.getSelectedItemId() == 0){
-                        spotId2 = String.valueOf(spotId.get(0));
-                    }
-                    if(spotS.getSelectedItemId() == 1){
-                        spotId2 = String.valueOf(spotId.get(1));
-                    }
                     else {
                         Map<String, String> postData = new HashMap<>();
                         postData.put("rateId",valorrating);
@@ -241,10 +233,11 @@ public class CreateEventOrg extends AppCompatActivity {
 
 
                         Log.e("IDS spotId", String.valueOf(spotId.get(1)));
+                        Log.e("IDS typeId", String.valueOf(typeId.get(1)));
                         PostData task3 = new PostData(postData);
                         task3.execute("https://wimuuv.herokuapp.com/api/events/add");
 
-
+                        Toast.makeText(getApplicationContext(), "Evento "+ eventName.getText().toString() + " criado", Toast.LENGTH_SHORT).show();
 
                         Log.e("Create Event Activity", ""+ postData.toString());
                         startActivity(i2);
