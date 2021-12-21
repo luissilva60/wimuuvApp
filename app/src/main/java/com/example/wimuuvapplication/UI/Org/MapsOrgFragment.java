@@ -24,12 +24,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.SpotDetailsActivity;
 import com.example.wimuuvapplication.UI.directions.DirectionResponses;
 import com.example.wimuuvapplication.databinding.FragmentMapsOrgBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -58,9 +65,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import retrofit2.Call;
+
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;

@@ -47,6 +47,9 @@ public class Register extends AppCompatActivity {
     JSONArray students = null;
     int cursoId1;
     int cursoId2;
+    String dayString;
+    String monthString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,8 +126,16 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month+1;
-                        postBDate = year+"-"+month+"-"+day;
-                        String date = year+"/"+month+"/"+day;
+                        dayString = String.valueOf(day);
+                        if ( day < 10){
+                            dayString = "0" + day;
+                        }
+                        monthString = String.valueOf(month);
+                        if ( month < 10){
+                            monthString = "0" + month;
+                        }
+                        postBDate = year+"-"+monthString+"-"+dayString;
+                        String date = year+"-"+monthString+"-"+dayString;
                         birthdate.setText(date);
                     }
                 }, year, month, day);
