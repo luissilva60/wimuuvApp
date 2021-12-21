@@ -110,11 +110,17 @@
         android:id="@+id/eventshistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="299dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#FFFFFF"
         android:text="Histórico"
         android:textColor="#CA1414"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="141dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
