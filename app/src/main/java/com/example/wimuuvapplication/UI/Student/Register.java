@@ -192,8 +192,8 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
-                        LoginDataSource login = new LoginDataSource();
-                        login.login(""+email.getText().toString(), ""+password.getText().toString());
+                        //LoginDataSource login = new LoginDataSource();
+                        //login.login(""+email.getText().toString(), ""+password.getText().toString());
                         Log.e("Id Sign up activity", ""+ postData.toString());
                         startActivity(i);
                     }
