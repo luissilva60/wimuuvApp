@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
     Button editperfil;
     Button settings;
     FragmentProfileBinding binding;
-    private Button historico;
+
 
 
     public ProfileFragment() {
@@ -90,14 +90,7 @@ public class ProfileFragment extends Fragment {
         View RootView = inflater.inflate(R.layout.fragment_profile, container, false);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        historico = binding.eventshistorico;
-        historico.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), HistoricoDeEventosActivity.class);
-                startActivity(i);
-            }
-        });
+
         TextView name = (TextView)RootView.findViewById(R.id.name);
         TextView email = (TextView)RootView.findViewById(R.id.email);
         TextView bdate = (TextView)RootView.findViewById(R.id.bdate);
