@@ -130,6 +130,10 @@ public class ProfileFragment extends Fragment {
 
         startActivity(intent);
     }
+    public void historicoOnCLick(View v){
+        Intent intent = new Intent(getContext(), HistoricoDeEventosActivity.class);
+        startActivity(intent);
+    }
 
 
 }
