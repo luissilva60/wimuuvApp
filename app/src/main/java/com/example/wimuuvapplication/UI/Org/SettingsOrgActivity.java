@@ -23,6 +23,7 @@ public class SettingsOrgActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), OrgLoginActivity.class);
+                startActivity(i);
             }
         });
     }
