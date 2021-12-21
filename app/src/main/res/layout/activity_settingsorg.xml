@@ -4,6 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/loginbg"
     tools:context=".UI.Org.SettingsOrgActivity">
+
+    <Switch
+        android:id="@+id/gpslocationOrg"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="169dp"
+        android:backgroundTint="#9E9C9C"
+        android:text="GPS services"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/notificationsOrg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <Switch
+        android:id="@+id/notificationsOrg"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="237dp"
+        android:text="Notifications"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/logoutBtnOrg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpslocationOrg" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar2" />
+
+    <Button
+        android:id="@+id/logoutBtnOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="152dp"
+        android:text="LogOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
