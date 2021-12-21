@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.databinding.FragmentMapsBinding;
+import com.example.wimuuvapplication.databinding.FragmentProfileBinding;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
 import org.json.JSONException;
@@ -36,6 +38,8 @@ public class ProfileFragment extends Fragment {
     int stuCourseId;
     Button editperfil;
     Button settings;
+    FragmentProfileBinding binding;
+    private Button historico;
 
 
     public ProfileFragment() {
@@ -84,6 +88,16 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View RootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+
+        historico = binding.eventshistorico;
+        historico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), HistoricoDeEventosActivity.class);
+                startActivity(i);
+            }
+        });
         TextView name = (TextView)RootView.findViewById(R.id.name);
         TextView email = (TextView)RootView.findViewById(R.id.email);
         TextView bdate = (TextView)RootView.findViewById(R.id.bdate);

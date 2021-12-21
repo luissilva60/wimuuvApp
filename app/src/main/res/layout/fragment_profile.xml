@@ -79,6 +79,7 @@
             android:clickable="true"
             android:onClick="editOnClick"
             android:text="Editar Perfil"
+            android:textColor="#C30E0E"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +105,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/eventshistorico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:text="Histórico"
+        android:textColor="#CA1414"
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="141dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

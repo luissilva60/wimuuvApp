@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".UI.Student.HistoricoDeEventosActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Student.FilterActivity"
             android:exported="false" />
         <activity
