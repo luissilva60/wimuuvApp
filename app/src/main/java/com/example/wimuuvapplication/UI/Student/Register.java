@@ -47,6 +47,9 @@ public class Register extends AppCompatActivity {
     JSONArray students = null;
     int cursoId1;
     int cursoId2;
+    String dayString;
+    String monthString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,8 +126,16 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month+1;
-                        postBDate = year+"-"+month+"-"+day;
-                        String date = year+"/"+month+"/"+day;
+                        dayString = String.valueOf(day);
+                        if ( day < 10){
+                            dayString = "0" + day;
+                        }
+                        monthString = String.valueOf(month);
+                        if ( month < 10){
+                            monthString = "0" + month;
+                        }
+                        postBDate = year+"-"+monthString+"-"+dayString;
+                        String date = year+"-"+monthString+"-"+dayString;
                         birthdate.setText(date);
                     }
                 }, year, month, day);
@@ -144,7 +155,6 @@ public class Register extends AppCompatActivity {
 
                 String genderAtt = gender.getSelectedItem().toString();
                 try {
-
                     students = getStudents.execute("https://wimuuv.herokuapp.com/api/student").get();
                     JSONObject aux = new JSONObject(students.get(0).toString());
 
@@ -181,7 +191,7 @@ public class Register extends AppCompatActivity {
                         postData.put("password", password.getText().toString());
                         postData.put("email", email.getText().toString());
                         postData.put("name", name.getText().toString());
-                        postData.put("photoId", valorphotoId);
+                        //postData.put("photoId", valorphotoId);
                         Log.e("IDS CURSOS",courseId.toString());
                         Log.e("IDS CURSOS 2", String.valueOf(courseId.get(0)));
 
@@ -193,8 +203,8 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
-                        LoginDataSource login = new LoginDataSource();
-                        login.login(""+email.getText().toString(), ""+password.getText().toString());
+                        //LoginDataSource login = new LoginDataSource();
+                        //login.login(""+email.getText().toString(), ""+password.getText().toString());
                         Log.e("Id Sign up activity", ""+ postData.toString());
                         startActivity(i);
                     }

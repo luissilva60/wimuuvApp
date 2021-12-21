@@ -1,5 +1,6 @@
 package com.example.wimuuvapplication.UI.Org;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.databinding.FragmentFeedOrgBinding;
@@ -63,6 +67,7 @@ public class FeedOrgFragment extends Fragment {
     private ListView listViewEvents;
     private FragmentFeedOrgBinding binding;
     public static String ID_EVENT;
+    public static String EVENT_ORG_ID;
     public static String EVENT_NAME;
     public static String EVENT_DESC;
     public static String EVENT_STARTTIME;
@@ -74,6 +79,7 @@ public class FeedOrgFragment extends Fragment {
     public static String EVENT_ORG;
     private int id;
     public static JSONArray test;
+    ImageButton criarEv;
 
 
 
@@ -103,13 +109,22 @@ public class FeedOrgFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentFeedOrgBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        listViewEvents = binding.listEvents;
+        listViewEvents = binding.listEventsOrg;
+        criarEv = binding.imageButtonCriarEv;
         JSONArrayDownloader task = new JSONArrayDownloader();
+
+        criarEv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(getContext(),CreateEventOrg.class);
+                startActivity(i2);
+            }
+        });
 
 
 
         try {
-            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/spot/" + OrgLoginActivity.ORG_ID).get();
+            objevents = task.execute("https://wimuuv.herokuapp.com/api/events/org/" + OrgLoginActivity.ORG_ID).get();
 
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -156,7 +171,7 @@ public class FeedOrgFragment extends Fragment {
                 try {
                     obj = objevents.getJSONObject(i);
                     test = objevents;
-                    String eventname1 = obj.getString("event_name");
+                    String eventname1 = obj.getString("name");
                     String eventdescription1 = obj.getString("description");
                     String eventdate1 = obj.getString("date");
                     String eventstartime1 = obj.getString("starttime");
@@ -167,7 +182,7 @@ public class FeedOrgFragment extends Fragment {
                     eventSpotId.add(obj.getInt("spotId"));
                     eventOrgId.add(obj.getInt("orgId"));
                     eventId.add(obj.getString("id"));
-                    eventName.add(obj.getString("event_name"));
+                    eventName.add(obj.getString("name"));
                     eventDescription.add(obj.getString("description"));
                     eventDate.add(obj.getString("date"));
                     eventStartTime.add(obj.getString("starttime"));
@@ -250,9 +265,10 @@ public class FeedOrgFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(getContext(), FeedDetails.class);
+                Intent intent = new Intent(getContext(), FeedDetailsOrg.class);
                 //Bundle result = new Bundle();
                 ID_EVENT = eventId.get(i);
+                EVENT_ORG_ID = eventOrgId.get(i).toString();
                 EVENT_NAME = eventName.get(i);
                 EVENT_DESC = eventDescription.get(i);
                 EVENT_STARTTIME = eventStartTime.get(i);
@@ -262,7 +278,7 @@ public class FeedOrgFragment extends Fragment {
                 EVENT_STATE = statename;
                 EVENT_TYPE = typename;
                 EVENT_ORG = orgname;
-                intent.putExtra("id", ID_EVENT);
+                intent.putExtra("id", EVENT_ORG_ID);
                 intent.putExtra("name",EVENT_NAME);
                 intent.putExtra("desc",EVENT_DESC);
                 intent.putExtra("starttime",EVENT_STARTTIME);
@@ -284,4 +300,5 @@ public class FeedOrgFragment extends Fragment {
             }
         });
     }
+
 }

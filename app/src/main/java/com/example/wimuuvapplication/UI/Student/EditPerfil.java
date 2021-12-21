@@ -4,10 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.wimuuvapplication.R;
 
 public class EditPerfil extends AppCompatActivity {
+
+    private Button changepass;
+    private TextView chpass;
+    private EditText insPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,9 @@ public class EditPerfil extends AppCompatActivity {
         toolbar2.setTitle("Editar Perfil");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        changepass = findViewById(R.id.buttonChangePassword);
+        chpass = findViewById(R.id.textViewchPass);
+        insPass = findViewById(R.id.editTextChangePassword);
     }
 
     @Override
