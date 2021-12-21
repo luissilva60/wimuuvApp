@@ -109,7 +109,7 @@ public class Register extends AppCompatActivity {
 
         listGender.add("M");
         listGender.add("F");
-        listGender.add("Non Binary");
+        listGender.add("X");
 
         adapterGender = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listGender);
         adapterGender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -153,8 +153,8 @@ public class Register extends AppCompatActivity {
                 GetPersons getStudents = new GetPersons();
                 String valorphotoId = "1";
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
-
                 String genderAtt = gender.getSelectedItem().toString();
+
                 try {
                     students = getStudents.execute("https://wimuuv.herokuapp.com/api/student").get();
                     JSONObject aux = new JSONObject(students.get(0).toString());

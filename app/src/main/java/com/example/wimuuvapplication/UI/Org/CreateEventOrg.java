@@ -233,7 +233,7 @@ public class CreateEventOrg extends AppCompatActivity {
 
 
                         Log.e("IDS spotId", String.valueOf(spotId.get(1)));
-                        Log.e("IDS spotId", String.valueOf(typeId.get(1)));
+                        Log.e("IDS typeId", String.valueOf(typeId.get(1)));
                         PostData task3 = new PostData(postData);
                         task3.execute("https://wimuuv.herokuapp.com/api/events/add");
 
