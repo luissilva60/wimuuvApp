@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="TODO"
-        android:layout_height="TODO" />
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
 
     <TextView
         android:id="@+id/textView3"
@@ -49,6 +49,7 @@
     <Spinner
         android:id="@+id/FiltersSpinnerSpot"
         android:layout_width="222dp"
+        android:textColor="@android:color/white"
         android:layout_height="52dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="9dp"
@@ -61,6 +62,7 @@
 
     <Spinner
         android:id="@+id/FiltersSpinnerType"
+        android:textColor="@android:color/white"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
