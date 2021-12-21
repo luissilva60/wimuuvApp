@@ -26,19 +26,20 @@ import java.util.concurrent.ExecutionException;
 
 public class ProfileFragment extends Fragment {
 
-    TextView name,email,bdate,course,currentAge,gender;
-    JSONObject student;
-    JSONObject courseString;
-    String stuName;
-    String stuEmail;
-    String stuBdate;
-    String courseName;
-    int stuCurrentAge;
-    String stuGender;
-    int stuCourseId;
-    Button editperfil;
-    Button settings;
-    FragmentProfileBinding binding;
+    private TextView name,email,bdate,course,currentAge,gender;
+    private JSONObject student;
+    private JSONObject courseString;
+    private String stuName;
+    private String stuEmail;
+    private String stuBdate;
+    private String courseName;
+    private int stuCurrentAge;
+    private String stuGender;
+    private int stuCourseId;
+    private Button editperfil;
+    private Button settings;
+    private Button historico;
+    private FragmentProfileBinding binding;
 
 
 
@@ -90,6 +91,14 @@ public class ProfileFragment extends Fragment {
         View RootView = inflater.inflate(R.layout.fragment_profile, container, false);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
+        historico = binding.eventshistorico;
+        historico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), HistoricoDeEventosActivity.class);
+                startActivity(i);
+            }
+        });
 
         TextView name = (TextView)RootView.findViewById(R.id.name);
         TextView email = (TextView)RootView.findViewById(R.id.email);
@@ -112,6 +121,8 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    
+
     public void editOnClick(View view) {
         Intent intent = new Intent(getContext(), EditPerfil.class);
 
@@ -123,10 +134,11 @@ public class ProfileFragment extends Fragment {
 
         startActivity(intent);
     }
-    public void historicoOnCLick(View v){
-        Intent intent = new Intent(getContext(), HistoricoDeEventosActivity.class);
-        startActivity(intent);
-    }
 
+    /*public void historicoOnClick(View view) {
+        Intent intent = new Intent(getContext(), HistoricoDeEventosActivity.class);
+
+        startActivity(intent);
+    }*/
 
 }
