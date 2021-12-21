@@ -89,7 +89,8 @@
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/WimuuvApplication/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_feed.xml" value="0.18363728470111448" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_feed.xml" value="0.22" />
+        <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_feed_org.xml" value="0.15020263424518743" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_maps.xml" value="0.14537037037037037" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_maps_org.xml" value="0.18363728470111448" />
         <entry key="..\:/wimuuvApp/app/src/main/res/layout/fragment_profile.xml" value="0.75" />

@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.wimuuvapplication.UI.Org.CreateEventOrg;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
@@ -75,6 +77,9 @@ public class FeedFragment extends Fragment {
     private int id;
     public static JSONArray test;
 
+
+    private ImageButton filters;
+
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -93,7 +98,16 @@ public class FeedFragment extends Fragment {
         binding = FragmentFeedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listViewEvents = binding.listEvents;
+        filters = binding.filtrosfeed;
         JSONArrayDownloader task = new JSONArrayDownloader();
+
+        filters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent filters = new Intent(getContext(), FilterActivity.class);
+                startActivity(filters);
+            }
+        });
 
 
 
