@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Student.MainActivity2;
 import com.example.wimuuvapplication.UI.Student.Register;
 import com.example.wimuuvapplication.downloaders.GetPersons;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
@@ -58,7 +59,7 @@ public class CreateEventOrg extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         eventName = findViewById(R.id.editTextTextEventName);
-        desc = findViewById(R.id.editTextTextEmailAddress2);
+        desc = findViewById(R.id.editTextTextDescription);
         eventDate = findViewById(R.id.editTextDate);
         starttime = findViewById(R.id.editTextTextStarttime);
         endtime = findViewById(R.id.editTextTextEndtime);
@@ -164,7 +165,7 @@ public class CreateEventOrg extends AppCompatActivity {
                 String spotId2 = new String();
                 String typeId2 = new String();
                 GetPersons getEvents = new GetPersons();
-                Intent i2 = new Intent(getApplicationContext(),FeedOrgFragment.class);
+                Intent i2 = new Intent(getApplicationContext(), MainActivity2.class);
                 try {
                     events = getEvents.execute("https://wimuuv.herokuapp.com/api/events").get();
                     JSONObject aux = new JSONObject(events.get(0).toString());
@@ -213,33 +214,36 @@ public class CreateEventOrg extends AppCompatActivity {
                     }
                     else {
                         Map<String, String> postData = new HashMap<>();
-                        postData.put("typeId", typeId2);
-                        postData.put("date", eventDate.getText().toString());
-                        postData.put("description", desc.getText().toString());
-                        postData.put("starttime", starttime.getText().toString());
-                        postData.put("endtime", endtime.getText().toString());
-                        postData.put("orgId", OrgLoginActivity.ORG_ID);
-                        postData.put("spotId",spotId2);
-                        postData.put("stateId",valorStateId);
-                        postData.put("event_name", eventName.getText().toString());
-                        postData.put("photosId",valorphotos);
                         postData.put("rateId",valorrating);
+                        postData.put("stateId",valorStateId);
+                        postData.put("photosId",valorphotos);
+                        postData.put("capacity", capacity.getText().toString());
+                        postData.put("spotId",spotId2);
+                        postData.put("orgId", OrgLoginActivity.ORG_ID);
+                        postData.put("duration", duration.getText().toString());
+                        postData.put("endtime", endtime.getText().toString());
+                        postData.put("starttime", starttime.getText().toString());
+                        postData.put("date", eventDate.getText().toString());
+                        postData.put("typeId", typeId2);
+                        postData.put("description", desc.getText().toString());
+                        postData.put("name", eventName.getText().toString());
 
 
+
+                        Log.e("IDS spotId", String.valueOf(spotId.get(1)));
                         PostData task3 = new PostData(postData);
                         task3.execute("https://wimuuv.herokuapp.com/api/events/add");
+
 
 
                         Log.e("Create Event Activity", ""+ postData.toString());
                         startActivity(i2);
 
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     events = null;
                 }
-
             }
         });
 
