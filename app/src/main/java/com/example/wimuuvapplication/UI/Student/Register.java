@@ -144,7 +144,6 @@ public class Register extends AppCompatActivity {
 
                 String genderAtt = gender.getSelectedItem().toString();
                 try {
-
                     students = getStudents.execute("https://wimuuv.herokuapp.com/api/student").get();
                     JSONObject aux = new JSONObject(students.get(0).toString());
 
