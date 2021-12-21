@@ -34,22 +34,22 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class CreateEventOrg extends AppCompatActivity {
-    EditText eventName,desc,eventDate,starttime,endtime,duration,capacity;
-    Button createEvent;
-    String postEventDate;
-    JSONArray typeEvents;
-    JSONArray spotEvents;
-    ArrayList<String> typeNames;
-    ArrayList<String> type1;
-    ArrayList<Integer> typeId;
-    ArrayList<String> spotNames;
-    ArrayList<String> spot1;
-    ArrayList<Integer> spotId;
-    ArrayAdapter<String> adapterType;
-    ArrayAdapter<String> adapterSpot;
-    JSONArray events = null;
-    String dayString;
-    String monthString;
+    private EditText eventName,desc,eventDate,starttime,endtime,duration,capacity;
+    private Button createEvent;
+    private String postEventDate;
+    private JSONArray typeEvents;
+    private JSONArray spotEvents;
+    private ArrayList<String> typeNames;
+    private ArrayList<String> type1;
+    private ArrayList<Integer> typeId;
+    private ArrayList<String> spotNames;
+    private ArrayList<String> spot1;
+    private ArrayList<Integer> spotId;
+    private ArrayAdapter<String> adapterType;
+    private ArrayAdapter<String> adapterSpot;
+    private JSONArray events = null;
+    private String dayString;
+    private String monthString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
