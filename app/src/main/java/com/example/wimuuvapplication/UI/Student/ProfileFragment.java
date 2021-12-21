@@ -38,7 +38,7 @@ public class ProfileFragment extends Fragment {
     private int stuCourseId;
     private Button editperfil;
     private Button settings;
-    private Button historico;
+    private Button historicoEv;
     private FragmentProfileBinding binding;
 
 
@@ -88,11 +88,10 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_profile, container, false);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-
-        historico = binding.eventshistorico;
-        historico.setOnClickListener(new View.OnClickListener() {
+        View RootView = binding.getRoot();
+        historicoEv = binding.eventshistorico;
+        historicoEv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), HistoricoDeEventosActivity.class);
