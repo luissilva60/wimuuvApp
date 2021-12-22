@@ -98,7 +98,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
-        //polylines = new ArrayList<>();
+        polylines = new ArrayList<>();
 
         //download spots
 
@@ -231,6 +231,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
+                        erasePolylines();
 
 
 
@@ -416,7 +417,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                     .addAll(PolyUtil.decode(shape))
                     .width(8f)
                     .color(Color.RED);
-            googleMap.addPolyline(polyline1);
+            this.polylines.add(googleMap.addPolyline(polyline1));
+
         }
     }
 
@@ -490,6 +492,13 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
 
 
 
+    private void erasePolylines(){
+        for(Polyline line : polylines){
+            line.remove();
+        }
+        polylines.clear();
+    }
+
 
     @Override
     public void onInfoWindowClick(Marker marker) {
@@ -558,7 +567,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
             line.remove();
         }
         polylines.clear();
-    }*/
+    }
 
 
     /*private BitmapDescriptor bitmapDescriptorFromVector (Context context, int vectorResId) {
