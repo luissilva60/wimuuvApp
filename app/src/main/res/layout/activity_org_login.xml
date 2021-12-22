@@ -66,6 +66,7 @@
         android:textColorHint="#EB1C24"
         android:textColorLink="#EB1C24"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordorg"
         app:rippleColor="#EB1C24" />
