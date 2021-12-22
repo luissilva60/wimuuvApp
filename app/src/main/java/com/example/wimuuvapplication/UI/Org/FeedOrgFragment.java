@@ -292,7 +292,7 @@ public class FeedOrgFragment extends Fragment {
                 //result.putString("id",eventId.get(i));
                 //result.putString("name",eventName.get(i));
                 //getParentFragmentManager().setFragmentResult("event", result);
-
+                adapterEvents.notifyDataSetInvalidated();
                 //intent.putExtras(result);
                 startActivity(intent);
                 //intent.putExtra("id",eventId.get(i));
