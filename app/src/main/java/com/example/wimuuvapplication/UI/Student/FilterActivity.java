@@ -146,8 +146,8 @@ public class FilterActivity extends AppCompatActivity {
                             SPOT_ID = zero;
                         }
                     }
-                    Log.e("typeID: ",""+ TYPE_ID);
-                    Log.e("spotID: ",""+ SPOT_ID);
+                    Log.e("typeID : ",""+ TYPE_ID);
+                    Log.e("spotID : ",""+ SPOT_ID);
                     startActivity(i);
                 }catch (Exception e) {
                     e.printStackTrace();
