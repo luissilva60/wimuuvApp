@@ -202,7 +202,7 @@ public class Register extends AppCompatActivity {
 
                         //LoginDataSource login = new LoginDataSource();
                         //login.login(""+email.getText().toString(), ""+password.getText().toString());
-                        Log.e("Id Sign up activity", ""+ postData.toString());
+                        Log.e("Id Sign up activity: ", ""+ postData.toString());
                         startActivity(i);
                     }
                 } catch (Exception e) {
