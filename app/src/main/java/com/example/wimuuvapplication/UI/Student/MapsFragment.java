@@ -88,6 +88,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     private ImageButton directions;
     public static String EVENT_SPOT_ID;
 
+
+
     private List<Polyline> polylines = null;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
 
