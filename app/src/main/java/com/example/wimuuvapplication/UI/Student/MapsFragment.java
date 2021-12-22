@@ -366,6 +366,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
     public boolean onMarkerClick(@NonNull Marker marker) {
 
         directions.setVisibility(View.VISIBLE);
+        erasePolylines();
 
         for (int i = 0; i < markers.size(); i++){
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
