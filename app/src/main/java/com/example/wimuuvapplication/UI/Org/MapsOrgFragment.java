@@ -102,7 +102,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
 
 
 
-        //polylines = new ArrayList<>();
+        polylines = new ArrayList<>();
 
         //download spots
 
@@ -235,7 +235,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
                     @Override
                     public void onMapClick(@NonNull LatLng latLng) {
                         directions.setVisibility(View.INVISIBLE);
-
+                        erasePolylines();
                         
 
 
@@ -367,7 +367,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         directions.setVisibility(View.VISIBLE);
-
+        erasePolylines();
         for (int i = 0; i < markers.size(); i++){
             markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             if (markers.get(i).getId().equals(marker.getId())) {
@@ -418,8 +418,14 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
                     .addAll(PolyUtil.decode(shape))
                     .width(8f)
                     .color(Color.RED);
-            googleMap.addPolyline(polyline1);
+            this.polylines.add(googleMap.addPolyline(polyline1));
         }
+    }
+    private void erasePolylines(){
+        for(Polyline line : polylines){
+            line.remove();
+        }
+        polylines.clear();
     }
 
     @Override

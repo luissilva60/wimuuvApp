@@ -4,6 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EB1C24"
     tools:context=".UI.Student.HistoricoDeEventosActivity">
+
+    <include layout="@layout/toolbar2" />
+
+    <ListView
+        android:id="@+id/listhistorico"
+        android:layout_width="414dp"
+        android:layout_height="679dp"
+        android:layout_marginTop="56dp"
+        android:background="#EB1C24"
+        android:cacheColorHint="#FBFBFB"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EB1C24"
     tools:context=".UI.Student.SpotDetailsActivity">
 
     <include layout="@layout/toolbar2" />
@@ -12,9 +12,10 @@
     <ListView
         android:id="@+id/listEventsfromSpot"
         android:layout_width="match_parent"
-        android:layout_height="471dp"
+        android:layout_height="673dp"
         android:layout_alignParentBottom="true"
-        android:background="#F80707"
+        android:layout_marginBottom="0dp"
+        android:background="#EB1C24"
         android:cacheColorHint="#FBFBFB"
         android:divider="#FFFFFF"
         android:dividerHeight="1dp"

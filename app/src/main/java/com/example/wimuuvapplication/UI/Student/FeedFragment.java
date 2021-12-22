@@ -14,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Org.CreateEventOrg;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
 import com.example.wimuuvapplication.databinding.FragmentFeedBinding;
@@ -189,8 +191,18 @@ public class FeedFragment extends Fragment {
         return root;
     }
     public void InitializeAdapter() {
-        adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
-        listViewEvents.setAdapter(adapterEvents);
+        //adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
+        //listViewEvents.setAdapter(adapterEvents);
+        listViewEvents.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, events) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                int textColor = textView.getText().toString().equals(events) ? R.color.white : R.color.white;
+                textView.setTextColor(getContext().getResources().getColor(textColor));
+
+                return textView;
+            }
+        });
         createListViewClickItemEvent(listViewEvents, events, eventId,eventName,eventDescription,eventDate,eventStartTime,eventEndTime,eventTypeId,eventStateId,eventOrgId,eventSpotId);
     }
 
