@@ -203,7 +203,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 markers = new ArrayList<>();
                 for(int i = 0; i < spotlocation.size(); i++){
                     markers.add(mMap.addMarker(new MarkerOptions().position(spotlocation.get(i)).title(spotName.get(i)).snippet("Clique para ver detalhes").icon
-                            (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
+                            (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));
                     Log.e("error", "add marker in : " + spotlocation);
                 }
                 mMap.setOnInfoWindowClickListener(MapsFragment.this);
@@ -371,7 +371,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
         erasePolylines();
 
         for (int i = 0; i < markers.size(); i++){
-            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+            markers.get(i).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             if (markers.get(i).getId().equals(marker.getId())) {
 
                 LatLng location = spotlocation.get(i);
@@ -379,7 +379,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnMarkerClickLis
                 //getRouteToMarker(location);
             }
         }
-        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
