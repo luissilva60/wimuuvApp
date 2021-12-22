@@ -12,8 +12,9 @@
     <ListView
         android:id="@+id/listEventsfromSpot"
         android:layout_width="match_parent"
-        android:layout_height="674dp"
+        android:layout_height="732dp"
         android:layout_alignParentBottom="true"
+        android:background="#EB1C24"
         android:cacheColorHint="#FBFBFB"
         android:divider="#FFFFFF"
         android:dividerHeight="1dp"

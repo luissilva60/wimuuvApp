@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
@@ -137,8 +139,17 @@ public class SpotDetailsOrg extends AppCompatActivity {
     }
 
     public void InitializeAdapter() {
-        adapterEvents = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, events);
-        listViewEventsfSpot.setAdapter(adapterEvents);
+
+        listViewEventsfSpot.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, events) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                int textColor = textView.getText().toString().equals(events) ? R.color.white : R.color.white;
+                textView.setTextColor(getContext().getResources().getColor(textColor));
+
+                return textView;
+            }
+        });
         createListViewClickItemEvent(listViewEventsfSpot, events, eventId, eventName, eventDescription, eventDate, eventStartTime, eventEndTime, eventTypeId, eventStateId, eventOrgId, eventSpotId);
     }
 

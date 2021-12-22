@@ -1,6 +1,7 @@
 package com.example.wimuuvapplication.UI.Org;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,13 @@ public class SettingsOrgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settingsorg);
 
+
+        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar2.setTitle("Forgot Password Org");
+        setSupportActionBar(toolbar2);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         logout = findViewById(R.id.logoutBtnOrg);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,5 +35,10 @@ public class SettingsOrgActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }
