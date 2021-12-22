@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
+import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +31,7 @@ public class FilterActivity extends AppCompatActivity {
     private ArrayList<Integer> spotId;
     private ArrayAdapter<String> adapterType;
     private ArrayAdapter<String> adapterSpot;
-
+    private Button filtrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +42,10 @@ public class FilterActivity extends AppCompatActivity {
         toolbar2.setTitle("Filtros");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        String blank = "";
         JSONArrayDownloader task = new JSONArrayDownloader();
         JSONArrayDownloader task2 = new JSONArrayDownloader();
-
+        filtrar = findViewById(R.id.button5);
         Spinner spotS = (Spinner) findViewById(R.id.FiltersSpinnerSpot);
         Spinner typeS = (Spinner) findViewById(R.id.FiltersSpinnerType);
 
@@ -57,6 +60,7 @@ public class FilterActivity extends AppCompatActivity {
 
         JSONObject obj;
         type1 = new ArrayList<>();
+        type1.add(blank);
         typeNames = new ArrayList<>();
         typeId = new ArrayList<>();
         if(typeEvents != null) {
@@ -88,6 +92,7 @@ public class FilterActivity extends AppCompatActivity {
 
         JSONObject obj2;
         spot1 = new ArrayList<>();
+        spot1.add(blank);
         spotNames = new ArrayList<>();
         spotId = new ArrayList<>();
         if(spotEvents != null) {
@@ -108,6 +113,14 @@ public class FilterActivity extends AppCompatActivity {
         adapterSpot = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,spot1);
         adapterSpot.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spotS.setAdapter(adapterSpot);
+
+        filtrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObjDownloader task2 = new JSONObjDownloader();
+                JSONObjDownloader task3 = new JSONObjDownloader();
+            }
+        });
     }
     @Override
     public boolean onSupportNavigateUp() {
