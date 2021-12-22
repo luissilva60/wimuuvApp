@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Student.FilteredEvents">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/toolbar2" />
+
+    <ListView
+        android:id="@+id/listEventsFiltered"
+        android:layout_width="match_parent"
+        android:layout_height="674dp"
+        android:layout_alignParentBottom="true"
+        android:cacheColorHint="#FBFBFB"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dp"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>

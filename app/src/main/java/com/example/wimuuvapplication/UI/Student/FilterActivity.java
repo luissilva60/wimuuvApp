@@ -3,12 +3,16 @@ package com.example.wimuuvapplication.UI.Student;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.JSONObjDownloader;
@@ -32,6 +36,8 @@ public class FilterActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterType;
     private ArrayAdapter<String> adapterSpot;
     private Button filtrar;
+    public static String SPOT_ID = new String();
+    public static String TYPE_ID = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class FilterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String blank = "";
+        String zero = "0";
         JSONArrayDownloader task = new JSONArrayDownloader();
         JSONArrayDownloader task2 = new JSONArrayDownloader();
         filtrar = findViewById(R.id.button5);
@@ -117,8 +124,34 @@ public class FilterActivity extends AppCompatActivity {
         filtrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObjDownloader task2 = new JSONObjDownloader();
-                JSONObjDownloader task3 = new JSONObjDownloader();
+                Intent i = new Intent(getApplicationContext(), FilteredEvents.class);
+                try {
+
+                    for (int position = 0; position < 4; position++) {
+                        if (typeS.getSelectedItemId() == position){
+                            TYPE_ID = String.valueOf(typeId.get(position)-1);
+                        }
+                        for (int p = 0; p < 2; p++)
+                            if (spotS.getSelectedItemId() == p){
+                                SPOT_ID = String.valueOf(spotId.get(p)-1);
+                            }
+                        if (TYPE_ID.isEmpty() && SPOT_ID.isEmpty()){
+                            Toast.makeText(getApplicationContext(), "Insira os filtros", Toast.LENGTH_SHORT).show();
+                        }
+                        if (TYPE_ID.isEmpty()){
+                           TYPE_ID = zero;
+
+                        }
+                        if (SPOT_ID.isEmpty()){
+                            SPOT_ID = zero;
+                        }
+                    }
+                    Log.e("typeID: ",""+ TYPE_ID);
+                    Log.e("spotID: ",""+ SPOT_ID);
+                    startActivity(i);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
