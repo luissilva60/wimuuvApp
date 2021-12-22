@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.wimuuvapplication.R;
 import com.example.wimuuvapplication.UI.Student.FeedDetails;
@@ -202,8 +203,16 @@ public class FeedOrgFragment extends Fragment {
     }
 
     public void InitializeAdapter() {
-        adapterEvents = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, events);
-        listViewEvents.setAdapter(adapterEvents);
+        listViewEvents.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, events) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                int textColor = textView.getText().toString().equals(events) ? R.color.white : R.color.white;
+                textView.setTextColor(getContext().getResources().getColor(textColor));
+
+                return textView;
+            }
+        });
         createListViewClickItemEvent(listViewEvents, events, eventId,eventName,eventDescription,eventDate,eventStartTime,eventEndTime,eventTypeId,eventStateId,eventOrgId,eventSpotId);
     }
 
@@ -292,7 +301,7 @@ public class FeedOrgFragment extends Fragment {
                 //result.putString("id",eventId.get(i));
                 //result.putString("name",eventName.get(i));
                 //getParentFragmentManager().setFragmentResult("event", result);
-                adapterEvents.notifyDataSetInvalidated();
+                //adapterEvents.notifyDataSetInvalidated();
                 //intent.putExtras(result);
                 startActivity(intent);
                 //intent.putExtra("id",eventId.get(i));
