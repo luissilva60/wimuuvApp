@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 
 public class SettingsOrgActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class SettingsOrgActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), OrgLoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });

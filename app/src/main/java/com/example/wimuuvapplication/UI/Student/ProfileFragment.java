@@ -120,7 +120,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    
+
 
     public void editOnClick(View view) {
         Intent intent = new Intent(getContext(), EditPerfil.class);
