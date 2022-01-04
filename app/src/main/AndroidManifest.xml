@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".UI.Student.RateActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Student.FilteredEvents"
             android:exported="true" />
         <activity
