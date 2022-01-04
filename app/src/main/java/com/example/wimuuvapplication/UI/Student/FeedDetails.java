@@ -63,19 +63,6 @@ public class FeedDetails extends AppCompatActivity {
         date.setText("Data: "+ eventDate);
         type.setText("Tipo: "+ eventType);
         state.setText("Estado: "+ eventState);
-        //Bundle bundle = getIntent().getExtras();
-        //if(bundle!=null){
-        //name.setText("Nome do Evento:  "+ bundle.getString("name"));
-        //}
-        //bundle.getString("id");
-        //bundle.getString("name");
-        //Log.e("INFO",bundle.getString("name"));
-        //name.setText(bundle.getString("name"));
-
-
-
-        //name.setText("Nome: " + bundle.getString("name"));
-
 
 
 

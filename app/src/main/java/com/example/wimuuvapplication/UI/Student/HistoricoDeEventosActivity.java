@@ -44,6 +44,7 @@ public class HistoricoDeEventosActivity extends AppCompatActivity {
     private ArrayList<Integer> eventRateId;
     private ArrayList<Integer> eventTypeId;
     private JSONArray objevents;
+    public static String EVENT_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class HistoricoDeEventosActivity extends AppCompatActivity {
                     eventDate.add(obj.getString("date"));
                     eventStartTime.add(obj.getString("starttime"));
                     eventEndTime.add(obj.getString("endtime"));
-                    events.add(String.format("%s - \n- %s \n- %s \n- %s - %s \n\t\t\t Clique para ver mais detalhes", eventname1, eventdescription1, eventdate1, eventstartime1, eventendtime1));
+                    events.add(String.format("%s - \n- %s \n- %s \n- %s - %s \n\n\t\t\t Clique para dar um Rating", eventname1, eventdescription1, eventdate1, eventstartime1, eventendtime1));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -133,7 +134,8 @@ public class HistoricoDeEventosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), RateActivity.class);
-
+                EVENT_ID = eventId.get(position);
+                i.putExtra("id", EVENT_ID);
                 startActivity(i);
             }
         });

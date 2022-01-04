@@ -12,7 +12,7 @@
         layout="@layout/toolbar2" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/editTextTextComment"
         android:layout_width="322dp"
         android:layout_height="53dp"
         android:layout_marginStart="44dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editTextTextRate"
         android:layout_width="130dp"
         android:layout_height="49dp"
         android:layout_marginStart="44dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/buttonAvaliar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -77,7 +77,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextComment" />
 
     <TextView
         android:id="@+id/textView8"
@@ -89,7 +89,7 @@
         android:text="Comentário:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextRate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
