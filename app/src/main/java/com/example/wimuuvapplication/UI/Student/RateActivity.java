@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +30,7 @@ public class RateActivity extends AppCompatActivity {
     private EditText comment,rate;
     private Button avaliar;
     private JSONArray studentRate = null;
-// https://wimuuv.herokuapp.com/api/student_rate
-// https://wimuuv.herokuapp.com/api/student_rate/add
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,22 +59,25 @@ public class RateActivity extends AppCompatActivity {
                 try {
                     studentRate = getRate.execute("https://wimuuv.herokuapp.com/api/student_rate").get();
                     JSONObject aux = new JSONObject(studentRate.get(0).toString());
+                    if (rate.getText().toString().isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
+                        rate.setHintTextColor(Color.RED);
+                    }
+                    else {
+                        Map<String, String> postData = new HashMap<>();
+                        postData.put("evRid", eventId);
+                        postData.put("stuRid", MainActivity.USER_ID);
+                        postData.put("comment", comment.getText().toString());
+                        postData.put("stuRateEv", rate.getText().toString());
 
+                        PostData task = new PostData(postData);
+                        task.execute("https://wimuuv.herokuapp.com/api/student_rate/add");
 
-                    Map<String, String> postData = new HashMap<>();
-                    postData.put("evRid", eventId);
-                    postData.put("stuRid", MainActivity.USER_ID);
-                    postData.put("comment", comment.getText().toString());
-                    postData.put("stuRateEv", rate.getText().toString());
+                        Toast.makeText(getApplicationContext(), "Rate done", Toast.LENGTH_SHORT).show();
 
-                    PostData task = new PostData(postData);
-                    task.execute("https://wimuuv.herokuapp.com/api/student_rate/add");
-
-                    Toast.makeText(getApplicationContext(), "Rate done", Toast.LENGTH_SHORT).show();
-
-                    Log.e("Give Rate Activity", ""+ postData.toString());
-                    startActivity(i2);
-
+                        Log.e("Give Rate Activity", "" + postData.toString());
+                        startActivity(i2);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     studentRate = null;

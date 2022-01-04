@@ -177,7 +177,7 @@ public class FeedFragment extends Fragment {
                     eventDate.add(obj.getString("date"));
                     eventStartTime.add(obj.getString("starttime"));
                     eventEndTime.add(obj.getString("endtime"));
-                    events.add(String.format("%s : \n- %s \n- %s \n- %s - %s \n\t\t\t Clique para ver mais detalhes",eventname1, eventdescription1,eventdate1,eventstartime1,eventendtime1));
+                    events.add(String.format("%s : \n- %s \n- %s \n- %s - %s \n\n\t\t\t Clique para ver mais detalhes",eventname1, eventdescription1,eventdate1,eventstartime1,eventendtime1));
 
                 }
                 catch (JSONException e) {
