@@ -127,28 +127,32 @@ public class FilterActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), FilteredEvents.class);
                 try {
 
-                    for (int position = 0; position < 4; position++) {
-                        if (typeS.getSelectedItemId() == position){
-                            TYPE_ID = String.valueOf(typeId.get(position)-1);
-                        }
-                        for (int p = 0; p < 2; p++)
-                            if (spotS.getSelectedItemId() == p){
-                                SPOT_ID = String.valueOf(spotId.get(p)-1);
-                            }
-                        if (TYPE_ID.isEmpty() && SPOT_ID.isEmpty()){
-                            Toast.makeText(getApplicationContext(), "Insira os filtros", Toast.LENGTH_SHORT).show();
-                        }
-                        if (TYPE_ID.isEmpty()){
-                           TYPE_ID = zero;
-
-                        }
-                        if (SPOT_ID.isEmpty()){
-                            SPOT_ID = zero;
+                    for (int position = 0; position < 5; position++) {
+                        if (typeS.getSelectedItemId() == position) {
+                            TYPE_ID = String.valueOf(((int)typeS.getSelectedItemId()));
                         }
                     }
-                    Log.e("typeID : ",""+ TYPE_ID);
-                    Log.e("spotID : ",""+ SPOT_ID);
-                    startActivity(i);
+                        for (int p = 0; p < 3; p++) {
+                            if (spotS.getSelectedItemId() == p) {
+                                SPOT_ID = String.valueOf(((int)spotS.getSelectedItemId()));
+                            }
+                        }
+                    if (TYPE_ID.isEmpty()) {
+                        TYPE_ID = zero;
+                    }
+                    if (SPOT_ID.isEmpty()) {
+                        SPOT_ID = zero;
+                    }
+                    if(spotS.getSelectedItemId() == 0 && typeS.getSelectedItemId() == 0) {
+                        Toast.makeText(getApplicationContext(), "Insira os filtros", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+
+                        Log.e("typeID : ", "" + TYPE_ID);
+                        Log.e("spotID : ", "" + SPOT_ID);
+                        startActivity(i);
+                    }
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
