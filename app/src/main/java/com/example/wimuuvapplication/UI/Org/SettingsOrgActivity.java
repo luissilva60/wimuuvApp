@@ -22,7 +22,7 @@ public class SettingsOrgActivity extends AppCompatActivity {
 
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setTitle("Forgot Password Org");
+        toolbar2.setTitle("Setting Org");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

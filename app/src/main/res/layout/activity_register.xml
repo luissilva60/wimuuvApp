@@ -20,6 +20,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="91dp"
         android:backgroundTint="#FFFFFF"
+        android:buttonTint="#000000"
         android:text="Aceito os termos e condições"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
@@ -190,5 +191,58 @@
         app:layout_constraintEnd_toStartOf="@+id/spinnerCurso"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include3" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="47dp"
+        android:layout_height="49dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="173dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include3"
+        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="47dp"
+        android:layout_height="51dp"
+
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextEmailAddress2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_baseline_alternate_email_24" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="47dp"
+        android:layout_height="51dp"
+
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPassword2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_baseline_vpn_key_24" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/ic_baseline_date_range_24" />
+
+    <TextView
+        android:id="@+id/textViewTermos"
+        android:layout_width="129dp"
+        android:layout_height="16dp"
+        android:text="Termos e condições"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="602dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

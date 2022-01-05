@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -36,6 +37,7 @@ import java.util.concurrent.ExecutionException;
 public class Register extends AppCompatActivity {
 
     EditText name,email,password,birthdate;
+    CheckBox aceitar;
     String postBDate;
     Button signUp;
     JSONArray courses;
@@ -67,6 +69,7 @@ public class Register extends AppCompatActivity {
         Spinner gender = (Spinner) findViewById(R.id.spinnerGender);
         Spinner curso = (Spinner) findViewById(R.id.spinnerCurso);
         signUp = findViewById(R.id.button3);
+        aceitar = findViewById(R.id.checkBox3);
 
 
 
@@ -123,7 +126,7 @@ public class Register extends AppCompatActivity {
         birthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Register.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Register.this,R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month+1;
@@ -179,6 +182,10 @@ public class Register extends AppCompatActivity {
                     if (email.getText().toString().isEmpty()){
                         Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
                         email.setHintTextColor(Color.RED);
+                    }
+                    if (!aceitar.isChecked()){
+                        Toast.makeText(getApplicationContext(), "Favor aceitar os termos e condições", Toast.LENGTH_SHORT).show();
+                        aceitar.setHintTextColor(Color.RED);
                     }
                     else {
                         Map<String, String> postData = new HashMap<>();
