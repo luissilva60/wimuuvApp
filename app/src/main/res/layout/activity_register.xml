@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
+    android:onClick="onClickVerTermos"
     tools:context=".UI.Student.Register">
 
     <include
@@ -244,6 +245,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="38dp"
         android:backgroundTint="#00FFFFFF"
+        android:clickable="true"
+        android:onClick="onClickVerTermos"
         android:shadowColor="#000000"
         android:text="Ver"
         android:textColor="#000000"

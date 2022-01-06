@@ -10,19 +10,18 @@
         layout="@layout/toolbar2" />
 
     <ScrollView
-        android:layout_width="412dp"
-        android:layout_height="676dp"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include6"
-        app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck" >
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
         android:layout_height="676dp"
         android:background="#EB1C24"
         android:backgroundTint="#EB1C24"

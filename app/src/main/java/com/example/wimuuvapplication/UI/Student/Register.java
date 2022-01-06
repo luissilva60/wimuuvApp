@@ -18,8 +18,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.wimuuvapplication.Login.MainActivity;
+import com.example.wimuuvapplication.Login.TermoseCondicoesActivity;
 import com.example.wimuuvapplication.LoginDetails.LoginDataSource;
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Org.OrgLoginActivity;
 import com.example.wimuuvapplication.downloaders.GetPersons;
 import com.example.wimuuvapplication.downloaders.JSONArrayDownloader;
 import com.example.wimuuvapplication.downloaders.PostData;
@@ -226,6 +228,13 @@ public class Register extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    public void onClickVerTermos(View v) {
+        Intent intent = new Intent(getApplicationContext(), TermoseCondicoesActivity.class);
+
+
+        startActivity(intent);
     }
 
 }
