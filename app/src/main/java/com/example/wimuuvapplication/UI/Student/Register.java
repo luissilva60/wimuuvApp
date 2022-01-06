@@ -204,7 +204,7 @@ public class Register extends AppCompatActivity {
 
 
 
-                        Toast.makeText(getApplicationContext(), "Welcome ! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Bem-vindo! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
                         //LoginDataSource login = new LoginDataSource();
