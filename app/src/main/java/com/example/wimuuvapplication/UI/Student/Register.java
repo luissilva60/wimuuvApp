@@ -170,26 +170,26 @@ public class Register extends AppCompatActivity {
                         }
                     }
                     if (name.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
-                        name.setHintTextColor(Color.RED);
+                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em preto", Toast.LENGTH_SHORT).show();
+                        name.setHintTextColor(Color.BLACK);
                     }
                     if (birthdate.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
-                        birthdate.setHintTextColor(Color.RED);
+                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em preto", Toast.LENGTH_SHORT).show();
+                        birthdate.setHintTextColor(Color.BLACK);
                     }
                     if (password.getText().toString().isEmpty()){
-                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
-                        password.setHintTextColor(Color.RED);
+                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em preto", Toast.LENGTH_SHORT).show();
+                        password.setHintTextColor(Color.BLACK);
                     }
                     if (email.getText().toString().isEmpty()){
-                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em vermelho", Toast.LENGTH_SHORT).show();
-                        email.setHintTextColor(Color.RED);
+                        Toast.makeText(getApplicationContext(), "Favor preencher o campo em preto", Toast.LENGTH_SHORT).show();
+                        email.setHintTextColor(Color.BLACK);
                     }
                     if (!aceitar.isChecked()){
                         Toast.makeText(getApplicationContext(), "Favor aceitar os termos e condições", Toast.LENGTH_SHORT).show();
                         aceitar.setHintTextColor(Color.RED);
                     }
-                    else {
+                    else if (!name.getText().toString().isEmpty() && !birthdate.getText().toString().isEmpty() && !password.getText().toString().isEmpty() && !email.getText().toString().isEmpty() && aceitar.isChecked()){
                         Map<String, String> postData = new HashMap<>();
                         postData.put("crseId", cursoId);
                         postData.put("gender", genderAtt);
@@ -209,8 +209,6 @@ public class Register extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Welcome! "+ name.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
-                        //LoginDataSource login = new LoginDataSource();
-                        //login.login(""+email.getText().toString(), ""+password.getText().toString());
                         Log.e("Id Sign up activity: ", ""+ postData.toString());
                         startActivity(i);
                     }
