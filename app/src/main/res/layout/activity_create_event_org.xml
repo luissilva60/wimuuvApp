@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/quantum_googred500"
+    android:background="#EB1C24"
     tools:context=".UI.Org.CreateEventOrg">
 
     <include
