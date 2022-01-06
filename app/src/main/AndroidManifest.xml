@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".Login.TermoseCondicoesActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.OpenApp"
             android:exported="true">
             <intent-filter>
@@ -110,8 +113,7 @@
             android:exported="false" />
         <activity
             android:name=".Login.MainActivity"
-            android:exported="true" />
-        <!-- Maps Android Key -->
+            android:exported="true" /> <!-- Maps Android Key -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
