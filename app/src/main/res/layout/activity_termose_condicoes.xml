@@ -5,15 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login.TermoseCondicoesActivity">
+    <include
+        android:id="@+id/include6"
+        layout="@layout/toolbar2" />
 
     <ScrollView
         android:layout_width="412dp"
         android:layout_height="676dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include6"
-        tools:ignore="SpeakableTextPresentCheck"/>
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck" >
 
     <TextView
         android:id="@+id/textView9"
@@ -29,8 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/include6"
         tools:ignore="TextContrastCheck" />
 
-    <include
-        android:id="@+id/include6"
-        layout="@layout/toolbar2" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
