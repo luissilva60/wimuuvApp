@@ -237,12 +237,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:srcCompat="@drawable/ic_baseline_date_range_24" />
 
-    <TextView
-        android:id="@+id/textViewTermos"
-        android:layout_width="129dp"
-        android:layout_height="16dp"
-        android:text="Termos e condições"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="602dp" />
+    <Button
+        android:id="@+id/buttonLerTermos"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="38dp"
+        android:backgroundTint="#00FFFFFF"
+        android:shadowColor="#000000"
+        android:text="Ver"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBox3"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
