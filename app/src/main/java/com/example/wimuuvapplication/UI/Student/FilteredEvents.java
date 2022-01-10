@@ -198,7 +198,7 @@ public class FilteredEvents extends AppCompatActivity {
 
 
                 try {
-                    spot = task4.execute("https://wimuuv.herokuapp.com/api/spot/" + eventSpotId.get(i)).get();
+                    spot = task4.execute("https://wimuuv.herokuapp.com/api/spots/" + eventSpotId.get(i)).get();
                     spotname = spot.getString("name");
 
                 } catch (ExecutionException e) {

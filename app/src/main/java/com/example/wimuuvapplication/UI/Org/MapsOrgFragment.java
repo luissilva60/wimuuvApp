@@ -108,7 +108,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
 
         JSONArrayDownloader task = new JSONArrayDownloader();
         try {
-            objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
+            objspots = task.execute("https://wimuuv.herokuapp.com/api/spots").get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -152,7 +152,7 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
 
         JSONArrayDownloader task = new JSONArrayDownloader();
         try {
-            objspots = task.execute("https://wimuuv.herokuapp.com/api/spot").get();
+            objspots = task.execute("https://wimuuv.herokuapp.com/api/spots").get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

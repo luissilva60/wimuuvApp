@@ -107,7 +107,7 @@ public class CreateEventOrg extends AppCompatActivity {
         typeS.setAdapter(adapterType);
 
         try {
-            spotEvents = task2.execute("https://wimuuv.herokuapp.com/api/spot/").get();
+            spotEvents = task2.execute("https://wimuuv.herokuapp.com/api/spots/").get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
