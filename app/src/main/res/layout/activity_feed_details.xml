@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="170dp"
         android:gravity="center"
         android:padding="10dp"
@@ -43,11 +43,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="191dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="191dp"
         android:gravity="center"
         android:text="Spot"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventDescription" />
 
@@ -56,11 +57,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="194dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="195dp"
         android:gravity="center"
         android:text="Org"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventSpot" />
 
@@ -69,11 +71,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="174dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="175dp"
         android:gravity="center"
         android:text="StartTime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventDate" />
 
@@ -95,11 +98,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="191dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="191dp"
         android:gravity="center"
         android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventOrg" />
 
@@ -140,8 +144,22 @@
         android:backgroundTint="#FF0000"
         android:text="Ir a evento"
         android:textColor="#FFFFFF"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventName" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="217dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="17dp"
+        android:text="Para poder entrar no evento terá de mostrar o QR Code localizado no seu perfil."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEventState"
+        app:layout_constraintVertical_bias="0.564" />
 </androidx.constraintlayout.widget.ConstraintLayout>
