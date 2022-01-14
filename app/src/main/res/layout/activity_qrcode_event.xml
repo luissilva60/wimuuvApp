@@ -9,64 +9,37 @@
     <include
         android:id="@+id/include2"
         layout="@layout/toolbar2"
-        android:layout_marginBottom="118dp"
-        app:layout_constraintBottom_toTopOf="@+id/inputText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/inputText"
-        android:layout_width="338dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginEnd="37dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="Insira o seu nome"
-        android:textColorHint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
     <Button
         android:id="@+id/btQR"
         android:layout_width="131dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="196dp"
         android:layout_marginEnd="140dp"
         android:backgroundTint="#EB1C24"
         android:text="Gerar QRcode"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputText" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="354dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="21dp"
-        android:text="Atencão! Deves guardar este QRCode para ser lido à entrada do evento. Este QR Code serve apenas para obtermos  feedback para que possamos melhorar. Opcional mas agradeciamos que o fizessem."
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btQR" />
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
     <ImageView
         android:id="@+id/imageQR"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="56dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/btQR" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
