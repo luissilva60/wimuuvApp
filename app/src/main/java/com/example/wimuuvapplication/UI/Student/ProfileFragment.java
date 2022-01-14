@@ -25,7 +25,6 @@ import java.util.concurrent.ExecutionException;
 
 
 public class ProfileFragment extends Fragment {
-
     private TextView name,email,bdate,course,currentAge,gender;
     private JSONObject student;
     private JSONObject courseString;
@@ -40,6 +39,7 @@ public class ProfileFragment extends Fragment {
     private Button settings;
     private Button historicoEv;
     private FragmentProfileBinding binding;
+    private ImageButton qrcode;
 
 
 
@@ -53,6 +53,7 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         JSONObjDownloader task = new JSONObjDownloader();
         JSONObjDownloader task2 = new JSONObjDownloader();
+
 
 
         try {
@@ -80,6 +81,10 @@ public class ProfileFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+
 
     }
 
@@ -118,6 +123,8 @@ public class ProfileFragment extends Fragment {
 
         return RootView;
 
+
+
     }
 
 
@@ -131,6 +138,11 @@ public class ProfileFragment extends Fragment {
     public void settingsOnClick(View view) {
         Intent intent = new Intent(getContext(), Settings.class);
 
+        startActivity(intent);
+    }
+
+    public void onClickQrCode(View v) {
+        Intent intent = new Intent(getContext(), QRCodeEventActivity.class);
         startActivity(intent);
     }
 

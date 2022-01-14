@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -20,7 +21,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRCodeEventActivity extends AppCompatActivity {
-    EditText text;
+    String text;
     Button button;
     ImageView QRcode;
 
@@ -30,7 +31,7 @@ public class QRCodeEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode_event);
 
 
-        text = findViewById(R.id.inputText);
+        text = MainActivity.USER_ID;
         button = findViewById(R.id.btQR);
         QRcode = findViewById(R.id.imageQR);
 
@@ -43,7 +44,7 @@ public class QRCodeEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Obter o valor através do edit text
-                String sText = text.getText().toString().trim();
+                String sText = text.trim();
                 //Inicializar a multi format writer
                 MultiFormatWriter writer = new MultiFormatWriter();
                 try {
@@ -59,7 +60,6 @@ public class QRCodeEventActivity extends AppCompatActivity {
                     InputMethodManager manager = (InputMethodManager)  getSystemService(
                             Context.INPUT_METHOD_SERVICE
                     );
-                    manager.hideSoftInputFromWindow(text.getApplicationWindowToken(), 0);
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
