@@ -101,7 +101,6 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
         MapsInitializer.initialize(getContext());
 
 
-
         polylines = new ArrayList<>();
 
         //download spots
@@ -579,4 +578,5 @@ public class MapsOrgFragment extends Fragment implements GoogleMap.OnMarkerClick
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }*/
+
 }

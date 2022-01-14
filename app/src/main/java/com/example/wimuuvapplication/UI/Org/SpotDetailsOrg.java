@@ -90,7 +90,6 @@ public class SpotDetailsOrg extends AppCompatActivity {
 
 
 
-
         events = new ArrayList<>();
         eventId = new ArrayList<>();
         eventName = new ArrayList<>();

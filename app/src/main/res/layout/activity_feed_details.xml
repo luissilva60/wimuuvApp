@@ -157,6 +157,7 @@
         android:layout_marginStart="104dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="17dp"
+        android:gravity="center"
         android:text="Para poder entrar no evento terá de mostrar o QR Code localizado no seu perfil."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
