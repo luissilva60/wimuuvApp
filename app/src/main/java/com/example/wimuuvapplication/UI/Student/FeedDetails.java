@@ -55,7 +55,7 @@ public class FeedDetails extends AppCompatActivity {
 
 
         name.setText("Nome: "+ eventName);
-        desc.setText("Desc: "+ eventDesc);
+        desc.setText("Descrição: "+ eventDesc);
         spot.setText("Spot: "+ eventSpot);
         org.setText("Org: "+ eventOrg);
         starttime.setText("Start: "+ eventStarttime);
