@@ -125,11 +125,15 @@
         android:id="@+id/qrcode"
         android:layout_width="53dp"
         android:layout_height="51dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="onClickQrCode"
         android:src="@drawable/ic_baseline_qr_code_24"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="13dp" />
+        app:layout_constraintEnd_toStartOf="@+id/settingsBtn"
+        app:layout_constraintStart_toEndOf="@+id/eventshistorico"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

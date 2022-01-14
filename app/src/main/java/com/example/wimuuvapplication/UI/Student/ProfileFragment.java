@@ -103,6 +103,14 @@ public class ProfileFragment extends Fragment {
                 startActivity(i);
             }
         });
+        qrcode = binding.qrcode;
+        qrcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), QRCodeEventActivity.class);
+                startActivity(intent);
+            }
+        });
 
         TextView name = (TextView)RootView.findViewById(R.id.name);
         TextView email = (TextView)RootView.findViewById(R.id.email);
@@ -141,10 +149,7 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void onClickQrCode(View v) {
-        Intent intent = new Intent(getContext(), QRCodeEventActivity.class);
-        startActivity(intent);
-    }
+
 
     /*public void historicoOnClick(View view) {
         Intent intent = new Intent(getContext(), HistoricoDeEventosActivity.class);
