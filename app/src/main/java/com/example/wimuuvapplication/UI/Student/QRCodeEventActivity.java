@@ -32,7 +32,7 @@ public class QRCodeEventActivity extends AppCompatActivity {
 
 
         text = MainActivity.USER_ID;
-        button = findViewById(R.id.btQR);
+
         QRcode = findViewById(R.id.imageQR);
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
@@ -40,31 +40,30 @@ public class QRCodeEventActivity extends AppCompatActivity {
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Obter o valor através do edit text
-                String sText = text.trim();
-                //Inicializar a multi format writer
-                MultiFormatWriter writer = new MultiFormatWriter();
-                try {
-                    //Inicializar a bit matrix
-                    BitMatrix matrix = writer.encode(sText, BarcodeFormat.QR_CODE, 400, 400);
-                    //inicializar a barcode encoder
-                    BarcodeEncoder encoder = new BarcodeEncoder();
-                    //Inicializar bitmap
-                    Bitmap bitmap = encoder.createBitmap(matrix);
-                    //Colocar o bitmap numa imageview
-                    QRcode.setImageBitmap(bitmap);
-                    //Inicializar o input manager
-                    InputMethodManager manager = (InputMethodManager)  getSystemService(
-                            Context.INPUT_METHOD_SERVICE
-                    );
-                } catch (WriterException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
+        //Obter o valor através do edit text
+        String sText = text.trim();
+        //Inicializar a multi format writer
+        MultiFormatWriter writer = new MultiFormatWriter();
+        try {
+            //Inicializar a bit matrix
+            BitMatrix matrix = writer.encode(sText, BarcodeFormat.QR_CODE, 400, 400);
+            //inicializar a barcode encoder
+            BarcodeEncoder encoder = new BarcodeEncoder();
+            //Inicializar bitmap
+            Bitmap bitmap = encoder.createBitmap(matrix);
+            //Colocar o bitmap numa imageview
+            QRcode.setImageBitmap(bitmap);
+            //Inicializar o input manager
+            InputMethodManager manager = (InputMethodManager)  getSystemService(
+                    Context.INPUT_METHOD_SERVICE
+            );
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @Override

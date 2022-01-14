@@ -13,33 +13,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btQR"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="140dp"
-        android:backgroundTint="#EB1C24"
-        android:text="Gerar QRcode"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
-
     <ImageView
         android:id="@+id/imageQR"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="356dp"
+        android:layout_height="386dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="56dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btQR" />
+        tools:layout_editor_absoluteY="172dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
