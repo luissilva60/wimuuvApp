@@ -22,7 +22,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRCodeEventActivity extends AppCompatActivity {
     String text;
-    Button button;
+
     ImageView QRcode;
 
     @Override
