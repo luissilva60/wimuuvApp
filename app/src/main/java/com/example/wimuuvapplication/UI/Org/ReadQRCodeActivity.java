@@ -78,9 +78,9 @@ public class ReadQRCodeActivity extends AppCompatActivity {
 
             @Override
             public void onCodeScanned(String data) {
-                GetPersons getId = new GetPersons();
-                Intent i2 = new Intent(getApplicationContext(), MainActivity2.class);
                 scanned.setText(data);
+                GetPersons getId = new GetPersons();
+                Intent i2 = new Intent(getApplicationContext(), OrgActivity.class);
                 Log.e("Valor data", "" + data);
                 try {
                     studentEvent = getId.execute("https://wimuuv.herokuapp.com/api/student_event").get();
