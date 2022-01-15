@@ -21,6 +21,7 @@ public class FeedDetailsOrg extends AppCompatActivity {
     private JSONArray test;
     private TextView name, desc, spot, org, starttime, endtime, date, type,state;
     private Button qrcode;
+    private static String EVENT_ID;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -31,6 +32,7 @@ public class FeedDetailsOrg extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        EVENT_ID = intent.getStringExtra("eventId");
         String id = intent.getStringExtra("id");
         String eventName = intent.getStringExtra("name");
         String eventDesc = intent.getStringExtra("desc");
@@ -42,7 +44,7 @@ public class FeedDetailsOrg extends AppCompatActivity {
         String eventType = intent.getStringExtra("type");
         String eventState = intent.getStringExtra("state");
 
-
+        //Log.e("EVENT ID CHECK", EVENT_ID);
 
         if(OrgLoginActivity.ORG_ID.equals(id)){
             qrcode.setVisibility(View.VISIBLE);
@@ -81,7 +83,9 @@ public class FeedDetailsOrg extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReadQRCodeActivity.class);
+                intent.putExtra("eventId",EVENT_ID);
                 startActivity(intent);
+
             }
         });
 

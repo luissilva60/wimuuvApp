@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +24,15 @@ public class ReadQRCodeActivity extends AppCompatActivity {
     private TextView scanned;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_qrcode);
+        Intent i = getIntent();
+        String eventId = i.getStringExtra("id");
+
+
 
         if (checkPermission()) {
             Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
