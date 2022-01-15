@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,11 +18,25 @@ import eu.livotov.labs.android.camview.scanner.decoder.zxing.ZXDecoder;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.VIBRATE;
 
+import com.example.wimuuvapplication.Login.MainActivity;
 import com.example.wimuuvapplication.R;
+import com.example.wimuuvapplication.UI.Student.HistoricoDeEventosActivity;
+import com.example.wimuuvapplication.UI.Student.MainActivity2;
+import com.example.wimuuvapplication.downloaders.GetPersons;
+import com.example.wimuuvapplication.downloaders.PostData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class ReadQRCodeActivity extends AppCompatActivity {
     private ScannerLiveView camera;
     private TextView scanned;
+    private JSONArray studentEvent = null;
 
 
 
@@ -30,7 +45,9 @@ public class ReadQRCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_qrcode);
         Intent i = getIntent();
-        String eventId = i.getStringExtra("id");
+        String eventId = i.getStringExtra("eventId");
+
+        Log.e("EVENT ID CHECK", eventId);
 
 
 
@@ -61,7 +78,34 @@ public class ReadQRCodeActivity extends AppCompatActivity {
 
             @Override
             public void onCodeScanned(String data) {
+                GetPersons getId = new GetPersons();
+                Intent i2 = new Intent(getApplicationContext(), MainActivity2.class);
                 scanned.setText(data);
+                Log.e("Valor data", "" + data);
+                try {
+                    studentEvent = getId.execute("https://wimuuv.herokuapp.com/api/student_event").get();
+                    JSONObject aux = new JSONObject(studentEvent.get(0).toString());
+                    {
+                        Map<String, String> postData = new HashMap<>();
+                        postData.put("evId",eventId);
+                        postData.put("entryId",data);
+
+                        PostData task = new PostData(postData);
+                        task.execute("https://wimuuv.herokuapp.com/api/student_event/add");
+
+                        Toast.makeText(getApplicationContext(), "QRCode Checked", Toast.LENGTH_SHORT).show();
+
+                        Log.e("Check QRCode", "" + postData.toString());
+                        startActivity(i2);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    studentEvent = null;
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
