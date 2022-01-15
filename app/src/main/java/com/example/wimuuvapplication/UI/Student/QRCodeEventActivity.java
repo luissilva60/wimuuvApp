@@ -36,7 +36,7 @@ public class QRCodeEventActivity extends AppCompatActivity {
         QRcode = findViewById(R.id.imageQR);
 
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setTitle("Evento");
+        toolbar2.setTitle("QRCode");
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
