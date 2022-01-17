@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 
 public class ProfileFragment extends Fragment {
+
     private TextView name,email,bdate,course,currentAge,gender;
     private JSONObject student;
     private JSONObject courseString;

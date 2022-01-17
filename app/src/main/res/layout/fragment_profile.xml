@@ -133,7 +133,8 @@
         android:src="@drawable/ic_baseline_qr_code_24"
         app:layout_constraintEnd_toStartOf="@+id/settingsBtn"
         app:layout_constraintStart_toEndOf="@+id/eventshistorico"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
