@@ -55,7 +55,7 @@ public class RateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GetPersons getRate = new GetPersons();
-                Intent i2 = new Intent(getApplicationContext(),HistoricoDeEventosActivity.class);
+                Intent i2 = new Intent(getApplicationContext(),MainActivity2.class);
                 try {
                     studentRate = getRate.execute("https://wimuuv.herokuapp.com/api/student_rate").get();
                     JSONObject aux = new JSONObject(studentRate.get(0).toString());

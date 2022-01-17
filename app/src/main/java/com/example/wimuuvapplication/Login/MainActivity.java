@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.e("credentuals:" , ""+ LoginCredentials) ;
+        Log.e("credentials:" , ""+ LoginCredentials) ;
         /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
